@@ -30,30 +30,32 @@
                     navbar.classList.remove('stickyadd')
                 }
             });
-            var navLinks = navbar.querySelectorAll("ul li a");
-            [].forEach.call(navLinks, function (div) {
-                div.addEventListener('click', (e) => {
-                    var href = div.getAttribute("href") || "";
-                    if (href.charAt(0) === "#" && href.length > 1) {
-                        var target = document.querySelector(href);
-                        if (target) {
-                            e.preventDefault();
 
-                            var navHeight = navbar ? navbar.offsetHeight : 0;
-                            var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-                            var scrollTop = Math.max(0, targetTop - navHeight);
+            document.addEventListener('click', function (e) {
+                var link = e.target && e.target.closest ? e.target.closest('a') : null;
+                if (!link) return;
 
-                            window.scrollTo({ top: scrollTop, behavior: "smooth" });
-                        }
-                    }
+                var href = link.getAttribute('href') || '';
+                if (href.charAt(0) !== '#' || href.length <= 1) return;
 
+                var target = document.querySelector(href);
+                if (!target) return;
+
+                e.preventDefault();
+
+                var navHeight = navbar ? navbar.offsetHeight : 0;
+                var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+                var scrollTop = Math.max(0, targetTop - navHeight);
+                window.scrollTo({ top: scrollTop, behavior: "smooth" });
+
+                if (navbar && navbar.contains(link)) {
                     var toggler = document.querySelector(".navbar-toggler");
                     var collapse = document.querySelector("#navbarNav");
                     if (!toggler || !collapse) return;
                     if (window.getComputedStyle(toggler).display === "none") return;
                     if (!collapse.classList.contains("show")) return;
                     toggler.click();
-                });
+                }
             });
         },
 

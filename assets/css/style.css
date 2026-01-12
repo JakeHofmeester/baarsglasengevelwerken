@@ -1043,7 +1043,11 @@ ul.pattern .color6 {
 }
 
 .header-content {
-  max-width: 900px;
+  max-width: 950px;
+}
+
+.header-content h1 {
+  font-size: 1.3rem;
 }
 
 .header-name {
