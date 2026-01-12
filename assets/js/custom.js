@@ -23,28 +23,91 @@
         //scroll
         KerriApp.prototype.initStickyMenu = function () {
             var navbar = document.querySelector('nav')
-            window.onscroll = function () {
-                // pageYOffset or scrollY
+            window.addEventListener('scroll', function () {
                 if (window.pageYOffset > 200) {
                     navbar.classList.add('stickyadd')
                 } else {
                     navbar.classList.remove('stickyadd')
                 }
-            }
+            });
             var navLinks = navbar.querySelectorAll("ul li a");
             [].forEach.call(navLinks, function (div) {
-                div.addEventListener('click', () => {
-                    document.querySelector(".navbar-toggler") ? document.querySelector(".navbar-toggler").click() : '';
+                div.addEventListener('click', (e) => {
+                    var href = div.getAttribute("href") || "";
+                    if (href.charAt(0) === "#" && href.length > 1) {
+                        var target = document.querySelector(href);
+                        if (target) {
+                            e.preventDefault();
+
+                            var navHeight = navbar ? navbar.offsetHeight : 0;
+                            var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+                            var scrollTop = Math.max(0, targetTop - navHeight);
+
+                            window.scrollTo({ top: scrollTop, behavior: "smooth" });
+                        }
+                    }
+
+                    var toggler = document.querySelector(".navbar-toggler");
+                    var collapse = document.querySelector("#navbarNav");
+                    if (!toggler || !collapse) return;
+                    if (window.getComputedStyle(toggler).display === "none") return;
+                    if (!collapse.classList.contains("show")) return;
+                    toggler.click();
                 });
             });
         },
 
         //Scrollspy
         KerriApp.prototype.initScrollspy = function () {
-            var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-                target: '#main_nav',
-                offset: 70
-            })
+            var navbar = document.querySelector('nav');
+            var mainNav = document.getElementById('main_nav');
+            if (!navbar || !mainNav) return;
+
+            var links = mainNav.querySelectorAll('a.nav-link');
+            var items = [];
+            [].forEach.call(links, function (a) {
+                var href = a.getAttribute('href') || '';
+                if (href.charAt(0) !== '#') return;
+                var section = document.querySelector(href);
+                if (!section) return;
+                items.push({ link: a, section: section, id: href });
+            });
+
+            function setActive(id) {
+                [].forEach.call(links, function (a) { a.classList.remove('active'); });
+                var activeLink = mainNav.querySelector('a.nav-link[href="' + id + '"]');
+                if (activeLink) activeLink.classList.add('active');
+            }
+
+            function updateActive() {
+                if (!items.length) return;
+
+                var scrollBottom = window.pageYOffset + window.innerHeight;
+                var pageHeight = document.documentElement.scrollHeight;
+                if (scrollBottom >= pageHeight - 2) {
+                    setActive(items[items.length - 1].id);
+                    return;
+                }
+
+                var navHeight = navbar ? navbar.offsetHeight : 0;
+                var current = window.pageYOffset + navHeight + 1;
+                var activeId = items[0].id;
+
+                for (var i = 0; i < items.length; i++) {
+                    var top = items[i].section.getBoundingClientRect().top + window.pageYOffset;
+                    if (current >= top) {
+                        activeId = items[i].id;
+                    } else {
+                        break;
+                    }
+                }
+                setActive(activeId);
+            }
+
+            window.addEventListener('scroll', updateActive, { passive: true });
+            window.addEventListener('resize', updateActive);
+            window.addEventListener('load', updateActive);
+            updateActive();
         },
 
         //Work
@@ -59,22 +122,6 @@
                         duration: 750,
                         easing: 'linear'
                     }
-                });
-
-                $('.pattern a').on('click', function (event) {
-                    event.preventDefault(); // Prevent the default behavior of the anchor tag
-
-                    // Remove the active class from all other <a> tags
-                    $('.pattern a').removeClass('active');
-
-                    // Add the active class to the clicked <a> tag
-                    $(this).addClass('active');
-
-                    // Get the data-color attribute value
-                    var color = $(this).attr('data-color');
-
-                    // Update the data-color attribute value in the HTML tag
-                    $('.data_color').attr('data-color', color);
                 });
 
                 $filter.find('a').on("click", function () {
@@ -155,42 +202,3 @@
         "use strict";
         $.KerriApp.init();
     }(window.jQuery);
-
-
-//Dark layout themes mode
-var dataTheme = document.getElementById('dataTheme');
-
-dataTheme.addEventListener('click', function () {
-    var body = document.body;
-    var attributeValue = body.getAttribute('data-bs-theme');
-
-    if (attributeValue) {
-        body.removeAttribute('data-bs-theme');
-    } else {
-        body.setAttribute('data-bs-theme', 'dark');
-    }
-});
-
-// Rtl layout
-var dataRTL = document.getElementById('theme_Rtl_Ltr');
-var html = document.documentElement;
-dataRTL.addEventListener('click', () => {
-    // toggleDirection()
-    var rtlStatus = html.getAttribute('dir');
-    if (rtlStatus === 'ltr') {
-        document.getElementById('bootstrap').setAttribute('href', "assets/css/bootstrap.rtl.min.css");
-        html.setAttribute('dir', 'rtl');
-        localStorage.setItem('dir', 'rtl');
-
-    } else {
-        document.getElementById('bootstrap').setAttribute('href', "assets/css/bootstrap.min.css")
-        html.setAttribute('dir', 'ltr');
-        localStorage.setItem('dir', 'ltr');
-
-    }
-})
-html.setAttribute('dir', localStorage.getItem('dir'))
-if (html.getAttribute('dir') === 'rtl') {
-    document.getElementById('bootstrap').setAttribute('href', "assets/css/bootstrap.rtl.min.css");
-
-}

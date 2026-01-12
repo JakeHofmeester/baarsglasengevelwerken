@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://baarsglasengevelwerken.nl/sitemap.xml
+
