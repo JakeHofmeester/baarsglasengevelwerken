@@ -1,10 +1,3 @@
-/*-----------------------------------------------------------
-* Template Name    : Kerri | Responsive Bootstrap 4 Personal Template
-* Author           : SRBThemes
-* Created          : March 2018
-* File Description : Main Js file of the template
-*------------------------------------------------------------
-*/
 
 ! function ($) {
     "use strict";
@@ -22,14 +15,22 @@
 
         //scroll
         KerriApp.prototype.initStickyMenu = function () {
-            var navbar = document.querySelector('nav')
-            window.addEventListener('scroll', function () {
-                if (window.pageYOffset > 200) {
-                    navbar.classList.add('stickyadd')
-                } else {
-                    navbar.classList.remove('stickyadd')
-                }
-            });
+            var navbar = document.querySelector('nav');
+            if (!navbar) return;
+
+            var alwaysSticky = navbar.getAttribute('data-always-sticky') === 'true';
+
+            if (alwaysSticky) {
+                navbar.classList.add('stickyadd');
+            } else {
+                window.addEventListener('scroll', function () {
+                    if (window.pageYOffset > 200) {
+                        navbar.classList.add('stickyadd')
+                    } else {
+                        navbar.classList.remove('stickyadd')
+                    }
+                });
+            }
 
             document.addEventListener('click', function (e) {
                 var link = e.target && e.target.closest ? e.target.closest('a') : null;
@@ -120,8 +121,10 @@
         //Work
         KerriApp.prototype.initWork = function () {
             $(window).on('load', function () {
+                if (!$.fn || !$.fn.isotope) return;
                 var $container = $('.work-filter');
                 var $filter = $('#menu-filter');
+                if (!$container.length || !$filter.length) return;
                 $container.isotope({
                     filter: '*',
                     layoutMode: 'masonry',
@@ -150,6 +153,8 @@
 
         //Magnificpop
         KerriApp.prototype.initMagnificPopup = function () {
+            if (!$.fn || !$.fn.magnificPopup) return;
+            if (!$('.img-zoom').length) return;
             $('.img-zoom').magnificPopup({
                 type: 'image',
                 closeOnContentClick: true,
@@ -179,6 +184,8 @@
 
         //Client
         KerriApp.prototype.initTestimonial = function () {
+            if (!$.fn || !$.fn.owlCarousel) return;
+            if (!$('.owl-carousel').length) return;
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 nav: false,
@@ -209,3 +216,58 @@
         "use strict";
         $.KerriApp.init();
     }(window.jQuery);
+
+(function () {
+    "use strict";
+
+    function initImageComparisonSlider(element) {
+        var range = element.querySelector('[data-image-comparison-range]');
+        var overlay = element.querySelector('[data-image-comparison-overlay]');
+        var slider = element.querySelector('[data-image-comparison-slider]');
+        if (!range || !overlay || !slider) return;
+
+        function update() {
+            var value = parseFloat(range.value || '50');
+            if (isNaN(value)) value = 50;
+            value = Math.max(0, Math.min(100, value));
+            slider.style.left = value + '%';
+            overlay.style.clipPath = 'inset(0 ' + (100 - value) + '% 0 0)';
+            range.setAttribute('aria-valuenow', String(value));
+        }
+
+        function setActive(active) {
+            if (active) {
+                range.classList.add('image-comparison__range--active');
+            } else {
+                range.classList.remove('image-comparison__range--active');
+            }
+        }
+
+        range.setAttribute('aria-label', range.getAttribute('aria-label') || 'Vergelijk voor en na');
+        range.setAttribute('aria-valuemin', '0');
+        range.setAttribute('aria-valuemax', '100');
+
+        range.addEventListener('input', update);
+        range.addEventListener('change', update);
+        range.addEventListener('pointerdown', function () { setActive(true); });
+        range.addEventListener('pointerup', function () { setActive(false); });
+        range.addEventListener('pointercancel', function () { setActive(false); });
+        range.addEventListener('blur', function () { setActive(false); });
+
+        update();
+    }
+
+    function initAll() {
+        var sliders = document.querySelectorAll('[data-component="image-comparison-slider"]');
+        if (!sliders || !sliders.length) return;
+        for (var i = 0; i < sliders.length; i++) {
+            initImageComparisonSlider(sliders[i]);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
+    }
+})();
