@@ -11,6 +11,9 @@ if (!defined("PHP_EOL")) define("PHP_EOL", "\r\n");
 
 $name     = $_POST['name'];
 $email    = $_POST['email'];
+$subject  = isset($_POST['subject']) ? $_POST['subject'] : '';
+$customer_type = isset($_POST['customer_type']) ? $_POST['customer_type'] : '';
+$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 $comments = $_POST['comments'];
 
 if(trim($name) == '') {
@@ -29,6 +32,21 @@ if(trim($comments) == '') {
 	exit();
 }
 
+if(trim($phone) == '') {
+	echo '<div class="error_msg">Please enter a phone number.</div>';
+	exit();
+}
+
+if(trim($subject) == '') {
+	echo '<div class="error_msg">Please enter a subject.</div>';
+	exit();
+}
+
+if(trim($customer_type) == '') {
+	echo '<div class="error_msg">Please select Particulier or Zakelijk.</div>';
+	exit();
+}
+
 if(get_magic_quotes_gpc()) {
 	$comments = stripslashes($comments);
 }
@@ -39,7 +57,7 @@ if(get_magic_quotes_gpc()) {
 // sup.srbthemes $address = "joe.doe@yourdomain.com";
 
 //$address = "sup.srbthemes@.com";
-$address = "sup.srbthemes@.com";
+$address = "info@baarsglasengevelwerken.nl";
 
 
 // Configuration option.
@@ -47,24 +65,114 @@ $address = "sup.srbthemes@.com";
 
 // Example, $e_subject = '$name . ' has contacted you via Your Website.';
 
-$e_subject = 'You have been contacted by ' . $name . '.';
+$e_subject = 'Contactformulier: ' . $subject;
 
 
 // Configuration option.
 // You can change this if you feel that you need to.
 // Developers, you may wish to add more fields to the form, in which case you must be sure to add them here.
 
-$e_body = "You have been contacted by $name. Their additional message is as follows." . PHP_EOL . PHP_EOL;
+$e_body = "Contactformulier" . PHP_EOL . PHP_EOL;
+$e_body .= "Type: $customer_type" . PHP_EOL;
+$e_body .= "Naam: $name" . PHP_EOL;
+$e_body .= "Email: $email" . PHP_EOL;
+$e_body .= "Telefoon: $phone" . PHP_EOL;
+$e_body .= "Onderwerp: $subject" . PHP_EOL . PHP_EOL;
+$e_body .= "Bericht:" . PHP_EOL;
 $e_content = "\"$comments\"" . PHP_EOL . PHP_EOL;
-$e_reply = "You can contact $name via email, $email";
+$e_reply = "U kunt contact opnemen via $email";
 
-$msg = wordwrap( $e_body . $e_content . $e_reply, 70 );
+$text_message = wordwrap( $e_body . $e_content . $e_reply, 70 );
 
-$headers = "From: $email" . PHP_EOL;
+$from_address = "info@baarsglasengevelwerken.nl";
+$headers = "From: $from_address" . PHP_EOL;
 $headers .= "Reply-To: $email" . PHP_EOL;
 $headers .= "MIME-Version: 1.0" . PHP_EOL;
-$headers .= "Content-type: text/plain; charset=utf-8" . PHP_EOL;
-$headers .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL;
+
+$files = isset($_FILES['attachment']) ? $_FILES['attachment'] : null;
+$attachments = array();
+
+if ($files && isset($files['name'])) {
+	if (is_array($files['name'])) {
+		for ($i = 0; $i < count($files['name']); $i++) {
+			$attachments[] = array(
+				'name' => $files['name'][$i],
+				'tmp_name' => $files['tmp_name'][$i],
+				'size' => $files['size'][$i],
+				'error' => $files['error'][$i]
+			);
+		}
+	} else {
+		$attachments[] = array(
+			'name' => $files['name'],
+			'tmp_name' => $files['tmp_name'],
+			'size' => $files['size'],
+			'error' => $files['error']
+		);
+	}
+}
+
+$valid_attachments = array();
+foreach ($attachments as $a) {
+	if (!isset($a['error']) || $a['error'] !== UPLOAD_ERR_OK) continue;
+	$valid_attachments[] = $a;
+}
+
+if (count($valid_attachments) > 0) {
+	if (count($valid_attachments) > 5) {
+		echo '<div class="error_msg">Too many files (max 5).</div>';
+		exit();
+	}
+
+	$allowed_ext = array('jpg','jpeg','png','webp','pdf');
+	$boundary = md5(uniqid(time(), true));
+	$headers .= "Content-Type: multipart/mixed; boundary=\"" . $boundary . "\"" . PHP_EOL;
+
+	$msg = "--" . $boundary . PHP_EOL;
+	$msg .= "Content-Type: text/plain; charset=utf-8" . PHP_EOL;
+	$msg .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL . PHP_EOL;
+	$msg .= $text_message . PHP_EOL . PHP_EOL;
+
+	foreach ($valid_attachments as $a) {
+		$file_size = (int) $a['size'];
+		if ($file_size > 5 * 1024 * 1024) {
+			echo '<div class="error_msg">File is too large (max 5MB).</div>';
+			exit();
+		}
+
+		$orig_name = $a['name'];
+		$tmp_name = $a['tmp_name'];
+
+		$ext = strtolower(pathinfo($orig_name, PATHINFO_EXTENSION));
+		if (!in_array($ext, $allowed_ext)) {
+			echo '<div class="error_msg">Invalid file type. Allowed: jpg, jpeg, png, webp, pdf.</div>';
+			exit();
+		}
+
+		$finfo = finfo_open(FILEINFO_MIME_TYPE);
+		$mime_type = $finfo ? finfo_file($finfo, $tmp_name) : 'application/octet-stream';
+		if ($finfo) finfo_close($finfo);
+
+		$clean_name = preg_replace('/[^A-Za-z0-9._-]/', '_', $orig_name);
+		$file_content = file_get_contents($tmp_name);
+		if ($file_content === false) {
+			echo '<div class="error_msg">Could not read uploaded file.</div>';
+			exit();
+		}
+
+		$msg .= "--" . $boundary . PHP_EOL;
+		$msg .= "Content-Type: " . $mime_type . "; name=\"" . $clean_name . "\"" . PHP_EOL;
+		$msg .= "Content-Transfer-Encoding: base64" . PHP_EOL;
+		$msg .= "Content-Disposition: attachment; filename=\"" . $clean_name . "\"" . PHP_EOL . PHP_EOL;
+		$msg .= chunk_split(base64_encode($file_content)) . PHP_EOL;
+	}
+
+	$msg .= "--" . $boundary . "--";
+} else {
+	$headers .= "Content-type: text/plain; charset=utf-8" . PHP_EOL;
+	$headers .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL;
+	$msg = $text_message;
+}
 
 if(mail($address, $e_subject, $msg, $headers)) {
 

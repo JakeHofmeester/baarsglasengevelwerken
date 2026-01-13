@@ -313,6 +313,16 @@ a.inline-link:focus {
   text-decoration-thickness: 2px;
 }
 
+a.service-card-link {
+  display: block;
+  color: inherit;
+}
+
+a.service-card-link:hover,
+a.service-card-link:focus {
+  color: inherit;
+}
+
 .bg-dark {
   background-color: #192d35;
 }
@@ -965,8 +975,53 @@ ul.pattern .color6 {
 .form-kerri .form-control:focus {
   border-color: var(--bs-primary) !important;
 }
+
+.form-check-input:checked {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+
+.form-check-input:focus {
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25) !important;
+}
 .form-kerri textarea.form-control {
   height: auto;
+}
+
+.form-kerri .file-upload.form-control {
+  height: 50px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 2px solid var(--bs-border-color);
+}
+
+.form-kerri .file-upload-btn {
+  height: 50px;
+  border: 0;
+  padding: 0 16px;
+  margin: 0;
+  background-color: var(--bs-primary);
+  color: #fff;
+}
+
+.form-kerri .file-upload-text {
+  flex: 1 1 auto;
+  padding: 0 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form-kerri .file-upload-clear {
+  height: 50px;
+  border: 0;
+  padding: 0 16px;
+  margin: 0;
+  background: transparent;
+  color: var(--bs-primary);
 }
 
 .contact_detail-title {
@@ -1188,9 +1243,11 @@ ul.pattern .color6 {
 }
 .custom-nav .navbar-brand .logo-light {
   height: 50px;
+  width: auto;
 }
 .custom-nav .navbar-brand .logo-dark {
   height: 50px;
+  width: auto;
 }
 
 .navbar-nav .nav-link.active, .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover, .navbar-nav .nav-link:active {
