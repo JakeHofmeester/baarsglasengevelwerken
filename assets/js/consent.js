@@ -92,7 +92,17 @@
 
   function removeBanner(banner) {
     if (!banner) return;
-    banner.setAttribute("aria-hidden", "true");
+
+    var active = document.activeElement;
+    if (active && banner.contains(active) && typeof active.blur === "function") {
+      active.blur();
+    }
+
+    try {
+      banner.inert = true;
+      banner.setAttribute("inert", "");
+    } catch (e) { /* ignore */ }
+
     banner.classList.add("cookie-banner--hidden");
     window.setTimeout(function () {
       if (banner && banner.parentNode) banner.parentNode.removeChild(banner);

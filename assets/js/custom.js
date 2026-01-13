@@ -251,6 +251,15 @@
         this.initMagnificPopup();
         this.initBackToTop();
         this.initTestimonial();
+        if (typeof window.Typed !== 'undefined' && document.querySelector('.element')) {
+            new window.Typed('.element', {
+                strings: ["Gevelreiniging", "Impregneren", "Glasbewassing", "Kozijnen conserveren", "Reinigingsdiensten"],
+                typeSpeed: 60,
+                backSpeed: 60,
+                backDelay: 2000,
+                loop: true
+            });
+        }
     },
         //init
         $.KerriApp = new KerriApp, $.KerriApp.Constructor = KerriApp
