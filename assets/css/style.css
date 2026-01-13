@@ -367,6 +367,13 @@ a:not([href^="mailto:"]):not([href^="tel:"]):not(.nav-link):not(.navbar-brand):n
 }
 #menu-filter li a:not(.active):hover,
 #menu-filter li a:not(.active):focus {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+#menu-filter li a.active,
+#menu-filter li a.active:hover,
+#menu-filter li a.active:focus {
+  color: #fff !important;
   text-decoration: none !important;
 }
 
@@ -1183,7 +1190,7 @@ ul.pattern .color6 {
 }
 
 .header-bg-img {
-  background-image: url(../images/header-bg.jpg);
+  background-image: url(../images/header-bg.webp);
   position: relative;
   background-size: cover;
   background-position: center center;
