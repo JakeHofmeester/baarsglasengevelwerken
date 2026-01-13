@@ -80,6 +80,7 @@
                 if (!section) return;
                 items.push({ link: a, section: section, id: href });
             });
+            if (!items.length) return;
 
             function setActive(id) {
                 [].forEach.call(links, function (a) { a.classList.remove('active'); });
@@ -112,10 +113,20 @@
                 setActive(activeId);
             }
 
-            window.addEventListener('scroll', updateActive, { passive: true });
-            window.addEventListener('resize', updateActive);
-            window.addEventListener('load', updateActive);
-            updateActive();
+            var rafScheduled = false;
+            function scheduleUpdate() {
+                if (rafScheduled) return;
+                rafScheduled = true;
+                window.requestAnimationFrame(function () {
+                    rafScheduled = false;
+                    updateActive();
+                });
+            }
+
+            window.addEventListener('scroll', scheduleUpdate, { passive: true });
+            window.addEventListener('resize', scheduleUpdate);
+            window.addEventListener('load', scheduleUpdate);
+            scheduleUpdate();
         },
 
         //Work
@@ -169,17 +180,51 @@
 
         // BACK TO TOP
         KerriApp.prototype.initBackToTop = function () {
-            $(window).on('scroll', function () {
-                if ($(this).scrollTop() > 100) {
-                    $('.back_top').fadeIn();
-                } else {
-                    $('.back_top').fadeOut();
+            var backTop = document.querySelector('.back_top');
+            if (!backTop) return;
+
+            function setVisible(visible) {
+                if (visible) backTop.classList.add('back_top--visible');
+                else backTop.classList.remove('back_top--visible');
+            }
+
+            backTop.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            if ('IntersectionObserver' in window) {
+                var sentinel = document.createElement('div');
+                sentinel.setAttribute('aria-hidden', 'true');
+                sentinel.style.position = 'absolute';
+                sentinel.style.top = '0';
+                sentinel.style.left = '0';
+                sentinel.style.width = '1px';
+                sentinel.style.height = '1px';
+                sentinel.style.pointerEvents = 'none';
+                document.body.insertBefore(sentinel, document.body.firstChild);
+
+                var observer = new IntersectionObserver(function (entries) {
+                    var entry = entries && entries[0];
+                    setVisible(!(entry && entry.isIntersecting));
+                }, { root: null, threshold: 0 });
+                observer.observe(sentinel);
+            } else {
+                var rafScheduled = false;
+                function update() {
+                    setVisible((window.pageYOffset || 0) > 100);
                 }
-            });
-            $('.back_top').click(function () {
-                $("html, body").animate({ scrollTop: 0 }, 1000);
-                return false;
-            });
+                function onScroll() {
+                    if (rafScheduled) return;
+                    rafScheduled = true;
+                    window.requestAnimationFrame(function () {
+                        rafScheduled = false;
+                        update();
+                    });
+                }
+                window.addEventListener('scroll', onScroll, { passive: true });
+                update();
+            }
         },
 
         //Client

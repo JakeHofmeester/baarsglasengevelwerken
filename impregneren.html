@@ -137,6 +137,58 @@
     <link id="bootstrap" rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Google Analytics (GA4) + Consent Mode -->
+    <script>
+      (function () {
+        var storageKey = 'cookie_consent_v1';
+        function readCookie(name) {
+          try {
+            var escaped = name.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+            var match = document.cookie.match(new RegExp("(?:^|; )" + escaped + "=([^;]*)"));
+            return match ? decodeURIComponent(match[1]) : null;
+          } catch (e) { return null; }
+        }
+
+        function readWindowName(key) {
+          try {
+            if (!window.name || window.name.charAt(0) !== "{") return null;
+            var obj = JSON.parse(window.name);
+            return obj && obj[key] ? obj[key] : null;
+          } catch (e) { return null; }
+        }
+
+        var stored = null;
+        try { stored = localStorage.getItem(storageKey); } catch (e) { stored = null; }
+        if (!stored) stored = readCookie(storageKey) || readWindowName(storageKey);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        window.gtag = window.gtag || gtag;
+
+        var consentState = {
+          ad_storage: 'denied',
+          analytics_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          wait_for_update: 500
+        };
+
+        if (stored === 'all') {
+          consentState.ad_storage = 'granted';
+          consentState.analytics_storage = 'granted';
+          consentState.ad_user_data = 'granted';
+          consentState.ad_personalization = 'granted';
+        }
+
+        window.gtag('consent', 'default', consentState);
+      })();
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-2JCXZNTE32', { anonymize_ip: true });
+    </script>
 </head>
 
 <body class="page-bg-light">
@@ -441,7 +493,9 @@
                             <script>document.write(new Date().getFullYear())</script>
                             &copy; <strong>Baars Glas en Gevelwerken</strong> &nbsp;|&nbsp; 2906 EA, Capelle aan den IJssel &nbsp;|&nbsp;
                             <a class="copyright_content" href="tel:+31657614022">0657614022</a> &nbsp;|&nbsp;
-                            <a class="copyright_content" href="mailto:info@baarsglasengevelwerken.nl">info@baarsglasengevelwerken.nl</a>
+                            <a class="copyright_content" href="mailto:info@baarsglasengevelwerken.nl">info@baarsglasengevelwerken.nl</a> &nbsp;|&nbsp;
+                            <a class="copyright_content" href="privacy.html">Privacy</a> &nbsp;|&nbsp;
+                            <a class="copyright_content" href="cookies.html">Cookies</a>
                         </p>
                     </div>
                 </div>
@@ -454,6 +508,7 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/custom.js"></script>
+    <script src="assets/js/consent.js"></script>
 </body>
 
 </html>

@@ -1,12 +1,4 @@
-/*
-/*-----------------------------------------------------------
-* Template Name    : Kerri | Responsive Bootstrap 5 Personal Template
-* Author           : SRBThemes
-* Version          : 4.0.0
-* Created          : March 2024
-* File Description : Main css file of the template
-*------------------------------------------------------------
-*/
+
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Nunito:400,600,700");
 
 body {
@@ -162,7 +154,6 @@ body.page-bg-light {
 }
 :root [data-bs-theme=dark] .home_first {
   background-image: none;
-  background-image: url(../images/home-2-dark.png);
 }
 :root [data-bs-theme=dark] .price_name h6 {
   color: rgba(255, 255, 255, 0.81);
@@ -178,11 +169,9 @@ body.page-bg-light {
 }
 :root [data-bs-theme=dark] .home_four .bg-over-img {
   background-image: none;
-  background-image: url("../images/hero-4-bg-dark.png");
 }
 :root [data-bs-theme=dark] .bg-page-head {
   background-image: none;
-  background-image: url("../images/bg-pages-dark.png");
 }
 :root [data-bs-theme=dark] .mdi-weather-night {
   display: none;
@@ -229,7 +218,7 @@ select:focus-visible,
 .image-comparison__range:focus-visible {
   outline: 2px solid var(--bs-primary) !important;
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(var(--bs-primary-rgb), 0.25) !important;
+  box-shadow: none !important;
 }
 
 h1,
@@ -343,6 +332,44 @@ a.inline-link:focus {
   text-decoration-thickness: 2px;
 }
 
+/* Consistent link styling across the site */
+a[href^="mailto:"]:not(.copyright_content):not(.text-muted) {
+  color: var(--bs-primary) !important;
+  text-decoration: none !important;
+}
+
+.copyright_content {
+  text-decoration: none !important;
+}
+
+a.text-muted {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+a:not([href^="mailto:"]):not([href^="tel:"]):not(.nav-link):not(.navbar-brand):not(.btn):not(.service-card-link):not(.img-zoom):not(.back_top):not(.copyright_content):not(.text-muted) {
+  color: var(--bs-primary) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+a:not([href^="mailto:"]):not([href^="tel:"]):not(.nav-link):not(.navbar-brand):not(.btn):not(.service-card-link):not(.img-zoom):not(.back_top):not(.copyright_content):not(.text-muted):hover,
+a:not([href^="mailto:"]):not([href^="tel:"]):not(.nav-link):not(.navbar-brand):not(.btn):not(.service-card-link):not(.img-zoom):not(.back_top):not(.copyright_content):not(.text-muted):focus {
+  color: var(--bs-primary) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px;
+}
+
+/* Keep portfolio filter tabs styling as designed (override global link styling) */
+#menu-filter li a:not(.active) {
+  text-decoration: none !important;
+  color: var(--black) !important;
+}
+#menu-filter li a:not(.active):hover,
+#menu-filter li a:not(.active):focus {
+  text-decoration: none !important;
+}
+
 a.service-card-link {
   display: block;
   color: inherit;
@@ -442,12 +469,20 @@ a.service-card-link:focus {
   bottom: 15px;
   height: 35px;
   width: 35px;
-  display: none;
+  display: block;
   z-index: 10000;
   border-radius: 3px;
   right: 20px;
   transition: all 0.5s;
   background-color: var(--bs-primary) !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.back_top.back_top--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 .back_top i {
   color: #fff;
@@ -456,50 +491,63 @@ a.service-card-link:focus {
   display: block;
 }
 
-#color-switcher {
-  background: none repeat scroll 0 0;
-  left: -189px;
+.cookie-banner {
   position: fixed;
-  top: -43%;
-  width: 189px;
-  z-index: 100;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 11000;
+  background: #fff;
   border: 1px solid var(--bs-border-color);
-  padding: 8px 10px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 14px 14px;
 }
-#color-switcher div {
-  padding: 5px 10px;
-}
-#color-switcher div h3 {
-  font-size: 16px;
-  margin: 8px 3px 12px;
-  color: #000;
-}
-#color-switcher .bottom {
-  background: none repeat scroll 0 0 #fff;
-  color: #252525;
-  padding: 0;
-}
-#color-switcher .bottom a.settings {
-  background: none repeat scroll 0 0 var(--black);
-  display: block;
-  border-radius: 0px 5px 5px 0px;
-  border: 1px solid var(--bs-primary) !important;
-  position: absolute;
-  right: -40px;
-  top: -1px;
-  height: 41px;
-  width: 40px;
-  padding: 3px;
+.cookie-banner__inner {
   display: flex;
+  gap: 12px;
   align-items: center;
-  justify-content: center;
-  color: white !important;
-  background-color: var(--bs-primary) !important;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-#color-switcher .bottom a.settings i {
-  font-size: 22px;
-  position: absolute;
-  text-align: center;
+.cookie-banner__text {
+  color: var(--bs-body-color);
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 900px;
+}
+.cookie-banner__link {
+  color: var(--bs-primary);
+  text-decoration: underline;
+}
+.cookie-banner__actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.cookie-banner__btn {
+  white-space: nowrap;
+}
+.cookie-banner__btn--reject {
+  background-color: #fff !important;
+  color: var(--bs-primary) !important;
+  border: 1px solid var(--bs-primary) !important;
+}
+.cookie-banner__btn--reject:hover,
+.cookie-banner__btn--reject:active {
+  background-color: rgba(var(--bs-primary-rgb), 0.08) !important;
+  color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+.cookie-banner__btn--reject:focus,
+.cookie-banner__btn--reject:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.cookie-banner--hidden {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 #light-dark {
@@ -656,19 +704,19 @@ ul.pattern .color6 {
 
 .btn-outline-primary {
   --bs-btn-color: var(--bs-primary);
-  --bs-btn-bg: var(--bs-primary-text-emphasis);
+  --bs-btn-bg: transparent;
   --bs-btn-border-color: var(--bs-primary);
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: var(--bs-primary);
   --bs-btn-hover-border-color: var(--bs-primary);
   --bs-btn-focus-shadow-rgb: 49,132,253;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: var(--bs-primary-text-emphasis);
-  --bs-btn-active-border-color: var(--bs-primary-text-emphasis);
+  --bs-btn-active-bg: var(--bs-primary);
+  --bs-btn-active-border-color: var(--bs-primary);
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: var(--bs-primary-text-emphasis);
-  --bs-btn-disabled-border-color: var(--bs-primary-text-emphasis);
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: var(--bs-primary);
 }
 
 .btn-outline-white:hover {
@@ -1004,6 +1052,19 @@ ul.pattern .color6 {
 }
 .form-kerri .form-control:focus {
   border-color: var(--bs-primary) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.form-kerri .form-control:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.form-check {
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 2rem;
+  margin-bottom: 0.125rem;
 }
 
 .form-check-input:checked {
@@ -1013,7 +1074,8 @@ ul.pattern .color6 {
 
 .form-check-input:focus {
   border-color: var(--bs-primary) !important;
-  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25) !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 .form-kerri textarea.form-control {
   height: auto;
@@ -1208,46 +1270,6 @@ ul.pattern .color6 {
   height: 180px;
 }
 
-/*LOGIN PAGE*/
-.account_page_logo {
-  background-image: url(../images/login_bg.jpg);
-  background-size: cover;
-  background-position: center center;
-  position: relative;
-  min-height: 100vh;
-  padding: 80px 0;
-  z-index: 2;
-}
-.account_page_logo .overlay_account {
-  background: rgba(13, 15, 20, 0.23);
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  backdrop-filter: saturate(1) blur(10px) !important;
-  z-index: -1;
-}
-.account_page_logo img {
-  height: 40px;
-}
-.account_page_logo .account_box {
-  background-color: #fff;
-  padding: 40px 32px;
-  max-width: 450px;
-  border-radius: 12px;
-}
-.account_page_logo .account_box form label {
-  margin-bottom: 0.5rem;
-}
-.account_page_logo .account_box form .form-control {
-  height: 48px;
-  box-shadow: none !important;
-}
-.account_page_logo .account_box form .col-lg-12 {
-  padding: 0px !important;
-}
-
 .custom-control-label::before {
   box-shadow: none !important;
 }
@@ -1285,8 +1307,13 @@ body.home-page .custom-nav .navbar-nav li a {
   width: auto;
 }
 
-.navbar-nav .nav-link.active, .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover, .navbar-nav .nav-link:active {
+.navbar-nav .nav-link.active, .navbar-nav .nav-link:hover, .navbar-nav .nav-link:active {
   color: var(--bs-primary) !important;
+}
+
+.navbar-nav .nav-link:focus-visible {
+  outline: 2px solid var(--bs-primary);
+  outline-offset: 2px;
 }
 
 .custom-nav:not(.stickyadd) .navbar-nav .nav-link.active {
@@ -1560,16 +1587,6 @@ nav[data-always-sticky="true"].custom-nav {
   left: auto;
   right: 16px;
 }
-[dir=rtl] #color-switcher {
-  right: -189px;
-  left: auto;
-}
-[dir=rtl] #color-switcher a.settings {
-  left: -40px !important;
-  right: auto !important;
-  border-radius: 5px 0px 0px 5px !important;
-}
-
 .services-boxes {
   border: 1px solid var(--bs-border-color);
 }
@@ -1911,4 +1928,4 @@ nav[data-always-sticky="true"].custom-nav {
 .work_box .work_img > img {
   transition: all 0.3s cubic-bezier(0.3, 0.1, 0.58, 1);
   border-radius: 0;
-}/*# sourceMappingURL=style.css.map */
+}
