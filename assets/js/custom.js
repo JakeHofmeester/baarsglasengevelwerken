@@ -36,6 +36,11 @@
                 if (!link) return;
 
                 var href = link.getAttribute('href') || '';
+                if (href === '#') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    return;
+                }
                 if (href.charAt(0) !== '#' || href.length <= 1) return;
 
                 var target = document.querySelector(href);
