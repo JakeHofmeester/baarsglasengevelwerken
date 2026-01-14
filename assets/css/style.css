@@ -1790,12 +1790,6 @@ nav[data-always-sticky="true"].custom-nav {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* While hovering/dragging the comparison, hide labels so the handle can pass over them */
-.image-comparison__slider-wrapper:hover .image-comparison__caption,
-.image-comparison__range--active ~ .image-comparison__image-wrapper .image-comparison__caption,
-.image-comparison__range--active ~ .image-comparison__image-wrapper--overlay .image-comparison__caption {
-  opacity: 0;
-}
 
 .image-comparison__slider-wrapper:hover .image-comparison__thumb,
 .image-comparison__range--active ~ .image-comparison__slider .image-comparison__thumb {
