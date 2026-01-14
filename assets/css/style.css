@@ -1066,7 +1066,7 @@ ul.pattern .color6 {
   border-radius: 50%;
   border: 2px solid var(--bs-border-color);
   line-height: 1;
-  transition: all 0.5s;
+  transition: all 0.6s ease-out;
   text-align: center;
   text-decoration: none !important;
 }
@@ -1830,6 +1830,7 @@ nav[data-always-sticky="true"].custom-nav {
   width: 64px;
   height: auto;
   margin: 0 auto;
+  transition: transform 0.22s ease;
 }
 
 .services-boxes .services-title-border {
@@ -1844,6 +1845,14 @@ nav[data-always-sticky="true"].custom-nav {
   width: 60px;
 }
 
+.services-boxes:hover .services-boxes-icon img.service-icon {
+  transform: scale(1.15);
+}
+
+.services-boxes:hover h5 {
+  transform: scale(1.05);
+}
+
 .service-box {
   border: 1px solid #eaeaea;
   border-radius: 8px;
@@ -1851,6 +1860,7 @@ nav[data-always-sticky="true"].custom-nav {
 
 .services-boxes h5 {
   font-weight: 600;
+  transition: transform 0.22s ease;
 }
 
 .service-box .service-content h5 {
