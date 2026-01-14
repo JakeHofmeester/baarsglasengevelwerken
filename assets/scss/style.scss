@@ -1,7 +1,6 @@
 @import "variables";
 @import "mixin/maps";
 @import "mixin/root";
-@import "_variables-dark";
 //componets
 @import "componets/helper";
 @import "componets/button";
@@ -14,6 +13,5 @@
 @import "login";
 @import "navbar";
 @import "responsive";
-@import "rtl";
 @import "service";
 @import "testimonial";
