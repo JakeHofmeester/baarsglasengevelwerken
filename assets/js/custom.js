@@ -2,10 +2,10 @@
 ! function ($) {
     "use strict";
 
-    var KerriApp = function () { };
+    var App = function () { };
 
     //PreLoader
-    KerriApp.prototype.initPreLoader = function () {
+    App.prototype.initPreLoader = function () {
         $('#status').fadeOut();
         $('#preloader').delay(350).fadeOut('slow');
         $('body').delay(350).css({
@@ -14,7 +14,7 @@
     },
 
         //scroll
-        KerriApp.prototype.initStickyMenu = function () {
+        App.prototype.initStickyMenu = function () {
             var navbar = document.querySelector('nav');
             if (!navbar) return;
 
@@ -66,7 +66,7 @@
         },
 
         //Scrollspy
-        KerriApp.prototype.initScrollspy = function () {
+        App.prototype.initScrollspy = function () {
             var navbar = document.querySelector('nav');
             var mainNav = document.getElementById('main_nav');
             if (!navbar || !mainNav) return;
@@ -130,7 +130,7 @@
         },
 
         //Work
-        KerriApp.prototype.initWork = function () {
+        App.prototype.initWork = function () {
             $(window).on('load', function () {
                 if (!$.fn || !$.fn.isotope) return;
                 var $container = $('.work-filter');
@@ -163,7 +163,7 @@
         },
 
         //Magnificpop
-        KerriApp.prototype.initMagnificPopup = function () {
+        App.prototype.initMagnificPopup = function () {
             if (!$.fn || !$.fn.magnificPopup) return;
             if (!$('.img-zoom').length) return;
             $('.img-zoom').magnificPopup({
@@ -179,7 +179,7 @@
         },
 
         // BACK TO TOP
-        KerriApp.prototype.initBackToTop = function () {
+        App.prototype.initBackToTop = function () {
             var backTop = document.querySelector('.back_top');
             if (!backTop) return;
 
@@ -228,7 +228,7 @@
         },
 
         //Client
-        KerriApp.prototype.initTestimonial = function () {
+        App.prototype.initTestimonial = function () {
             if (!$.fn || !$.fn.owlCarousel) return;
             if (!$('.owl-carousel').length) return;
             $('.owl-carousel').owlCarousel({
@@ -243,7 +243,7 @@
             })
         }
 
-    KerriApp.prototype.init = function () {
+    App.prototype.init = function () {
         this.initPreLoader();
         this.initStickyMenu();
         this.initScrollspy();
@@ -262,13 +262,13 @@
         }
     },
         //init
-        $.KerriApp = new KerriApp, $.KerriApp.Constructor = KerriApp
+        $.App = new App, $.App.Constructor = App
 }(window.jQuery),
 
     //initializing
     function ($) {
         "use strict";
-        $.KerriApp.init();
+        $.App.init();
     }(window.jQuery);
 
 (function () {

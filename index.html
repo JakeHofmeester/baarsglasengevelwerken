@@ -65,7 +65,6 @@
     <link id="bootstrap" rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
     <!-- Materialdesign icons Css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/materialdesignicons.min.css">
 
     <!-- Owl Carousel -->
     <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.min.css">
@@ -133,6 +132,39 @@
 </head>
 
 <body class="home-page">
+    <!-- SVG sprite (inline to work on file://) -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+      <!-- Mobirise icons (24px) -->
+      <symbol id="mbri-menu" viewBox="0 0 24 24">
+        <path d="m 0.5,19 23,0 c 0.277,0 0.5,0.223 0.5,0.5 0,0.277 -0.223,0.5 -0.5,0.5 l -23,0 C 0.223,20 0,19.777 0,19.5 0,19.223 0.223,19 0.5,19 Z m 0,-8 23,0 c 0.277,0 0.5,0.223 0.5,0.5 0,0.277 -0.223,0.5 -0.5,0.5 l -23,0 C 0.223,12 0,11.777 0,11.5 0,11.223 0.223,11 0.5,11 Z m 0,-8 23,0 C 23.777,3 24,3.223 24,3.5 24,3.777 23.777,4 23.5,4 L 0.5,4 C 0.223,4 0,3.777 0,3.5 0,3.223 0.223,3 0.5,3 Z"/>
+      </symbol>
+      <symbol id="mbri-arrow-up" viewBox="0 0 448 512">
+        <path d="M233.4 105.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L211 173.3 348.7 310.7c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
+      </symbol>
+      <symbol id="mbri-quote-left" viewBox="0 0 24 24">
+        <path d="M6 21c1.668 0 2.794-.573 3.62-1.385.826-.812 1.38-1.947 1.38-3.115 0-.952-.226-1.825-.61-2.63-.382-.804-.882-1.515-1.37-2.198-.488-.682-.97-1.34-1.34-2.035C7.306 8.945 7 8.24 7 7.5c0-.947.274-1.953.886-2.677.32-.376-.078-.937-.553-.803-2.064.58-3.89 1.827-5.205 3.52C.812 9.233 0 11.356 0 13.5c0 1.84.44 3.708 1.595 5.184C2.8 20.09 4.332 21 6 21zm0-1c-1.5 0-2.623-.907-3.618-1.933C1.402 16.814 1 15.147 1 13.5c0-1.925.735-3.825 1.917-5.345.886-1.14 2.104-1.96 3.416-2.568C6.1 6.207 6 6.832 6 7.5c0 .948.38 1.83.798 2.61.417.777.926 1.47 1.41 2.144.483.676.945 1.34 1.28 2.045.335.7.512 1.472.512 2.2 0 .91-.437 1.77-1.082 2.402C8.272 19.538 7.498 20 6 20zm13.003 1c1.668 0 2.792-.573 3.618-1.385.827-.812 1.38-1.942 1.38-3.115 0-.952-.225-1.825-.608-2.63-.383-.804-.883-1.515-1.37-2.198-.49-.682-.97-1.34-1.342-2.035-.372-.692-.677-1.4-.677-2.137 0-.947.273-1.953.884-2.677.32-.376-.078-.937-.553-.803-2.064.58-3.89 1.827-5.205 3.52-1.317 1.693-2.127 3.816-2.127 5.96 0 1.84.438 3.708 1.593 5.184C15.802 20.09 17.336 21 19.003 21zm0-1c-1.5 0-2.625-.907-3.62-1.933-.98-1.253-1.38-2.92-1.38-4.566 0-1.924.733-3.825 1.915-5.345.887-1.14 2.104-1.96 3.417-2.568-.234.62-.332 1.245-.332 1.913 0 .93.38 1.83.796 2.61.416.777.926 1.47 1.41 2.144.482.676.944 1.34 1.28 2.045.334.7.51 1.472.51 2.2 0 .906-.436 1.77-1.08 2.402-.646.636-1.418 1.098-2.917 1.098z"/>
+      </symbol>
+      <symbol id="mbri-mobile2" viewBox="0 0 24 24">
+        <path d="M7.5 5h9c.277 0 .5-.223.5-.5s-.223-.5-.5-.5h-9c-.277 0-.5.223-.5.5s.223.5.5.5zm3-2h3c.277 0 .5-.223.5-.5s-.223-.5-.5-.5h-3c-.277 0-.5.223-.5.5s.223.5.5.5zm-3 16h9c.277 0 .5.223.5.5s-.223.5-.5.5h-9c-.277 0-.5-.223-.5-.5s.223-.5.5-.5zm3 2h3c.277 0 .5.223.5.5s-.223.5-.5.5h-3c-.277 0-.5-.223-.5-.5s.223-.5.5-.5zm-4-21C5.678 0 5 .678 5 1.5v21c0 .822.678 1.5 1.5 1.5h11c.822 0 1.5-.678 1.5-1.5v-21c0-.822-.678-1.5-1.5-1.5h-11zm0 1h11c.286 0 .5.214.5.5v21c0 .286-.214.5-.5.5h-11c-.286 0-.5-.214-.5-.5v-21c0-.286.214-.5.5-.5z"/>
+      </symbol>
+      <symbol id="mbri-letter" viewBox="0 0 24 24">
+        <path d="M2.5 6c-.5 0-.683.646-.278.916l7.998 5.496c.49.337 1.08.588 1.78.588s1.295-.25 1.785-.588l7.997-5.496c.552-.374-.06-1.176-.566-.824L13.22 11.59c-.38.26-.75.41-1.22.41s-.836-.15-1.214-.41L2.788 6.09C2.706 6.034 2.6 6.002 2.5 6zm-1-2C.678 4 0 4.678 0 5.5v13c0 .822.678 1.5 1.5 1.5h21c.822 0 1.5-.678 1.5-1.5v-13c0-.822-.678-1.5-1.5-1.5zm0 1h21c.286 0 .5.214.5.5v13c0 .286-.214.5-.5.5h-21c-.286 0-.5-.214-.5-.5v-13c0-.286.214-.5.5-.5z"/>
+      </symbol>
+      <symbol id="mbri-map-pin" viewBox="0 0 24 24">
+        <path d="M12 4c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3zm0 1c1.11 0 2 .89 2 2 0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2zm0-5C8.14 0 5 3.14 5 7c0 2.453 1.432 5.122 2.963 7.23.765 1.055 1.563 1.963 2.246 2.622.34.33.653.595.933.79.28.196.484.358.857.358s.578-.162.857-.357c.28-.196.592-.462.934-.79.684-.66 1.482-1.568 2.247-2.623C17.567 12.122 19 9.453 19 7c0-3.86-3.14-7-7-7zm0 1c3.32 0 6 2.68 6 6 0 2.047-1.31 4.628-2.773 6.645-.733 1.008-1.5 1.88-2.13 2.488-.315.304-.61.526-.812.69-.198.162-.38.16-.57 0-.2-.167-.497-.386-.813-.69-.63-.608-1.396-1.48-2.13-2.488C7.31 11.628 6 9.047 6 7c0-3.32 2.68-6 6-6zM3.5 9c-.238 0-.46.188-.494.424l-2 13c-.07.45.123.872.41 1.144.287.273.67.432 1.084.432h19c.413 0 .797-.16 1.084-.432.287-.272.48-.694.41-1.144L21 9.5c-.05-.36-.26-.5-.5-.5-.444 0-.52.404-.488.592l1.994 12.984c.064.336-.072.424-.506.424h-19c-.4 0-.552-.087-.506-.424l2-13C4.022 9.41 3.938 9 3.5 9z"/>
+      </symbol>
+
+      <!-- Brand icons (Font Awesome Free) -->
+      <symbol id="brand-linkedin" viewBox="0 0 448 512">
+        <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/>
+      </symbol>
+      <symbol id="brand-facebook" viewBox="0 0 320 512">
+        <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/>
+      </symbol>
+      <symbol id="brand-instagram" viewBox="0 0 448 512">
+        <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+      </symbol>
+    </svg>
 
     <!-- Loader -->
     <div id="preloader">
@@ -149,7 +181,9 @@
                 <img src="assets/images/logo-dark.webp" alt="Baars Glas en Gevelwerken logo" class="img-fluid logo-dark" width="269" height="62">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="mdi mdi-menu"></span>
+                <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="#mbri-menu"></use>
+                </svg>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto" id="main_nav">
@@ -221,9 +255,9 @@
                         <p class="text-muted mt-2">Baars Glas en Gevelwerken is VCA-gecertificeerd en staat voor betrouwbaarheid, veiligheid en vakmanschap.</p>
                         <div>
                             <ul class="mb-0 about-social list-inline mt-4">
-                                <li class="list-inline-item"><a target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><i class="mdi mdi-linkedin"></i></a></li>
-                                <li class="list-inline-item"><a target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><i class="mdi mdi-facebook"></i></a></li>
-                                <li class="list-inline-item"><a target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><i class="mdi mdi-instagram"></i></a></li>
+                                <li class="list-inline-item"><a class="icon-link" target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-linkedin"></use></svg></a></li>
+                                <li class="list-inline-item"><a class="icon-link" target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-facebook"></use></svg></a></li>
+                                <li class="list-inline-item"><a class="icon-link" target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-instagram"></use></svg></a></li>
                             </ul>
                         </div>
                     </div>
@@ -468,7 +502,7 @@
                     <div id="owl-demo" class="owl-carousel" dir="ltr">
                         <div class="text-center testi_boxes mx-auto">
                             <div class="tam_testi_icon text-primary">
-                                <i class="mdi mdi-format-quote-open"></i>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-quote-left"></use></svg>
                             </div>
                             <div class="mt-2">
                                 <div class="img_testi">
@@ -480,7 +514,7 @@
                         </div>
                         <div class="text-center testi_boxes mx-auto">
                             <div class="tam_testi_icon text-primary">
-                                <i class="mdi mdi-format-quote-open"></i>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-quote-left"></use></svg>
                             </div>
                             <div class="mt-2">
                                 <div class="img_testi">
@@ -492,7 +526,7 @@
                         </div>
                         <div class="text-center testi_boxes mx-auto">
                             <div class="tam_testi_icon text-primary">
-                                <i class="mdi mdi-format-quote-open"></i>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-quote-left"></use></svg>
                             </div>
                             <div class="mt-2">
                                 <div class="img_testi">
@@ -524,7 +558,7 @@
                 <div class="col-lg-4">
                     <div class="text-center">
                         <div>
-                            <i class="mdi mdi-phone text-primary h1"></i>
+                            <svg class="icon text-primary h1" aria-hidden="true" focusable="false"><use href="#mbri-mobile2"></use></svg>
                         </div>
                         <div class="mt-3">
                             <h5 class="mb-0 contact_detail-title fw-bold">Telefoon</h5>
@@ -535,7 +569,7 @@
                 <div class="col-lg-4">
                     <div class="text-center">
                         <div>
-                            <i class="mdi mdi-email-outline text-primary h1"></i>
+                            <svg class="icon text-primary h1" aria-hidden="true" focusable="false"><use href="#mbri-letter"></use></svg>
                         </div>
                         <div class="mt-3">
                             <h5 class="mb-0 contact_detail-title fw-bold">Email</h5>
@@ -546,7 +580,7 @@
                 <div class="col-lg-4">
                     <div class="text-center">
                         <div>
-                            <i class="mdi mdi-map-marker text-primary h1"></i>
+                            <svg class="icon text-primary h1" aria-hidden="true" focusable="false"><use href="#mbri-map-pin"></use></svg>
                         </div>
                         <div class="mt-3">
                             <h5 class="mb-0 contact_detail-title fw-bold">Locatie</h5>
@@ -557,7 +591,7 @@
             </div>
             <div class="row mt-5">
                 <div class="col-lg-12">
-                    <div class="form-kerri contact_form">
+                    <div class="form contact_form">
                         <div id="message"></div>
                         <form method="post" action="assets/php/contact.php" name="contact-form" id="working_form" enctype="multipart/form-data">
                             <div class="row">
@@ -638,9 +672,9 @@
                 <div class="col-md-12">
                     <div class="text-center text-white footer-alt">
                         <ul class="list-unstyled list-inline mb-0">
-                            <li class="list-inline-item"><a target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><i class="mdi mdi-linkedin"></i></a></li>
-                            <li class="list-inline-item"><a target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><i class="mdi mdi-facebook"></i></a></li>
-                            <li class="list-inline-item"><a target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><i class="mdi mdi-instagram"></i></a></li>
+                            <li class="list-inline-item"><a class="icon-link" target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-linkedin"></use></svg></a></li>
+                            <li class="list-inline-item"><a class="icon-link" target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-facebook"></use></svg></a></li>
+                            <li class="list-inline-item"><a class="icon-link" target="_blank" href="https://www.linkedin.com/in/jaco-baars-1b23a1115"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-instagram"></use></svg></a></li>
                         </ul>
                         <p class="copyright_content mb-0 mt-3">
                             <script>document.write(new Date().getFullYear())</script>
@@ -659,7 +693,9 @@
     <!-- End all Cards -->
 
     <!-- Back To Top -->
-    <a href="#" class="back_top"> <i class="mdi mdi-chevron-up"> </i> </a>
+    <a href="#" class="back_top">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-arrow-up"></use></svg>
+    </a>
 
     <!--All Javascript -->
     <script defer src="assets/js/bootstrap.bundle.min.js"></script>

@@ -347,17 +347,27 @@ a.text-muted {
   text-decoration: none !important;
 }
 
-a:not([href^="mailto:"]):not([href^="tel:"]):not(.nav-link):not(.navbar-brand):not(.btn):not(.service-card-link):not(.img-zoom):not(.back_top):not(.copyright_content):not(.text-muted) {
+a:not([href^="mailto:"]):not([href^="tel:"]):not(.nav-link):not(.navbar-brand):not(.btn):not(.service-card-link):not(.img-zoom):not(.back_top):not(.copyright_content):not(.text-muted):not(.icon-link) {
   color: var(--bs-primary) !important;
   text-decoration: underline !important;
   text-underline-offset: 3px;
 }
 
-a:not([href^="mailto:"]):not([href^="tel:"]):not(.nav-link):not(.navbar-brand):not(.btn):not(.service-card-link):not(.img-zoom):not(.back_top):not(.copyright_content):not(.text-muted):hover,
-a:not([href^="mailto:"]):not([href^="tel:"]):not(.nav-link):not(.navbar-brand):not(.btn):not(.service-card-link):not(.img-zoom):not(.back_top):not(.copyright_content):not(.text-muted):focus {
+a:not([href^="mailto:"]):not([href^="tel:"]):not(.nav-link):not(.navbar-brand):not(.btn):not(.service-card-link):not(.img-zoom):not(.back_top):not(.copyright_content):not(.text-muted):not(.icon-link):hover,
+a:not([href^="mailto:"]):not([href^="tel:"]):not(.nav-link):not(.navbar-brand):not(.btn):not(.service-card-link):not(.img-zoom):not(.back_top):not(.copyright_content):not(.text-muted):not(.icon-link):focus {
   color: var(--bs-primary) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 2px;
+}
+
+/* Icon-only links (SVG icons) should not inherit global purple/underline link styling */
+a.icon-link {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+a.icon-link:hover,
+a.icon-link:focus {
+  text-decoration: none !important;
 }
 
 /* Keep portfolio filter tabs styling as designed (override global link styling) */
@@ -476,7 +486,9 @@ a.service-card-link:focus {
   bottom: 15px;
   height: 35px;
   width: 35px;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 10000;
   border-radius: 3px;
   right: 20px;
@@ -491,11 +503,20 @@ a.service-card-link:focus {
   visibility: visible;
   pointer-events: auto;
 }
-.back_top i {
+.back_top .icon {
   color: #fff;
-  line-height: 35px;
-  font-size: 32px;
+  width: 18px;
+  height: 18px;
   display: block;
+}
+
+/* SVG icon baseline */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: middle;
 }
 
 .cookie-banner {
@@ -1035,34 +1056,38 @@ ul.pattern .color6 {
 }
 
 .about-social li a {
-  color: var(--black);
-  display: inline-block;
+  color: var(--black) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   height: 42px;
   width: 42px;
   font-size: 20px;
   border-radius: 50%;
   border: 2px solid var(--bs-border-color);
-  line-height: 38px;
+  line-height: 1;
   transition: all 0.5s;
   text-align: center;
+  text-decoration: none !important;
 }
 .about-social li a:hover {
   color: var(--bs-primary) !important;
   border-color: var(--bs-primary) !important;
+  text-decoration: none !important;
 }
 
-.form-kerri .form-control {
+.form .form-control {
   box-shadow: none !important;
   height: 50px;
   margin-bottom: 14px;
   border: 2px solid var(--bs-border-color);
 }
-.form-kerri .form-control:focus {
+.form .form-control:focus {
   border-color: var(--bs-primary) !important;
   outline: none !important;
   box-shadow: none !important;
 }
-.form-kerri .form-control:focus-visible {
+.form .form-control:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
@@ -1084,11 +1109,11 @@ ul.pattern .color6 {
   outline: none !important;
   box-shadow: none !important;
 }
-.form-kerri textarea.form-control {
+.form textarea.form-control {
   height: auto;
 }
 
-.form-kerri .file-upload.form-control {
+.form .file-upload.form-control {
   height: 50px;
   padding: 0;
   display: flex;
@@ -1097,7 +1122,7 @@ ul.pattern .color6 {
   border: 2px solid var(--bs-border-color);
 }
 
-.form-kerri .file-upload-btn {
+.form .file-upload-btn {
   height: 50px;
   border: 0;
   padding: 0 16px;
@@ -1106,7 +1131,7 @@ ul.pattern .color6 {
   color: #fff;
 }
 
-.form-kerri .file-upload-text {
+.form .file-upload-text {
   flex: 1 1 auto;
   padding: 0 16px;
   white-space: nowrap;
@@ -1114,7 +1139,7 @@ ul.pattern .color6 {
   text-overflow: ellipsis;
 }
 
-.form-kerri .file-upload-clear {
+.form .file-upload-clear {
   height: 50px;
   border: 0;
   padding: 0 16px;
@@ -1169,17 +1194,20 @@ ul.pattern .color6 {
   background-color: rgba(241, 241, 241, 0.08);
   width: 44px;
   height: 44px;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 20px;
-  line-height: 44px;
+  line-height: 1;
   text-align: center;
+  text-decoration: none !important;
+  color: #ababab !important;
 }
-.footer .footer-alt ul li a i {
-  color: #ababab;
-  transition: all 0.5s;
-}
-.footer .footer-alt ul li a i:hover {
+.footer .footer-alt ul li a:hover {
   color: var(--bs-primary) !important;
+}
+.footer .footer-alt ul li a .icon {
+  transition: all 0.5s;
 }
 
 .copyright_content {
@@ -1709,7 +1737,14 @@ nav[data-always-sticky="true"].custom-nav {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  z-index: 30;
+  /* Keep captions in their own layer so they can be clipped/covered correctly */
+  z-index: 1;
+  transition: opacity 0.2s ease;
+}
+
+.image-comparison__image-wrapper--overlay .image-comparison__caption {
+  /* "Voor" should sit above the overlay image, but still below the slider thumb */
+  z-index: 6;
 }
 
 .image-comparison__caption--before {
@@ -1752,6 +1787,20 @@ nav[data-always-sticky="true"].custom-nav {
   background: var(--bs-primary);
   color: var(--bs-white);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* While hovering/dragging the comparison, hide labels so the handle can pass over them */
+.image-comparison__slider-wrapper:hover .image-comparison__caption,
+.image-comparison__range--active ~ .image-comparison__image-wrapper .image-comparison__caption,
+.image-comparison__range--active ~ .image-comparison__image-wrapper--overlay .image-comparison__caption {
+  opacity: 0;
+}
+
+.image-comparison__slider-wrapper:hover .image-comparison__thumb,
+.image-comparison__range--active ~ .image-comparison__slider .image-comparison__thumb {
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
 }
 
 .image-comparison__range::-webkit-slider-runnable-track {
