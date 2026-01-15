@@ -253,7 +253,7 @@
         this.initTestimonial();
         if (typeof window.Typed !== 'undefined' && document.querySelector('.element')) {
             new window.Typed('.element', {
-                strings: ["Gevelreiniging", "Impregneren", "Glasbewassing", "Kozijnen conserveren", "Reinigingsdiensten"],
+                strings: ["gevelreiniging.", "impregneren", "glasbewassing", "kozijnen conserveren", "zonnepanelen reinigen", "terrasreiniging", "vlonder reinigen", "dakgoot reinigen", "houtwerk reinigen"],
                 typeSpeed: 60,
                 backSpeed: 60,
                 backDelay: 2000,
