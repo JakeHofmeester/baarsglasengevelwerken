@@ -4,6 +4,7 @@
   var STORAGE_KEY = "cookie_consent_v1";
   var CONSENT_ACCEPT = "all";
   var CONSENT_REJECT = "reject";
+  var GA_MEASUREMENT_ID = "G-2JCXZNTE32";
 
   function readCookie(name) {
     try {
@@ -79,6 +80,13 @@
         ad_user_data: "granted",
         ad_personalization: "granted"
       });
+      try {
+        if (!window.__gaInitialized) {
+          window.__gaInitialized = true;
+          gtag("js", new Date());
+          gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true });
+        }
+      } catch (e) { }
     } else {
       gtag("consent", "update", {
         ad_storage: "denied",

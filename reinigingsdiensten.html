@@ -186,12 +186,20 @@
         }
 
         window.gtag('consent', 'default', consentState);
+        window.__gaConsentGranted = (stored === 'all');
       })();
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32"></script>
     <script>
-      gtag('js', new Date());
-      gtag('config', 'G-2JCXZNTE32', { anonymize_ip: true });
+      (function () {
+        try {
+          if (!window.__gaConsentGranted) return;
+          if (window.__gaInitialized) return;
+          window.__gaInitialized = true;
+          gtag('js', new Date());
+          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: true });
+        } catch (e) { }
+      })();
     </script>
 </head>
 

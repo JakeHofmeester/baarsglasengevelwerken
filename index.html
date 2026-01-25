@@ -17,9 +17,24 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap"></noscript>
 
-    <link rel="preload" as="image" href="assets/images/hero-mobile.webp" media="(max-width: 767px)">
-    <link rel="preload" as="image" href="assets/images/hero-tablet.webp" media="(min-width: 768px) and (max-width: 1023px)">
-    <link rel="preload" as="image" href="assets/images/hero-desktop.webp" media="(min-width: 1024px)">
+    <script>
+      (function () {
+        try {
+          var href = "assets/images/hero-desktop.webp";
+          if (window.matchMedia && window.matchMedia("(max-width: 767px)").matches) {
+            href = "assets/images/hero-mobile.webp";
+          } else if (window.matchMedia && window.matchMedia("(min-width: 768px) and (max-width: 1023px)").matches) {
+            href = "assets/images/hero-tablet.webp";
+          }
+          var link = document.createElement("link");
+          link.rel = "preload";
+          link.as = "image";
+          link.href = href;
+          link.type = "image/webp";
+          document.head.appendChild(link);
+        } catch (e) { }
+      })();
+    </script>
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="nl_NL">
@@ -134,12 +149,20 @@
         }
 
         window.gtag('consent', 'default', consentState);
+        window.__gaConsentGranted = (stored === 'all');
       })();
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32"></script>
     <script>
-      gtag('js', new Date());
-      gtag('config', 'G-2JCXZNTE32', { anonymize_ip: true });
+      (function () {
+        try {
+          if (!window.__gaConsentGranted) return;
+          if (window.__gaInitialized) return;
+          window.__gaInitialized = true;
+          gtag('js', new Date());
+          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: true });
+        } catch (e) { }
+      })();
     </script>
 </head>
 
@@ -223,7 +246,7 @@
         <picture class="hero-picture">
             <source media="(max-width: 767px)" srcset="assets/images/hero-mobile.webp">
             <source media="(min-width: 768px) and (max-width: 1023px)" srcset="assets/images/hero-tablet.webp">
-            <source media="(min-width: 768px)" srcset="assets/images/hero-desktop.webp">
+            <source media="(min-width: 1024px)" srcset="assets/images/hero-desktop.webp">
             <img src="assets/images/hero-desktop.webp" alt="" fetchpriority="high" width="2000" height="1333">
         </picture>
         <div class="bg-overlay"></div>
