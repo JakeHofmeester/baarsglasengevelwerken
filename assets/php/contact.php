@@ -47,7 +47,7 @@ if(trim($customer_type) == '') {
 	exit();
 }
 
-if(get_magic_quotes_gpc()) {
+if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc()) {
 	$comments = stripslashes($comments);
 }
 
@@ -137,9 +137,13 @@ if (count($valid_attachments) > 0) {
 			exit();
 		}
 
-		$finfo = finfo_open(FILEINFO_MIME_TYPE);
-		$mime_type = $finfo ? finfo_file($finfo, $tmp_name) : 'application/octet-stream';
-		if ($finfo) finfo_close($finfo);
+		if (function_exists('finfo_open')) {
+			$finfo = finfo_open(FILEINFO_MIME_TYPE);
+			$mime_type = $finfo ? finfo_file($finfo, $tmp_name) : 'application/octet-stream';
+			if ($finfo) finfo_close($finfo);
+		} else {
+			$mime_type = 'application/octet-stream';
+		}
 
 		$clean_name = preg_replace('/[^A-Za-z0-9._-]/', '_', $orig_name);
 		$file_content = file_get_contents($tmp_name);
