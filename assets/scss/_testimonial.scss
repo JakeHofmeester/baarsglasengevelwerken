@@ -48,10 +48,16 @@
 // testimonial
 .work_menu {
     li {
-        a {
+        a,
+        button {
             cursor: pointer;
             display: block;
             color: var(--black);
+            background: transparent;
+            border: 0;
+            font: inherit;
+            -webkit-appearance: none;
+            appearance: none;
             border-radius: 30px;
             letter-spacing: 0.03em;
             margin-bottom: 5px;

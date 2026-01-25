@@ -145,10 +145,12 @@
                     }
                 });
 
-                $filter.find('a').on("click", function () {
+                var $filterControls = $filter.find('[data-filter]');
+                $filterControls.on("click", function () {
                     var selector = $(this).attr('data-filter');
-                    $filter.find('a').removeClass('active');
+                    $filterControls.removeClass('active').attr('aria-pressed', 'false');
                     $(this).addClass('active');
+                    $(this).attr('aria-pressed', 'true');
                     $container.isotope({
                         filter: selector,
                         animationOptions: {

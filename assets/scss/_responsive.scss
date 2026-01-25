@@ -44,6 +44,12 @@
     }
     .header-name {
         font-size: 38px;
+        // Keep the hero title block height stable on mobile (Typed text wraps)
+        min-height: 3.6em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
     .clip-home{
         clip-path: none;

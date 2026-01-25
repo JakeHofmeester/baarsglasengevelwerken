@@ -371,18 +371,24 @@ a.icon-link:focus {
 }
 
 /* Keep portfolio filter tabs styling as designed (override global link styling) */
-#menu-filter li a:not(.active) {
+#menu-filter li a:not(.active),
+#menu-filter li button:not(.active) {
   text-decoration: none !important;
   color: var(--black) !important;
 }
 #menu-filter li a:not(.active):hover,
-#menu-filter li a:not(.active):focus {
+#menu-filter li a:not(.active):focus,
+#menu-filter li button:not(.active):hover,
+#menu-filter li button:not(.active):focus {
   color: #fff !important;
   text-decoration: none !important;
 }
 #menu-filter li a.active,
 #menu-filter li a.active:hover,
-#menu-filter li a.active:focus {
+#menu-filter li a.active:focus,
+#menu-filter li button.active,
+#menu-filter li button.active:hover,
+#menu-filter li button.active:focus {
   color: #fff !important;
   text-decoration: none !important;
 }
@@ -1236,6 +1242,10 @@ ul.pattern .color6 {
   font-size: 48px;
 }
 
+.header-name__inner {
+  display: inline-block;
+}
+
 .header-desc {
   max-width: 500px;
   line-height: 1.8;
@@ -1506,6 +1516,12 @@ nav[data-always-sticky="true"].custom-nav {
   }
   .header-name {
     font-size: 38px;
+    /* Keep the hero title block height stable on mobile (Typed text wraps) */
+    min-height: 3.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
   .clip-home {
     clip-path: none;
@@ -1910,10 +1926,16 @@ nav[data-always-sticky="true"].custom-nav {
   background-color: var(--bs-primary) !important;
 }
 
-.work_menu li a {
+.work_menu li a,
+.work_menu li button {
   cursor: pointer;
   display: block;
   color: var(--black);
+  background: transparent;
+  border: 0;
+  font: inherit;
+  -webkit-appearance: none;
+  appearance: none;
   border-radius: 30px;
   letter-spacing: 0.03em;
   margin-bottom: 5px;
@@ -1923,7 +1945,8 @@ nav[data-always-sticky="true"].custom-nav {
   transition: all 0.5s;
   margin-top: 5px;
 }
-.work_menu li a.active, .work_menu li a:hover {
+.work_menu li a.active, .work_menu li a:hover,
+.work_menu li button.active, .work_menu li button:hover {
   color: #fff !important;
   background-color: var(--bs-primary) !important;
 }
