@@ -17,33 +17,33 @@ $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
 $comments = $_POST['comments'];
 
 if(trim($name) == '') {
-	echo '<div class="error_msg">You must enter your name.</div>';
+	echo '<div class="error_msg">Vul uw naam in.</div>';
 	exit();
 } else if(trim($email) == '') {
-	echo '<div class="error_msg">Please enter a valid email address.</div>';
+	echo '<div class="error_msg">Vul een geldig e-mailadres in.</div>';
 	exit();
 } else if(!isEmail($email)) {
-	echo '<div class="error_msg">You have entered an invalid e-mail address. Please try again.</div>';
+	echo '<div class="error_msg">U heeft een ongeldig e-mailadres ingevuld. Probeer het opnieuw.</div>';
 	exit();
 }
 
 if(trim($comments) == '') {
-	echo '<div class="error_msg">Please enter your message.</div>';
+	echo '<div class="error_msg">Vul uw bericht in.</div>';
 	exit();
 }
 
 if(trim($phone) == '') {
-	echo '<div class="error_msg">Please enter a phone number.</div>';
+	echo '<div class="error_msg">Vul uw telefoonnummer in.</div>';
 	exit();
 }
 
 if(trim($subject) == '') {
-	echo '<div class="error_msg">Please enter a subject.</div>';
+	echo '<div class="error_msg">Vul een onderwerp in.</div>';
 	exit();
 }
 
 if(trim($customer_type) == '') {
-	echo '<div class="error_msg">Please select Particulier or Zakelijk.</div>';
+	echo '<div class="error_msg">Kies Particulier of Zakelijk.</div>';
 	exit();
 }
 
@@ -60,17 +60,14 @@ $address = "info@baarsglasengevelwerken.nl";
 $e_subject = 'Contactformulier: ' . $subject;
 
 
-$e_body = "Contactformulier" . PHP_EOL . PHP_EOL;
-$e_body .= "Type: $customer_type" . PHP_EOL;
+$e_body = "Type: $customer_type" . PHP_EOL;
 $e_body .= "Naam: $name" . PHP_EOL;
 $e_body .= "Email: $email" . PHP_EOL;
 $e_body .= "Telefoon: $phone" . PHP_EOL;
 $e_body .= "Onderwerp: $subject" . PHP_EOL . PHP_EOL;
-$e_body .= "Bericht:" . PHP_EOL;
 $e_content = "\"$comments\"" . PHP_EOL . PHP_EOL;
-$e_reply = "U kunt contact opnemen via $email";
 
-$text_message = wordwrap( $e_body . $e_content . $e_reply, 70 );
+$text_message = wordwrap( $e_body . $e_content, 70 );
 
 $from_address = "noreply@baarsglasengevelwerken.nl";
 $headers = "From: $from_address" . PHP_EOL;
@@ -108,7 +105,7 @@ foreach ($attachments as $a) {
 
 if (count($valid_attachments) > 0) {
 	if (count($valid_attachments) > 5) {
-		echo '<div class="error_msg">Too many files (max 5).</div>';
+		echo '<div class="error_msg">Te veel bestanden (max 5).</div>';
 		exit();
 	}
 
@@ -124,7 +121,7 @@ if (count($valid_attachments) > 0) {
 	foreach ($valid_attachments as $a) {
 		$file_size = (int) $a['size'];
 		if ($file_size > 5 * 1024 * 1024) {
-			echo '<div class="error_msg">File is too large (max 5MB).</div>';
+			echo '<div class="error_msg">Bestand is te groot (max 5 MB).</div>';
 			exit();
 		}
 
@@ -133,7 +130,7 @@ if (count($valid_attachments) > 0) {
 
 		$ext = strtolower(pathinfo($orig_name, PATHINFO_EXTENSION));
 		if (!in_array($ext, $allowed_ext)) {
-			echo '<div class="error_msg">Invalid file type. Allowed: jpg, jpeg, png, webp, pdf.</div>';
+			echo '<div class="error_msg">Ongeldig bestandstype. Toegestaan: jpg, jpeg, png, webp, pdf.</div>';
 			exit();
 		}
 
@@ -148,7 +145,7 @@ if (count($valid_attachments) > 0) {
 		$clean_name = preg_replace('/[^A-Za-z0-9._-]/', '_', $orig_name);
 		$file_content = file_get_contents($tmp_name);
 		if ($file_content === false) {
-			echo '<div class="error_msg">Could not read uploaded file.</div>';
+			echo '<div class="error_msg">Kan het geüploade bestand niet lezen.</div>';
 			exit();
 		}
 
@@ -172,13 +169,13 @@ if(mail($address, $e_subject, $msg, $headers)) {
 
 	echo "<fieldset>";
 	echo "<div id='success_msg'>";
-	echo "<h3>Email Sent Successfully.</h3>";
-	echo "<p>Thank you <strong>$name</strong>, your message has been submitted to us.</p>";
+	echo "<h3>Bericht succesvol verzonden.</h3>";
+	echo "<p>Bedankt <strong>$name</strong>, uw bericht is verstuurd.</p>";
 	echo "</div>";
 	echo "</fieldset>";
 
 } else {
 
-	echo 'ERROR!';
+	echo '<div class="error_msg">Er is iets misgegaan. Probeer het later opnieuw.</div>';
 
 }
