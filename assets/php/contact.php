@@ -65,7 +65,7 @@ $e_body .= "Naam: $name" . PHP_EOL;
 $e_body .= "Email: $email" . PHP_EOL;
 $e_body .= "Telefoon: $phone" . PHP_EOL;
 $e_body .= "Onderwerp: $subject" . PHP_EOL . PHP_EOL;
-$e_content = "\"$comments\"" . PHP_EOL . PHP_EOL;
+$e_content = $comments . PHP_EOL . PHP_EOL;
 
 $text_message = wordwrap( $e_body . $e_content, 70 );
 
