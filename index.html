@@ -17,7 +17,9 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap"></noscript>
 
-    <link rel="preload" as="image" href="assets/images/header-bg.webp">
+    <link rel="preload" as="image" href="hero-mobile.webp" media="(max-width: 767px)">
+    <link rel="preload" as="image" href="hero-tablet.webp" media="(min-width: 768px) and (max-width: 1023px)">
+    <link rel="preload" as="image" href="hero-desktop.webp" media="(min-width: 1024px)">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="nl_NL">
@@ -218,6 +220,12 @@
     <!-- Start All Cards -->
     <!-- START HOME -->
     <section class="section header-bg-img h-100vh align-items-center d-flex" id="home">
+        <picture class="hero-picture">
+            <source media="(max-width: 767px)" srcset="hero-mobile.webp">
+            <source media="(min-width: 768px) and (max-width: 1023px)" srcset="hero-tablet.webp">
+            <source media="(min-width: 768px)" srcset="hero-desktop.webp">
+            <img src="hero-desktop.webp" alt="" fetchpriority="high" width="2000" height="1333">
+        </picture>
         <div class="bg-overlay"></div>
         <div class="container z-2">
             <div class="row justify-content-center">
