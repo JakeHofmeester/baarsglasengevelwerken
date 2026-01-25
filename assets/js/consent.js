@@ -84,7 +84,12 @@
         if (!window.__gaInitialized) {
           window.__gaInitialized = true;
           gtag("js", new Date());
-          gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true });
+          gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true, cookie_update: false, send_page_view: false });
+          gtag("event", "page_view", {
+            page_location: window.location.href,
+            page_path: window.location.pathname + window.location.search,
+            page_title: document.title
+          });
         }
       } catch (e) { }
     } else {
