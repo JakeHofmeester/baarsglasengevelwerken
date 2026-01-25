@@ -233,7 +233,16 @@
         App.prototype.initTestimonial = function () {
             if (!$.fn || !$.fn.owlCarousel) return;
             if (!$('.owl-carousel').length) return;
-            $('.owl-carousel').owlCarousel({
+            var $carousel = $('.owl-carousel');
+
+            $carousel.on('initialized.owl.carousel refreshed.owl.carousel', function () {
+                var $dots = $(this).find('.owl-dots button.owl-dot');
+                $dots.each(function (i) {
+                    $(this).attr('aria-label', 'Ga naar review ' + (i + 1));
+                });
+            });
+
+            $carousel.owlCarousel({
                 loop: true,
                 nav: false,
                 items: 1,
