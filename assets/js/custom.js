@@ -360,3 +360,16 @@
         initAll();
     }
 })();
+
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    const goParam = params.get("go");
+
+    if (goParam) {
+        const el = document.getElementById(goParam);
+        if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+            history.replaceState(null, "", "/");
+        }
+    }
+});
