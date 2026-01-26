@@ -1,11 +1,11 @@
+# ---------------------------------------------
+# Directory index
+# ---------------------------------------------
+DirectoryIndex index.html index.htm
 
-# Display the default page. The below line is safe to remove.
-DirectoryIndex index.php index.php4 index.php5 index.phtml index.html index.htm index.shtml default.html default.htm index.ehtml /____groupone_default/default.shtml
-# End default page
-
-# ------------------------------------------------------------
-# Canonical: force HTTPS + non-www for baarsglasengevelwerken.nl
-# ------------------------------------------------------------
+# ---------------------------------------------
+# Canonical domain: force HTTPS + non-www
+# ---------------------------------------------
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
@@ -14,11 +14,25 @@ DirectoryIndex index.php index.php4 index.php5 index.phtml index.html index.htm 
   RewriteCond %{HTTPS} !=on [OR]
   RewriteCond %{HTTP_HOST} ^www\. [NC]
   RewriteRule ^ https://baarsglasengevelwerken.nl%{REQUEST_URI} [R=301,L]
+
+  # ---------------------------------------------
+  # Remove .html from URLs (clean URLs)
+  # ---------------------------------------------
+
+  # Redirect requests containing .html → clean
+  RewriteCond %{THE_REQUEST} "\s/([^.]+)\.html[\s?]" [NC]
+  RewriteRule ^ %1 [R=301,L]
+
+  # Serve the .html file when extensionless URL exists
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
 </IfModule>
 
-# -------------------------
-# Static asset caching
-# -------------------------
+# ---------------------------------------------
+# Caching rules
+# ---------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresDefault "access plus 1 week"
@@ -35,19 +49,18 @@ DirectoryIndex index.php index.php4 index.php5 index.phtml index.html index.htm 
 
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType font/woff "access plus 1 year"
-  ExpiresByType application/font-woff2 "access plus 1 year"
-  ExpiresByType application/font-woff "access plus 1 year"
   ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
   ExpiresByType font/ttf "access plus 1 year"
 </IfModule>
 
+# ---------------------------------------------
+# Cache control headers
+# ---------------------------------------------
 <IfModule mod_headers.c>
-  # CSS/JS: keep cache reasonably short so updates show up quickly (filenames are not versioned)
   <FilesMatch "\.(css|js)$">
     Header set Cache-Control "public, max-age=604800"
   </FilesMatch>
 
-  # Images/fonts: safe to cache long-term
   <FilesMatch "\.(webp|png|jpe?g|gif|svg|ico|woff2?|ttf|eot)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
@@ -57,14 +70,13 @@ DirectoryIndex index.php index.php4 index.php5 index.phtml index.html index.htm 
   </FilesMatch>
 </IfModule>
 
-# -------------------------
+# ---------------------------------------------
 # Gzip compression
-# -------------------------
+# ---------------------------------------------
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css
   AddOutputFilterByType DEFLATE application/javascript application/x-javascript
   AddOutputFilterByType DEFLATE application/json application/xml text/xml
   AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
-
 
