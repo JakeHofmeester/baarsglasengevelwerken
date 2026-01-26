@@ -280,6 +280,30 @@
     function ($) {
         "use strict";
         $.App.init();
+        
+        // Handle hash navigation after page load (for cross-page anchor links like /#contact)
+        function scrollToHash() {
+            if (window.location.hash) {
+                var hash = window.location.hash;
+                var target = document.querySelector(hash);
+                if (target) {
+                    setTimeout(function() {
+                        var navbar = document.querySelector('nav');
+                        var navHeight = navbar ? navbar.offsetHeight : 0;
+                        var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+                        var scrollTop = Math.max(0, targetTop - navHeight);
+                        window.scrollTo({ top: scrollTop, behavior: "smooth" });
+                    }, 100);
+                }
+            }
+        }
+        
+        // Scroll to hash after page is fully loaded
+        if (document.readyState === 'complete') {
+            scrollToHash();
+        } else {
+            window.addEventListener('load', scrollToHash);
+        }
     }(window.jQuery);
 
 (function () {
