@@ -361,11 +361,32 @@
     }
 })();
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
+    // handle on-page clicks: prevent page reload and scroll smoothly
+    document.querySelectorAll('.js-contact-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+                e.preventDefault();
+                const section = document.getElementById("contact");
+                if (section) {
+                    section.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        });
+    });
+
+    // handle cross-page redirects using ?go=contact
     const params = new URLSearchParams(window.location.search);
     const goParam = params.get("go");
-
-    if (goParam) {
+    
+    if (goParam === "contact") {
+        const section = document.getElementById("contact");
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+            history.replaceState(null, "", "/");
+        }
+    } else if (goParam) {
+        // handle other sections (home, over-ons, diensten, etc.)
         const el = document.getElementById(goParam);
         if (el) {
             el.scrollIntoView({ behavior: "smooth" });
