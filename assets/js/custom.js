@@ -37,30 +37,60 @@
                 if (!link) return;
 
                 var href = link.getAttribute('href') || '';
+                var isHomePage = window.location.pathname === "/" || window.location.pathname === "/index.html";
+                
                 if (href === '#') {
                     e.preventDefault();
                     window.scrollTo({ top: 0, behavior: "smooth" });
                     return;
                 }
-                if (href.charAt(0) !== '#' || href.length <= 1) return;
+                
+                // Handle ?go= links on homepage
+                if (isHomePage && href.indexOf('?go=') !== -1) {
+                    var match = href.match(/[?&]go=([^&]+)/);
+                    if (match) {
+                        var sectionId = match[1];
+                        var target = document.getElementById(sectionId);
+                        if (target) {
+                            e.preventDefault();
+                            var navHeight = navbar ? navbar.offsetHeight : 0;
+                            var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+                            var scrollTop = Math.max(0, targetTop - navHeight);
+                            window.scrollTo({ top: scrollTop, behavior: "smooth" });
 
-                var target = document.querySelector(href);
-                if (!target) return;
+                            if (navbar && navbar.contains(link)) {
+                                var toggler = document.querySelector(".navbar-toggler");
+                                var collapse = document.querySelector("#navbarNav");
+                                if (!toggler || !collapse) return;
+                                if (window.getComputedStyle(toggler).display === "none") return;
+                                if (!collapse.classList.contains("show")) return;
+                                toggler.click();
+                            }
+                            return;
+                        }
+                    }
+                }
+                
+                // Handle hash links
+                if (href.charAt(0) === '#' && href.length > 1) {
+                    var target = document.querySelector(href);
+                    if (!target) return;
 
-                e.preventDefault();
+                    e.preventDefault();
 
-                var navHeight = navbar ? navbar.offsetHeight : 0;
-                var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-                var scrollTop = Math.max(0, targetTop - navHeight);
-                window.scrollTo({ top: scrollTop, behavior: "smooth" });
+                    var navHeight = navbar ? navbar.offsetHeight : 0;
+                    var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+                    var scrollTop = Math.max(0, targetTop - navHeight);
+                    window.scrollTo({ top: scrollTop, behavior: "smooth" });
 
-                if (navbar && navbar.contains(link)) {
-                    var toggler = document.querySelector(".navbar-toggler");
-                    var collapse = document.querySelector("#navbarNav");
-                    if (!toggler || !collapse) return;
-                    if (window.getComputedStyle(toggler).display === "none") return;
-                    if (!collapse.classList.contains("show")) return;
-                    toggler.click();
+                    if (navbar && navbar.contains(link)) {
+                        var toggler = document.querySelector(".navbar-toggler");
+                        var collapse = document.querySelector("#navbarNav");
+                        if (!toggler || !collapse) return;
+                        if (window.getComputedStyle(toggler).display === "none") return;
+                        if (!collapse.classList.contains("show")) return;
+                        toggler.click();
+                    }
                 }
             });
         },
@@ -75,16 +105,44 @@
             var items = [];
             [].forEach.call(links, function (a) {
                 var href = a.getAttribute('href') || '';
-                if (href.charAt(0) !== '#') return;
-                var section = document.querySelector(href);
+                var sectionId = null;
+                var id = null;
+                
+                // Handle ?go= links
+                if (href.indexOf('?go=') !== -1) {
+                    var match = href.match(/[?&]go=([^&]+)/);
+                    if (match) {
+                        sectionId = match[1];
+                        id = '#' + sectionId;
+                    }
+                }
+                // Handle hash links
+                else if (href.charAt(0) === '#') {
+                    sectionId = href.substring(1);
+                    id = href;
+                }
+                
+                if (!sectionId) return;
+                var section = document.getElementById(sectionId);
                 if (!section) return;
-                items.push({ link: a, section: section, id: href });
+                items.push({ link: a, section: section, id: id, sectionId: sectionId });
             });
             if (!items.length) return;
 
             function setActive(id) {
                 [].forEach.call(links, function (a) { a.classList.remove('active'); });
+                // Try to find by exact href match first
                 var activeLink = mainNav.querySelector('a.nav-link[href="' + id + '"]');
+                if (!activeLink) {
+                    // Try to find by sectionId in ?go= format
+                    var sectionId = id.charAt(0) === '#' ? id.substring(1) : id;
+                    [].forEach.call(links, function (a) {
+                        var href = a.getAttribute('href') || '';
+                        if (href.indexOf('?go=' + sectionId) !== -1 || href === '#' + sectionId) {
+                            activeLink = a;
+                        }
+                    });
+                }
                 if (activeLink) activeLink.classList.add('active');
             }
 
