@@ -736,18 +736,12 @@ ul.pattern .color6 {
 }
 
 .btn-primary:hover::before,
-.btn-primary:focus::before,
-.btn-primary:active::before,
-.btn-diensten-link:hover::before,
-.btn-diensten-link:focus::before {
+.btn-diensten-link:hover::before {
   width: 0;
 }
 
 .btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-diensten-link:hover,
-.btn-diensten-link:focus {
+.btn-diensten-link:hover {
   background-color: transparent !important;
   border-color: var(--bs-primary) !important;
   border-width: 1px;
@@ -1107,9 +1101,7 @@ ul.pattern .color6 {
   transition: color 0.35s ease, border-color 0.35s ease;
 }
 
-.btn-outline-white:hover,
-.btn-outline-white:focus,
-.btn-outline-white:active {
+.btn-outline-white:hover {
   background-color: transparent !important;
 }
 
@@ -1125,9 +1117,7 @@ ul.pattern .color6 {
   z-index: -1;
 }
 
-.btn-outline-white:hover::before,
-.btn-outline-white:focus::before,
-.btn-outline-white:active::before {
+.btn-outline-white:hover::before {
   width: 100%;
 }
 
