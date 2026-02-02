@@ -1,3 +1,13 @@
+.breadcrumb {
+    .breadcrumb-item a {
+        color: var(--bs-primary) !important;
+        text-decoration: none !important;
+    }
+    .breadcrumb-item a:hover {
+        color: var(--bs-primary) !important;
+        text-decoration: none !important;
+    }
+}
 
 .services-boxes {
     border: 1px solid var(--bs-border-color);

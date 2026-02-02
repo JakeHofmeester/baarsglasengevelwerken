@@ -1,3 +1,17 @@
+(function fixLinksForLocal() {
+    if (window.location.protocol !== "file:") return;
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('a[href^="/"]').forEach(function (a) {
+            var href = a.getAttribute("href");
+            if (!href || href.indexOf("//") === 0) return;
+            var path = href.split("?")[0].split("#")[0];
+            var qs = href.indexOf("?") >= 0 ? href.substring(href.indexOf("?")) : "";
+            var hash = href.indexOf("#") >= 0 ? href.substring(href.indexOf("#")) : "";
+            var newPath = (path === "/" || path === "") ? "index.html" : path.slice(1) + (path.slice(1).indexOf(".") === -1 ? ".html" : "");
+            a.setAttribute("href", newPath + qs + hash);
+        });
+    });
+})();
 
 ! function ($) {
     "use strict";
@@ -37,7 +51,8 @@
                 if (!link) return;
 
                 var href = link.getAttribute('href') || '';
-                var isHomePage = window.location.pathname === "/" || window.location.pathname === "/index.html";
+                var pathname = window.location.pathname;
+                var isHomePage = pathname === "/" || pathname === "/index.html" || (window.location.protocol === "file:" && (pathname.endsWith("index.html") || pathname.endsWith("/")));
                 
                 if (href === '#') {
                     e.preventDefault();
@@ -420,10 +435,12 @@
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
-    // handle on-page clicks: prevent page reload and scroll smoothly
+    var pathname = window.location.pathname;
+    var isHomePage = pathname === "/" || pathname === "/index.html" || (window.location.protocol === "file:" && (pathname.endsWith("index.html") || pathname.endsWith("/")));
+
     document.querySelectorAll('.js-contact-link').forEach(link => {
         link.addEventListener('click', (e) => {
-            if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+            if (isHomePage) {
                 e.preventDefault();
                 const section = document.getElementById("contact");
                 if (section) {
@@ -433,7 +450,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // handle cross-page redirects using ?go=contact
     const params = new URLSearchParams(window.location.search);
     const goParam = params.get("go");
     
@@ -441,14 +457,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const section = document.getElementById("contact");
         if (section) {
             section.scrollIntoView({ behavior: "smooth" });
-            history.replaceState(null, "", "/");
+            history.replaceState(null, "", window.location.protocol === "file:" ? "index.html" : "/");
         }
     } else if (goParam) {
-        // handle other sections (home, over-ons, diensten, etc.)
         const el = document.getElementById(goParam);
         if (el) {
             el.scrollIntoView({ behavior: "smooth" });
-            history.replaceState(null, "", "/");
+            history.replaceState(null, "", window.location.protocol === "file:" ? "index.html" : "/");
         }
     }
 });
