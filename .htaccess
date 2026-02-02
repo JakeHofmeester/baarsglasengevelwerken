@@ -1,84 +1,87 @@
 # ---------------------------------------------
-# Directory index
+# directory index
 # ---------------------------------------------
-DirectoryIndex index.html index.htm
+directoryindex index.html index.htm
 
 # ---------------------------------------------
-# Canonical domain: force HTTPS + non-www
+# canonical domain: force https + non-www + no trailing slash
 # ---------------------------------------------
-<IfModule mod_rewrite.c>
-  RewriteEngine On
+<ifmodule mod_rewrite.c>
+  rewriteengine on
 
-  # Only apply to the real domain (avoid breaking temporary/staging hostnames)
-  RewriteCond %{HTTP_HOST} ^(www\.)?baarsglasengevelwerken\.nl$ [NC]
-  RewriteCond %{HTTPS} !=on [OR]
-  RewriteCond %{HTTP_HOST} ^www\. [NC]
-  RewriteRule ^ https://baarsglasengevelwerken.nl%{REQUEST_URI} [R=301,L]
+  # only apply to the real domain
+  rewritecond %{http_host} ^(www\.)?baarsglasengevelwerken\.nl$ [nc]
+
+  # force https or non-www
+  rewritecond %{https} !=on [or]
+  rewritecond %{http_host} ^www\. [nc]
+  rewriterule ^ https://baarsglasengevelwerken.nl%{request_uri} [r=301,l]
+
+  # remove trailing slash from all urls except root
+  rewritecond %{request_uri} !^/$
+  rewritecond %{request_uri} .+/$
+  rewriterule ^(.+)/$ /$1 [r=301,l]
 
   # ---------------------------------------------
-  # Remove .html from URLs (clean URLs)
+  # remove .html from urls (public)
   # ---------------------------------------------
+  rewritecond %{the_request} "\s/([^.]+)\.html[\s?]" [nc]
+  rewriterule ^ %1 [r=301,l]
 
-  # Redirect requests containing .html → clean
-  RewriteCond %{THE_REQUEST} "\s/([^.]+)\.html[\s?]" [NC]
-  RewriteRule ^ %1 [R=301,L]
-
-  # Serve the .html file when extensionless URL exists
-  # Skip if request is for root directory
-  RewriteCond %{REQUEST_URI} !^/$
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.+)$ $1.html [L]
-</IfModule>
+  # ---------------------------------------------
+  # map clean urls internally to .html files
+  # ---------------------------------------------
+  rewritecond %{request_filename} !-d
+  rewritecond %{request_filename}\.html -f
+  rewriterule ^(.+)$ $1.html [l]
+</ifmodule>
 
 # ---------------------------------------------
-# Caching rules
+# caching rules
 # ---------------------------------------------
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresDefault "access plus 1 week"
+<ifmodule mod_expires.c>
+  expiresactive on
+  expiresdefault "access plus 1 week"
 
-  ExpiresByType text/css "access plus 1 year"
-  ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType application/x-javascript "access plus 1 year"
+  expiresbytype text/css "access plus 1 year"
+  expiresbytype application/javascript "access plus 1 year"
+  expiresbytype application/x-javascript "access plus 1 year"
 
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType image/x-icon "access plus 1 year"
+  expiresbytype image/webp "access plus 1 year"
+  expiresbytype image/png  "access plus 1 year"
+  expiresbytype image/jpeg "access plus 1 year"
+  expiresbytype image/svg+xml "access plus 1 year"
+  expiresbytype image/x-icon "access plus 1 year"
 
-  ExpiresByType font/woff2 "access plus 1 year"
-  ExpiresByType font/woff "access plus 1 year"
-  ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
-  ExpiresByType font/ttf "access plus 1 year"
-</IfModule>
-
-# ---------------------------------------------
-# Cache control headers
-# ---------------------------------------------
-<IfModule mod_headers.c>
-  <FilesMatch "\.(css|js)$">
-    Header set Cache-Control "public, max-age=604800"
-  </FilesMatch>
-
-  <FilesMatch "\.(webp|png|jpe?g|gif|svg|ico|woff2?|ttf|eot)$">
-    Header set Cache-Control "public, max-age=31536000, immutable"
-  </FilesMatch>
-
-  <FilesMatch "\.(html?)$">
-    Header set Cache-Control "no-cache"
-  </FilesMatch>
-</IfModule>
+  expiresbytype font/woff2 "access plus 1 year"
+  expiresbytype font/woff  "access plus 1 year"
+  expiresbytype application/vnd.ms-fontobject "access plus 1 year"
+  expiresbytype font/ttf "access plus 1 year"
+</ifmodule>
 
 # ---------------------------------------------
-# Gzip compression
+# cache control headers
 # ---------------------------------------------
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/css
-  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
-  AddOutputFilterByType DEFLATE application/json application/xml text/xml
-  AddOutputFilterByType DEFLATE image/svg+xml
-</IfModule>
+<ifmodule mod_headers.c>
+  <filesmatch "\.(css|js)$">
+    header set cache-control "public, max-age=604800"
+  </filesmatch>
 
+  <filesmatch "\.(webp|png|jpe?g|gif|svg|ico|woff2?|ttf|eot)$">
+    header set cache-control "public, max-age=31536000, immutable"
+  </filesmatch>
+
+  <filesmatch "\.(html?)$">
+    header set cache-control "no-cache"
+  </filesmatch>
+</ifmodule>
+
+# ---------------------------------------------
+# gzip compression
+# ---------------------------------------------
+<ifmodule mod_deflate.c>
+  addoutputfilterbytype deflate text/html text/plain text/css
+  addoutputfilterbytype deflate application/javascript application/x-javascript
+  addoutputfilterbytype deflate application/json application/xml text/xml
+  addoutputfilterbytype deflate image/svg+xml
+</ifmodule>
