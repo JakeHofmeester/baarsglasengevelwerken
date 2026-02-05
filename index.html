@@ -192,12 +192,7 @@
           if (window.__gaInitialized) return;
           window.__gaInitialized = true;
           gtag('js', new Date());
-          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: true, cookie_update: false, send_page_view: false });
-          gtag('event', 'page_view', {
-            page_location: window.location.href,
-            page_path: window.location.pathname + window.location.search,
-            page_title: document.title
-          });
+          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: false, cookie_update: true, send_page_view: true, allow_google_signals: true, allow_ad_personalization_signals: true });
         } catch (e) { }
       })();
     </script>
@@ -800,6 +795,7 @@
     <!-- Custom Js -->
     <script defer src="assets/js/custom.js"></script>
     <script defer src="assets/js/consent.js"></script>
+    <script defer src="assets/js/analytics-events.js"></script>
 </body>
 
 </html>

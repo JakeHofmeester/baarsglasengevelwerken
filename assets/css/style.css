@@ -557,17 +557,49 @@ a.service-card-link:focus {
   gap: 10px;
   align-items: center;
 }
+.cookie-banner__btn--accept {
+  order: 1;
+}
+.cookie-banner__btn--reject {
+  order: 2;
+  border: 1px solid var(--bs-primary) !important;
+  color: var(--bs-primary) !important;
+}
+.cookie-banner__btn--reject:not(:hover):not(:active) {
+  background-color: #fff !important;
+}
 .cookie-banner__btn {
   white-space: nowrap;
 }
-.cookie-banner__btn--reject {
-  background-color: #fff !important;
-  color: var(--bs-primary) !important;
-  border: 1px solid var(--bs-primary) !important;
+.btn-primary.cookie-banner__btn--accept:hover::before {
+  width: 100% !important;
 }
-.cookie-banner__btn--reject:hover,
-.cookie-banner__btn--reject:active {
-  background-color: rgba(var(--bs-primary-rgb), 0.08) !important;
+.btn-primary.cookie-banner__btn--accept:hover {
+  background-color: transparent !important;
+  border-color: var(--bs-primary) !important;
+  color: #fff !important;
+}
+.btn-primary.cookie-banner__btn--reject::before {
+  left: 0 !important;
+  right: auto !important;
+  width: 0 !important;
+  background-color: var(--bs-primary) !important;
+  transition: width 0.35s ease;
+}
+.cookie-banner__btn--reject:hover::before {
+  width: 100% !important;
+}
+.btn-primary.cookie-banner__btn--reject:hover,
+.btn-primary.cookie-banner__btn--reject:active {
+  background-color: transparent !important;
+  color: #fff !important;
+  border-color: var(--bs-primary) !important;
+}
+.cookie-banner__btn--reject:hover + .cookie-banner__btn--accept::before {
+  width: 0 !important;
+}
+.cookie-banner__btn--reject:hover + .cookie-banner__btn--accept {
+  background-color: #fff !important;
   color: var(--bs-primary) !important;
   border-color: var(--bs-primary) !important;
 }
@@ -580,6 +612,35 @@ a.service-card-link:focus {
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#reset_cookie_choice {
+  border-radius: 50rem;
+  background-color: transparent !important;
+  color: var(--bs-primary) !important;
+  border: 1px solid var(--bs-primary) !important;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+#reset_cookie_choice::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background-color: var(--bs-primary);
+  transition: width 0.35s ease;
+  z-index: -1;
+}
+#reset_cookie_choice:hover::before {
+  width: 100%;
+}
+#reset_cookie_choice:hover {
+  background-color: transparent !important;
+  color: #fff !important;
+  border-color: var(--bs-primary) !important;
 }
 
 #light-dark {
@@ -1488,6 +1549,11 @@ body.home-page .custom-nav .navbar-nav li a {
 .custom-nav.stickyadd .navbar-nav li a {
   color: var(--black) !important;
 }
+.custom-nav.stickyadd .navbar-nav .nav-link:hover,
+.custom-nav.stickyadd .navbar-nav .nav-link:focus-visible,
+.custom-nav.stickyadd .navbar-nav .nav-link:active {
+  color: var(--bs-primary) !important;
+}
 .custom-nav.stickyadd .navbar-nav .active {
   color: var(--bs-primary) !important;
 }
@@ -1726,13 +1792,64 @@ nav[data-always-sticky="true"].custom-nav {
   left: auto;
   right: 16px;
 }
+.benefit-cards.row {
+  --bs-gutter-x: 0.75rem;
+  --bs-gutter-y: 0.75rem;
+}
+.benefit-cards--center .benefit-card p {
+  text-align: center;
+}
+.benefit-cards--center .benefit-card--no-heading {
+  justify-content: center;
+}
+.benefit-card {
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border-top-width: 3px !important;
+  border-top-style: solid !important;
+  display: flex;
+  flex-direction: column;
+}
+.benefit-card .h5 {
+  color: #942071 !important;
+  font-weight: 500;
+  height: 3.9em;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+.benefit-card p {
+  font-size: 15px;
+  min-height: 5.5em;
+  flex: 1;
+  margin-bottom: 0;
+}
+.benefit-card--accent-1 {
+  border-top-color: #942071 !important;
+}
+.benefit-card--accent-2 {
+  border-top-color: #B24A93 !important;
+}
+.benefit-card--accent-3 {
+  border-top-color: #CAA2C9 !important;
+}
+.benefit-card--accent-4 {
+  border-top-color: #70305F !important;
+}
+.benefit-card--no-heading p {
+  min-height: 0;
+  flex: none;
+}
+
 .breadcrumb .breadcrumb-item a {
-  color: var(--bs-primary) !important;
+  color: var(--bs-secondary) !important;
   text-decoration: none !important;
 }
 .breadcrumb .breadcrumb-item a:hover {
   color: var(--bs-primary) !important;
   text-decoration: none !important;
+}
+.breadcrumb .breadcrumb-item.active {
+  color: var(--bs-primary) !important;
 }
 .services-boxes {
   border: 1px solid var(--bs-border-color);

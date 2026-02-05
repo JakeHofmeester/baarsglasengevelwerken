@@ -84,13 +84,15 @@
         if (!window.__gaInitialized) {
           window.__gaInitialized = true;
           gtag("js", new Date());
-          gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true, cookie_update: false, send_page_view: false });
-          gtag("event", "page_view", {
-            page_location: window.location.href,
-            page_path: window.location.pathname + window.location.search,
-            page_title: document.title
+          gtag("config", GA_MEASUREMENT_ID, {
+            anonymize_ip: false,
+            cookie_update: true,
+            send_page_view: true,
+            allow_google_signals: true,
+            allow_ad_personalization_signals: true
           });
         }
+        gtag("event", "cookie_consent", { consent: "accept" });
       } catch (e) { }
     } else {
       gtag("consent", "update", {
@@ -99,6 +101,7 @@
         ad_user_data: "denied",
         ad_personalization: "denied"
       });
+      gtag("event", "cookie_consent", { consent: "reject" });
     }
     safeSet(STORAGE_KEY, value);
   }
@@ -136,8 +139,8 @@
           '<a class="cookie-banner__link" href="cookies.html">Meer info</a>.' +
         '</div>' +
         '<div class="cookie-banner__actions">' +
-          '<button type="button" class="btn btn-primary cookie-banner__btn" data-cookie-action="accept">Accepteren</button>' +
-          '<button type="button" class="btn cookie-banner__btn cookie-banner__btn--reject" data-cookie-action="reject">Weigeren</button>' +
+          '<button type="button" class="btn btn-primary cookie-banner__btn cookie-banner__btn--reject" data-cookie-action="reject">Weigeren</button>' +
+          '<button type="button" class="btn btn-primary cookie-banner__btn cookie-banner__btn--accept" data-cookie-action="accept">Accepteren</button>' +
         '</div>' +
       "</div>";
 

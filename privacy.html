@@ -76,12 +76,7 @@
           if (window.__gaInitialized) return;
           window.__gaInitialized = true;
           gtag('js', new Date());
-          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: true, cookie_update: false, send_page_view: false });
-          gtag('event', 'page_view', {
-            page_location: window.location.href,
-            page_path: window.location.pathname + window.location.search,
-            page_title: document.title
-          });
+          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: false, cookie_update: true, send_page_view: true, allow_google_signals: true, allow_ad_personalization_signals: true });
         } catch (e) { }
       })();
     </script>
@@ -134,7 +129,7 @@
                 <div class="col-lg-10">
                     <div class="text-center mb-4">
                         <h1>Privacyverklaring</h1>
-                        <p class="text-muted mb-0">Laatste update: <span id="privacy_last_update">2026-01-13</span></p>
+                        <p class="text-muted mb-0">Laatste update: <span id="privacy_last_update">2026-02-02</span></p>
                     </div>
 
                     <div class="text-start">
@@ -146,7 +141,7 @@
                         <h2 class="h5 mt-4">Welke gegevens verwerken wij?</h2>
                         <ul class="text-muted">
                             <li>Contactgegevens die je zelf invult via het contactformulier (naam, e-mailadres, telefoonnummer, bericht en eventuele bijlagen).</li>
-                            <li>Technische en gebruiksgegevens via Google Analytics (bijv. pagina’s die je bekijkt, apparaat- en browserinformatie, globale locatie en online identifiers).</li>
+                            <li>Technische en gebruiksgegevens via Google Analytics 4 (alleen na je toestemming): o.a. bezochte pagina’s, hoe je de site gebruikt, apparaat- en browserinformatie, IP-adres en globale locatie. Met toestemming kunnen ook demografische of interessegegevens van Google worden meegenomen.</li>
                         </ul>
 
                         <h2 class="h5 mt-4">Waarom verwerken wij deze gegevens?</h2>
@@ -157,13 +152,13 @@
 
                         <h2 class="h5 mt-4">Cookies en analytics</h2>
                         <p class="text-muted">
-                            Wij gebruiken Google Analytics 4. Analytics-cookies worden alleen geplaatst na jouw toestemming via de cookie melding.
-                            Meer informatie vind je op de <a href="/cookies">cookiepagina</a>.
+                            Wij gebruiken Google Analytics 4 voor statistieken en inzicht in gebruik. Wij anonimiseren het IP-adres niet; Google kan daardoor een grovere locatie bepalen. Met jouw toestemming kunnen ook Google-signalen worden gebruikt (demografie en interesses). Analytics-cookies en -gegevens worden alleen geplaatst of verzameld na jouw toestemming via de cookiebanner.
+                            Welke cookies wij gebruiken staat op de <a href="/cookies">cookiepagina</a>.
                         </p>
 
                         <h2 class="h5 mt-4">Delen met derden</h2>
                         <p class="text-muted">
-                            Voor analytics maken wij gebruik van Google (Google Ireland/Google LLC). Met Google worden gegevens gedeeld om statistieken te leveren.
+                            Voor analytics maken wij gebruik van Google (Google Ireland/Google LLC). Met Google worden de hierboven beschreven gebruiks- en eventueel demografische gegevens gedeeld om statistieken en rapportages te leveren. Google verwerkt deze gegevens volgens zijn eigen <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacybeleid</a>.
                         </p>
 
                         <h2 class="h5 mt-4">Bewaartermijnen</h2>
@@ -217,6 +212,7 @@
     <script defer src="assets/js/jquery.min.js"></script>
     <script defer src="assets/js/custom.js"></script>
     <script defer src="assets/js/consent.js"></script>
+    <script defer src="assets/js/analytics-events.js"></script>
 </body>
 
 </html>

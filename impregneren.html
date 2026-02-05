@@ -217,12 +217,7 @@
           if (window.__gaInitialized) return;
           window.__gaInitialized = true;
           gtag('js', new Date());
-          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: true, cookie_update: false, send_page_view: false });
-          gtag('event', 'page_view', {
-            page_location: window.location.href,
-            page_path: window.location.pathname + window.location.search,
-            page_title: document.title
-          });
+          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: false, cookie_update: true, send_page_view: true, allow_google_signals: true, allow_ad_personalization_signals: true });
         } catch (e) { }
       })();
     </script>
@@ -262,7 +257,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto" id="main_nav">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/diensten">Diensten</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/diensten">Diensten</a></li>
                     <li class="nav-item"><a class="nav-link js-contact-link" href="/?go=contact">Contact</a></li>
                 </ul>
             </div>
@@ -301,7 +296,7 @@
 
                     <h2 class="mt-5">Grondige reiniging als basis</h2>
                     <p class="text-muted mt-3">Voor een optimaal resultaat is het essentieel dat het oppervlak vooraf grondig wordt gereinigd. Zo wordt voorkomen dat vuil, mos of algen opgesloten raken onder het impregneermiddel. Alleen een schoon oppervlak zorgt ervoor dat het middel goed in de ondergrond kan trekken en zijn beschermende werking optimaal kan uitvoeren. Zowel voor het reinigen als het impregneren adviseren wij de inzet van een specialist.</p>
-                    <p class="text-muted mt-2">Meer informatie over onze gevelreiniging leest u <a class="inline-link" href="/gevelreiniging" aria-label="Lees meer over onze gevelreiniging">hier</a>.</p>
+                    <p class="text-muted mt-2">Meer informatie over onze gevelreiniging leest u <a class="inline-link" href="/gevelreiniging" aria-label="Lees meer over onze gevelreiniging">hier</a>. Voor daken bieden we aparte <a class="inline-link" href="/dak-reinigen" aria-label="Lees meer over dakreiniging">dakreiniging</a> aan.</p>
 
                     <h2 class="mt-5">Wat kunnen wij impregneren?</h2>
                     <p class="text-muted mt-3 mb-0">Wij kunnen onder andere de volgende oppervlakken voor u impregneren:</p>
@@ -524,14 +519,14 @@
                             </a>
                         </div>
                         <div class="col-lg-4">
-                            <a class="service-card-link text-center services-boxes bg-white border rounded p-4 mt-4" href="/glasbewassing">
+                            <a class="service-card-link text-center services-boxes bg-white border rounded p-4 mt-4" href="/dak-impregneren">
                                 <div class="services-boxes-icon">
-                                    <img src="assets/images/icons/glasbewassing.webp" alt="Glasbewassing" class="service-icon" loading="lazy" width="100" height="100">
+                                    <img src="assets/images/icons/impregnerendak.webp" alt="Dak impregneren" class="service-icon" loading="lazy" width="100" height="100">
                                 </div>
                                 <div class="mt-4">
-                                    <h3 class="h5 mb-0">Glasbewassing</h3>
+                                    <h3 class="h5 mb-0">Dak impregneren</h3>
                                     <div class="services-title-border"></div>
-                                    <p class="text-muted mt-3 mb-0">Schone ramen en een verzorgde uitstraling, ook op lastige plekken.</p>
+                                    <p class="text-muted mt-3 mb-0">Waterafstotende bescherming voor dakpannen tegen mos, algen en vorst.</p>
                                 </div>
                             </a>
                         </div>
@@ -583,6 +578,7 @@
     <script defer src="assets/js/jquery.min.js"></script>
     <script defer src="assets/js/custom.js"></script>
     <script defer src="assets/js/consent.js"></script>
+    <script defer src="assets/js/analytics-events.js"></script>
 </body>
 
 </html>

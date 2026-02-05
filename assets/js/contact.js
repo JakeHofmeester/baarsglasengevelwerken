@@ -1,5 +1,8 @@
 //Contact
-$('#working_form').submit(function() {
+$('#working_form').on('submit', function() {
+    if (typeof window.gtag === 'function') {
+        window.gtag('event', 'form_submit_attempt', { form_id: 'contact_form' });
+    }
 
     var action = $(this).attr('action');
 
@@ -25,7 +28,12 @@ $('#working_form').submit(function() {
                     $(this).remove()
                 });
                 $('#submit').removeAttr('disabled');
-                if (data.match('success') != null) $('#working_form').slideUp('slow');
+                if (data.match('success') != null) {
+                    $('#working_form').slideUp('slow');
+                    if (typeof window.gtag === 'function') {
+                        window.gtag('event', 'generate_lead', { method: 'contact_form' });
+                    }
+                }
             }
         });
 

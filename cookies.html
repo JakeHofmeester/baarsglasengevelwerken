@@ -76,12 +76,7 @@
           if (window.__gaInitialized) return;
           window.__gaInitialized = true;
           gtag('js', new Date());
-          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: true, cookie_update: false, send_page_view: false });
-          gtag('event', 'page_view', {
-            page_location: window.location.href,
-            page_path: window.location.pathname + window.location.search,
-            page_title: document.title
-          });
+          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: false, cookie_update: true, send_page_view: true, allow_google_signals: true, allow_ad_personalization_signals: true });
         } catch (e) { }
       })();
     </script>
@@ -134,7 +129,7 @@
                 <div class="col-lg-10">
                     <div class="text-center mb-4">
                         <h1>Cookieverklaring</h1>
-                        <p class="text-muted mb-0">Laatste update: <span id="cookies_last_update">2026-01-13</span></p>
+                        <p class="text-muted mb-0">Laatste update: <span id="cookies_last_update">2026-02-02</span></p>
                     </div>
 
                     <div class="text-start">
@@ -145,8 +140,8 @@
 
                         <h2 class="h5 mt-4">Welke cookies gebruiken wij?</h2>
                         <ul class="text-muted">
-                            <li><strong>Noodzakelijk</strong>: voor basisfunctionaliteit (bijv. het onthouden van je cookiekeuze).</li>
-                            <li><strong>Analytics</strong> (Google Analytics 4): voor statistieken om de website te verbeteren.</li>
+                            <li><strong>Noodzakelijk</strong>: voor basisfunctionaliteit (bijv. het onthouden van je cookiekeuze). Wij slaan je keuze op in een cookie (<code>cookie_consent_v1</code>), en eventueel in de lokale opslag van je browser.</li>
+                            <li><strong>Analytics</strong> (Google Analytics 4): voor statistieken en inzicht in het gebruik van de website. Google plaatst daarbij eigen cookies (zoals <code>_ga</code>). Deze analytics-cookies worden alleen geplaatst nadat je toestemming hebt gegeven via de cookiebanner.</li>
                         </ul>
 
                         <h2 class="h5 mt-4">Cookiekeuze aanpassen</h2>
@@ -159,8 +154,8 @@
 
                         <h2 class="h5 mt-4">Google Analytics</h2>
                         <p class="text-muted mb-0">
-                            Google Analytics helpt ons inzicht te krijgen in het gebruik van de website. Analytics-cookies worden alleen geplaatst na jouw toestemming via de cookie melding.
-                            Meer informatie over hoe wij omgaan met persoonsgegevens vind je in onze <a class="inline-link" href="/privacy">privacyverklaring</a>.
+                            Google Analytics 4 helpt ons inzicht te krijgen in het gebruik van de website (bijv. bezochte pagina’s, klikgedrag, scrollgedrag en formuliergebruik). Wij hebben Google-signalen ingeschakeld, waardoor bij toestemming ook demografische en interessegegevens kunnen worden gebruikt voor rapportages. Analytics-cookies worden alleen geplaatst na jouw toestemming via de cookiebanner.
+                            Meer informatie over welke gegevens dit kunnen zijn en hoe wij ermee omgaan vind je in onze <a class="inline-link" href="/privacy">privacyverklaring</a>.
                         </p>
                     </div>
                 </div>
@@ -198,6 +193,7 @@
     <script defer src="assets/js/jquery.min.js"></script>
     <script defer src="assets/js/custom.js"></script>
     <script defer src="assets/js/consent.js"></script>
+    <script defer src="assets/js/analytics-events.js"></script>
     <script>
       (function () {
         var btn = document.getElementById('reset_cookie_choice');
