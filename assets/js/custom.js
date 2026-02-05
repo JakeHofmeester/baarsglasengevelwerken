@@ -86,8 +86,9 @@
                     }
                 }
                 
-                // Handle hash links
+                // Handle hash links (skip project modal – handled by initProjectModal)
                 if (href.charAt(0) === '#' && href.length > 1) {
+                    if (link.classList && link.classList.contains('js-project-open')) return;
                     var target = document.querySelector(href);
                     if (!target) return;
 
@@ -237,11 +238,312 @@
             });
         },
 
-        //Magnificpop
+        // Project modal (portfolio on home)
+        App.prototype.initProjectModal = function () {
+            var modalEl = document.getElementById('project-modal');
+            var modalTitle = modalEl ? modalEl.querySelector('#project-modal-title') : null;
+            var modalText = modalEl ? modalEl.querySelector('.project-modal__text') : null;
+            var galleryEl = modalEl ? modalEl.querySelector('.project-modal__gallery') : null;
+            var middleImageWrapper = modalEl ? modalEl.querySelector('.project-modal__middle-image-wrapper') : null;
+            var extra1El = modalEl ? modalEl.querySelector('.project-modal__extra-1') : null;
+            var extra2El = modalEl ? modalEl.querySelector('.project-modal__extra-2') : null;
+            var servicesList = modalEl ? modalEl.querySelector('.project-modal__services-list') : null;
+            var detailsEl = modalEl ? modalEl.querySelector('.project-modal__details') : null;
+            var phoneEl = modalEl ? modalEl.querySelector('.project-modal__phone') : null;
+            var btnClose = modalEl ? modalEl.querySelector('.project-modal__close') : null;
+            var btnPrev = modalEl ? modalEl.querySelector('.project-modal__nav--prev') : null;
+            var btnNext = modalEl ? modalEl.querySelector('.project-modal__nav--next') : null;
+            var mainEl = modalEl ? modalEl.querySelector('.project-modal__main') : null;
+            var scrollHintEl = modalEl ? modalEl.querySelector('.project-modal__scroll-hint') : null;
+            if (!modalEl || !modalTitle || !galleryEl || !servicesList) return;
+
+            var iconCheck = '<svg class="project-modal__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+            var iconCalendar = '<svg class="project-modal__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+            var iconClock = '<svg class="project-modal__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+            var iconLocation = '<svg class="project-modal__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+            var iconStatus = '<svg class="project-modal__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>';
+            var iconPhone = '<svg class="project-modal__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>';
+
+            var PROJECT_IDS = [1, 2, 3, 4, 5, 6];
+            var currentProjectIndex = 0;
+            var isFileProtocol = window.location.protocol === 'file:';
+
+            function serviceHref(url) {
+                if (!isFileProtocol) return url;
+                var path = url.replace(/^\//, '');
+                return (path === '' || path === 'index') ? 'index.html' : path + (path.indexOf('.') === -1 ? '.html' : '');
+            }
+
+            var LAYOUT_LARGE_INDICES = { 'default': [0], 'two-equal': [], 'four-grid': [], 'four-2large': [0, 1], 'three-equal': [] };
+            var projects = {
+                1: {
+                    title: 'Gevelreiniging – Huis',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                    layout: 'default',
+                    images: ['assets/images/works/1.webp', 'assets/images/works/1.webp', 'assets/images/works/1.webp'],
+                    extraParagraphs: [
+                        'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+                        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+                    ],
+                    services: [{ name: 'Gevelreiniging', url: '/gevelreiniging' }, { name: 'Impregneren', url: '/impregneren' }],
+                    date: '20 april 2024', duration: '1 dag', location: 'Capelle aan den IJssel', status: 'Voltooid'
+                },
+                2: {
+                    title: 'Coaten – Kozijnen',
+                    text: 'Consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                    layout: 'two-equal',
+                    images: ['assets/images/works/2.webp', 'assets/images/works/2.webp'],
+                    extraParagraphs: [],
+                    services: [{ name: 'Kozijnen conserveren', url: '/kozijnen-conserveren' }],
+                    date: '15 maart 2024', duration: '2 dagen', location: 'Rotterdam', status: 'Voltooid'
+                },
+                3: {
+                    title: 'Glasbewassing – Kantoorpand',
+                    text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.',
+                    layout: 'four-grid',
+                    images: ['assets/images/works/3.webp', 'assets/images/works/3.webp', 'assets/images/works/3.webp', 'assets/images/works/3.webp'],
+                    extraParagraphs: ['Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sunt in culpa qui officia deserunt mollit anim id est laborum.'],
+                    services: [{ name: 'Glasbewassing', url: '/glasbewassing' }],
+                    date: '8 mei 2024', duration: '1 dag', location: 'Rotterdam', status: 'Voltooid'
+                },
+                4: {
+                    title: 'Kozijnen conserveren – Kozijnen',
+                    text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                    layout: 'four-2large',
+                    images: ['assets/images/works/4.webp', 'assets/images/works/4.webp', 'assets/images/works/4.webp', 'assets/images/works/4.webp'],
+                    extraParagraphs: ['Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'],
+                    services: [{ name: 'Kozijnen conserveren', url: '/kozijnen-conserveren' }],
+                    date: '22 april 2024', duration: '1 dag', location: 'Capelle aan den IJssel', status: 'Voltooid'
+                },
+                5: {
+                    title: 'Gevelreiniging – Kantoorpand',
+                    text: 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                    layout: 'three-equal',
+                    images: ['assets/images/works/5.webp', 'assets/images/works/5.webp', 'assets/images/works/5.webp'],
+                    extraParagraphs: [
+                        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                    ],
+                    services: [{ name: 'Gevelreiniging', url: '/gevelreiniging' }, { name: 'Impregneren', url: '/impregneren' }],
+                    date: '12 juni 2024', duration: '3 dagen', location: 'Rotterdam', status: 'Voltooid'
+                },
+                6: {
+                    title: 'Glasbewassing – Panorama',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                    layout: 'default',
+                    images: ['assets/images/works/6.webp', 'assets/images/works/6.webp', 'assets/images/works/6.webp'],
+                    middleImage: 'assets/images/works/6.webp',
+                    extraParagraphs: ['Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'],
+                    services: [{ name: 'Glasbewassing', url: '/glasbewassing' }],
+                    date: '3 mei 2024', duration: '1 dag', location: 'Den Haag', status: 'Voltooid'
+                }
+            };
+            var contactPhone = '0657614022';
+
+            function renderProject(projectId) {
+                var project = projects[projectId];
+                if (!project) return;
+                var idx = PROJECT_IDS.indexOf(projectId);
+                if (idx >= 0) currentProjectIndex = idx;
+                modalTitle.textContent = project.title;
+                modalText.textContent = project.text;
+                modalText.style.display = project.text ? 'block' : 'none';
+                var layout = project.layout || 'default';
+                var largeIndices = LAYOUT_LARGE_INDICES[layout] || [];
+                galleryEl.setAttribute('data-layout', layout);
+                galleryEl.innerHTML = '';
+                project.images.forEach(function (src, i) {
+                    var a = document.createElement('a');
+                    a.href = src;
+                    var isLarge = largeIndices.indexOf(i) !== -1;
+                    a.className = 'project-modal__gallery-link' + (isLarge ? ' project-modal__gallery-link--large' : '');
+                    var plus = document.createElement('span');
+                    plus.className = 'project-modal__gallery-plus';
+                    plus.setAttribute('aria-hidden', 'true');
+                    a.appendChild(plus);
+                    var img = document.createElement('img');
+                    img.src = src;
+                    img.alt = project.title;
+                    img.className = 'img-fluid rounded';
+                    img.loading = 'lazy';
+                    a.appendChild(img);
+                    galleryEl.appendChild(a);
+                });
+                if (middleImageWrapper) {
+                    if (project.middleImage) {
+                        middleImageWrapper.style.display = '';
+                        middleImageWrapper.innerHTML = '<div class="project-modal__middle-image"><img src="' + project.middleImage + '" alt="' + project.title + '" loading="lazy"></div>';
+                    } else {
+                        middleImageWrapper.style.display = 'none';
+                        middleImageWrapper.innerHTML = '';
+                    }
+                }
+                var extras = project.extraParagraphs || [];
+                if (extra1El) {
+                    if (extras.length > 0) {
+                        extra1El.textContent = extras[0];
+                        extra1El.style.display = 'block';
+                        extra1El.classList.toggle('mt-4', true);
+                        extra1El.classList.toggle('mb-3', extras.length > 1);
+                        extra1El.classList.toggle('mb-0', extras.length === 1);
+                    } else {
+                        extra1El.style.display = 'none';
+                    }
+                }
+                if (extra2El) {
+                    if (extras.length > 1) {
+                        extra2El.textContent = extras[1];
+                        extra2El.style.display = 'block';
+                        extra2El.classList.add('mb-0');
+                    } else {
+                        extra2El.style.display = 'none';
+                    }
+                }
+                servicesList.innerHTML = '';
+                project.services.forEach(function (s) {
+                    var li = document.createElement('li');
+                    li.className = 'project-modal__service-item';
+                    var a = document.createElement('a');
+                    a.href = serviceHref(s.url);
+                    a.className = 'project-modal__service-link';
+                    a.innerHTML = iconCheck + '<span>' + s.name + '</span>';
+                    li.appendChild(a);
+                    servicesList.appendChild(li);
+                });
+                if (detailsEl) {
+                    detailsEl.innerHTML = '<div class="project-modal__detail-row">' + iconCalendar + '<span>Datum: ' + (project.date || '–') + '</span></div>' +
+                        '<div class="project-modal__detail-row">' + iconClock + '<span>Duur: ' + (project.duration || '–') + '</span></div>' +
+                        '<div class="project-modal__detail-row">' + iconLocation + '<span>Locatie: ' + (project.location || '–') + '</span></div>' +
+                        '<div class="project-modal__detail-row">' + iconStatus + '<span>Status: ' + (project.status || 'Voltooid') + '</span></div>';
+                }
+                if (phoneEl) {
+                    phoneEl.innerHTML = iconPhone + ' <a href="tel:' + contactPhone.replace(/\s/g, '') + '" class="project-modal__phone-link">' + contactPhone + '</a>';
+                }
+                updateScrollHint();
+            }
+
+            var SCROLL_HINT_THRESHOLD = 50;
+
+            function updateScrollHint() {
+                if (!scrollHintEl || !mainEl) return;
+                var canScroll = mainEl.scrollHeight > mainEl.clientHeight;
+                if (!canScroll) {
+                    scrollHintEl.classList.remove('project-modal__scroll-hint--show', 'project-modal__scroll-hint--hidden');
+                    return;
+                }
+                scrollHintEl.classList.add('project-modal__scroll-hint--show');
+                if (mainEl.scrollTop >= SCROLL_HINT_THRESHOLD) {
+                    scrollHintEl.classList.add('project-modal__scroll-hint--hidden');
+                } else {
+                    scrollHintEl.classList.remove('project-modal__scroll-hint--hidden');
+                }
+            }
+
+            function goPrev() {
+                currentProjectIndex = (currentProjectIndex - 1 + PROJECT_IDS.length) % PROJECT_IDS.length;
+                renderProject(PROJECT_IDS[currentProjectIndex]);
+            }
+            function goNext() {
+                currentProjectIndex = (currentProjectIndex + 1) % PROJECT_IDS.length;
+                renderProject(PROJECT_IDS[currentProjectIndex]);
+            }
+
+            $(document).on('click', '.js-project-open', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var id = $(this).data('project');
+                var project = projects[id];
+                if (!project) return;
+                currentProjectIndex = PROJECT_IDS.indexOf(id);
+                if (currentProjectIndex < 0) currentProjectIndex = 0;
+                renderProject(id);
+                if (window.bootstrap && typeof bootstrap.Modal !== 'undefined') {
+                    var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                    modal.show();
+                } else if ($(modalEl).modal) {
+                    $(modalEl).modal('show');
+                }
+            });
+
+            modalEl.addEventListener('shown.bs.modal', () => {
+                document.body.classList.add('project-modal-open');
+                document.documentElement.classList.add('project-modal-open');
+                updateScrollHint();
+            });
+            modalEl.addEventListener('hidden.bs.modal', () => {
+                document.body.classList.remove('project-modal-open');
+                document.documentElement.classList.remove('project-modal-open');
+            });
+            if (mainEl) {
+                mainEl.addEventListener('scroll', updateScrollHint);
+            }
+
+            if (btnClose) {
+                btnClose.addEventListener('click', function () {
+                    if (window.bootstrap && typeof bootstrap.Modal !== 'undefined') {
+                        var modal = bootstrap.Modal.getInstance(modalEl);
+                        if (modal) modal.hide();
+                    } else if ($(modalEl).modal) {
+                        $(modalEl).modal('hide');
+                    }
+                });
+            }
+            if (btnPrev) btnPrev.addEventListener('click', goPrev);
+            if (btnNext) btnNext.addEventListener('click', goNext);
+
+            $(document).on('click', '.project-modal__contact-btn', function () {
+                if (window.bootstrap && typeof bootstrap.Modal !== 'undefined') {
+                    var modal = bootstrap.Modal.getInstance(modalEl);
+                    if (modal) modal.hide();
+                } else if ($(modalEl).modal) {
+                    $(modalEl).modal('hide');
+                }
+            });
+
+            var touchStartX = 0;
+            modalEl.addEventListener('touchstart', function (e) {
+                touchStartX = e.touches && e.touches[0] ? e.touches[0].clientX : 0;
+            }, { passive: true });
+            modalEl.addEventListener('touchend', function (e) {
+                if (!e.changedTouches || !e.changedTouches[0]) return;
+                var delta = e.changedTouches[0].clientX - touchStartX;
+                if (delta < -60) goNext();
+                else if (delta > 60) goPrev();
+            }, { passive: true });
+
+            $(document).on('click', '.project-modal__gallery-link', function (e) {
+                e.preventDefault();
+                if (!$.fn.magnificPopup) return;
+                var $links = $(this).closest('.project-modal__gallery').find('.project-modal__gallery-link');
+                var items = $links.map(function () { return { src: $(this).attr('href') }; }).get();
+                var index = $links.index(this);
+                if (index < 0) index = 0;
+                function hideProjectNav() {
+                    if (btnPrev) btnPrev.classList.add('project-modal__nav--hidden');
+                    if (btnNext) btnNext.classList.add('project-modal__nav--hidden');
+                }
+                function showProjectNav() {
+                    if (btnPrev) btnPrev.classList.remove('project-modal__nav--hidden');
+                    if (btnNext) btnNext.classList.remove('project-modal__nav--hidden');
+                }
+                $.magnificPopup.open({
+                    items: items,
+                    type: 'image',
+                    mainClass: 'mfp-fade',
+                    gallery: { enabled: true },
+                    callbacks: {
+                        open: hideProjectNav,
+                        close: showProjectNav
+                    }
+                }, index);
+            });
+        },
+
+        //Magnificpop (only for non-project img-zoom, e.g. other pages)
         App.prototype.initMagnificPopup = function () {
             if (!$.fn || !$.fn.magnificPopup) return;
-            if (!$('.img-zoom').length) return;
-            $('.img-zoom').magnificPopup({
+            var $zoom = $('.img-zoom').not('.js-project-open');
+            if (!$zoom.length) return;
+            $zoom.magnificPopup({
                 type: 'image',
                 closeOnContentClick: true,
                 mainClass: 'mfp-fade',
@@ -332,6 +634,7 @@
         this.initStickyMenu();
         this.initScrollspy();
         this.initWork();
+        this.initProjectModal();
         this.initMagnificPopup();
         this.initBackToTop();
         this.initTestimonial();

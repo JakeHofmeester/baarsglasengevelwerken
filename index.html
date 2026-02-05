@@ -474,8 +474,8 @@
         </div>
         <div class="container">
             <div class="row mt-4 work-filter">
-                <div class="col-lg-4 work_item gevelreiniging">
-                    <a href="assets/images/works/1.webp" class="img-zoom">
+                <div class="col-lg-4 work_item gevelreiniging" data-project="1">
+                    <a href="#project-modal" class="img-zoom js-project-open" data-project="1" aria-haspopup="dialog" aria-expanded="false">
                         <div class="work_box">
                             <div class="work_img">
                                 <img src="assets/images/works/1.webp" class="img-fluid mx-auto d-block rounded" alt="Gevelreiniging - Huis" loading="lazy" width="800" height="533">
@@ -488,8 +488,8 @@
                     </a>
                 </div>
 
-                <div class="col-lg-4 work_item coaten">
-                    <a href="assets/images/works/2.webp" class="img-zoom">
+                <div class="col-lg-4 work_item coaten" data-project="2">
+                    <a href="#project-modal" class="img-zoom js-project-open" data-project="2" aria-haspopup="dialog" aria-expanded="false">
                         <div class="work_box">
                             <div class="work_img">
                                 <img src="assets/images/works/2.webp" class="img-fluid mx-auto d-block rounded" alt="Coaten - Kozijnen" loading="lazy" width="800" height="533">
@@ -502,8 +502,8 @@
                     </a>
                 </div>
 
-                <div class="col-lg-4 work_item glasbewassing">
-                    <a href="assets/images/works/3.webp" class="img-zoom">
+                <div class="col-lg-4 work_item glasbewassing" data-project="3">
+                    <a href="#project-modal" class="img-zoom js-project-open" data-project="3" aria-haspopup="dialog" aria-expanded="false">
                         <div class="work_box">
                             <div class="work_img">
                                 <img src="assets/images/works/3.webp" class="img-fluid mx-auto d-block rounded" alt="Glasbewassing - Kantoorpand" loading="lazy" width="800" height="533">
@@ -516,8 +516,8 @@
                     </a>
                 </div>
 
-                <div class="col-lg-4 work_item kozijnenconserveren">
-                    <a href="assets/images/works/4.webp" class="img-zoom">
+                <div class="col-lg-4 work_item kozijnenconserveren" data-project="4">
+                    <a href="#project-modal" class="img-zoom js-project-open" data-project="4" aria-haspopup="dialog" aria-expanded="false">
                         <div class="work_box">
                             <div class="work_img">
                                 <img src="assets/images/works/4.webp" class="img-fluid mx-auto d-block rounded" alt="Kozijnen conserveren - Kozijnen" loading="lazy" width="800" height="533">
@@ -530,8 +530,8 @@
                     </a>
                 </div>
 
-                <div class="col-lg-4 work_item gevelreiniging">
-                    <a href="assets/images/works/5.webp" class="img-zoom">
+                <div class="col-lg-4 work_item gevelreiniging" data-project="5">
+                    <a href="#project-modal" class="img-zoom js-project-open" data-project="5" aria-haspopup="dialog" aria-expanded="false">
                         <div class="work_box">
                             <div class="work_img">
                                 <img src="assets/images/works/5.webp" class="img-fluid mx-auto d-block rounded" alt="Gevelreiniging - Kantoorpand" loading="lazy" width="800" height="533">
@@ -544,8 +544,8 @@
                     </a>
                 </div>
 
-                <div class="col-lg-4 work_item glasbewassing">
-                    <a href="assets/images/works/6.webp" class="img-zoom">
+                <div class="col-lg-4 work_item glasbewassing" data-project="6">
+                    <a href="#project-modal" class="img-zoom js-project-open" data-project="6" aria-haspopup="dialog" aria-expanded="false">
                         <div class="work_box">
                             <div class="work_img">
                                 <img src="assets/images/works/6.webp" class="img-fluid mx-auto d-block rounded" alt="Glasbewassing - Panorama" loading="lazy" width="800" height="533">
@@ -561,6 +561,45 @@
         </div>
     </section>
     <!-- END WORK -->
+
+    <!-- Project detail modal -->
+    <div class="modal fade project-modal" id="project-modal" tabindex="-1" aria-labelledby="project-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg project-modal__dialog">
+            <button type="button" class="project-modal__nav project-modal__nav--prev" aria-label="Vorige project">
+                <span aria-hidden="true">&lsaquo;</span>
+            </button>
+            <button type="button" class="project-modal__nav project-modal__nav--next" aria-label="Volgende project">
+                <span aria-hidden="true">&rsaquo;</span>
+            </button>
+            <div class="modal-content position-relative">
+                <button type="button" class="btn-close project-modal__close" data-bs-dismiss="modal" aria-label="Sluiten"></button>
+                <div class="modal-body project-modal__body">
+                    <div class="row g-4">
+                        <div class="col-lg-8 project-modal__main">
+                            <p class="project-modal__label text-uppercase small mb-2">Project overzicht</p>
+                            <h2 class="h4 mb-3" id="project-modal-title">Project</h2>
+                            <p class="project-modal__text text-muted mb-4"></p>
+                            <div class="project-modal__gallery"></div>
+                            <div class="project-modal__middle-image-wrapper" style="display: none;"></div>
+                            <p class="project-modal__extra project-modal__extra-1 text-muted mt-4 mb-3" style="display: none;"></p>
+                            <p class="project-modal__extra project-modal__extra-2 text-muted mb-0" style="display: none;"></p>
+                            <div class="project-modal__scroll-hint" aria-hidden="true"><span class="project-modal__scroll-hint-arrow">&#9660;</span></div>
+                        </div>
+                        <aside class="col-lg-4 project-modal__sidebar">
+                            <div class="project-modal__services">
+                                <h3 class="h6 fw-bold mb-3">Uitgevoerde diensten</h3>
+                                <ul class="list-unstyled mb-0 project-modal__services-list"></ul>
+                            </div>
+                            <hr class="project-modal__sidebar-divider">
+                            <div class="project-modal__details"></div>
+                            <p class="project-modal__phone mb-3"></p>
+                            <a href="/?go=contact" class="btn btn-primary project-modal__contact-btn js-contact-link">Mail ons</a>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- START CLIENT -->
     <section class="section" id="client">
