@@ -13,7 +13,7 @@
 
 .benefit-card {
     border-radius: 8px !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    box-shadow: $card-box-shadow;
     border-top-width: 3px !important;
     border-top-style: solid !important;
     display: flex;
@@ -53,6 +53,37 @@
     }
 }
 
+.material-cards {
+    justify-content: center;
+}
+
+.material-card {
+    align-items: center;
+
+    .h5 {
+        height: auto;
+        text-align: center;
+    }
+
+    &__icon {
+        display: flex;
+        justify-content: center;
+    }
+
+    p {
+        min-height: 0;
+        text-align: left;
+    }
+}
+
+.accordion-item {
+    box-shadow: $card-box-shadow;
+}
+
+.bg-white.border.rounded {
+    box-shadow: $card-box-shadow;
+}
+
 .breadcrumb {
     .breadcrumb-item a {
         color: var(--bs-secondary) !important;
@@ -69,6 +100,7 @@
 
 .services-boxes {
     border: 1px solid var(--bs-border-color);
+    box-shadow: $card-box-shadow;
 }
 
 .services-boxes .services-boxes-icon i {

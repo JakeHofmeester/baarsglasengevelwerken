@@ -1732,6 +1732,9 @@ nav[data-always-sticky="true"].custom-nav {
 [dir=rtl] .accordion-button::after {
   left: 22px;
 }
+.accordion-button:not(.collapsed) .text-muted {
+  color: var(--bs-primary) !important;
+}
 [dir=rtl] .rtl-ltr-btn .ltr {
   display: inline-block;
 }
@@ -1802,6 +1805,12 @@ nav[data-always-sticky="true"].custom-nav {
 .benefit-cards--center .benefit-card--no-heading {
   justify-content: center;
 }
+.accordion-item {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.bg-white.border.rounded {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
 .benefit-card {
   border-radius: 8px !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
@@ -1839,6 +1848,24 @@ nav[data-always-sticky="true"].custom-nav {
   min-height: 0;
   flex: none;
 }
+.material-cards {
+  justify-content: center;
+}
+.material-card {
+  align-items: center;
+}
+.material-card .h5 {
+  height: auto;
+  text-align: center;
+}
+.material-card__icon {
+  display: flex;
+  justify-content: center;
+}
+.material-card p {
+  min-height: 0;
+  text-align: left;
+}
 
 .breadcrumb .breadcrumb-item a {
   color: var(--bs-secondary) !important;
@@ -1853,6 +1880,7 @@ nav[data-always-sticky="true"].custom-nav {
 }
 .services-boxes {
   border: 1px solid var(--bs-border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 #diensten .row > [class*="col-"] {
