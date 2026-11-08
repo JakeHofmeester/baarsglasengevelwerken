@@ -51,8 +51,10 @@ ErrorDocument 404 /404.html
 
   # ---------------------------------------------
   # map clean urls internally to .html files
-  # (a .html file wins over a folder with the same name, e.g. kennisbank.html vs kennisbank/)
+  # (keep page slugs different from folder names: a folder with the same name
+  # triggers apache's directory-slash redirect and loops with the rule above)
   # ---------------------------------------------
+  rewritecond %{request_filename} !-d
   rewritecond %{request_filename}\.html -f
   rewriterule ^(.+)$ $1.html [l]
 </ifmodule>

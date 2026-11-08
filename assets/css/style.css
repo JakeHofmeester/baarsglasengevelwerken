@@ -2767,3 +2767,13 @@ main a[href^="tel:"]:not(.btn):not(.u-plain) {
 .mw-text {
   max-width: 900px;
 }
+.badge-vca {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 2px solid var(--bs-primary);
+  border-radius: 8px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: var(--bs-primary);
+  letter-spacing: 0.04em;
+}
