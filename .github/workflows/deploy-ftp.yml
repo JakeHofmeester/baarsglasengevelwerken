@@ -14,6 +14,7 @@ concurrency:
 # send SNI, so the upload uses lftp, which does.
 env:
   FTP_HOST: ftp.covfo2us1.service.one
+  FTP_USERNAME: covfo2us1_u
   # web root of the site (the FTP login lands one level above webroots/)
   FTP_DIR: /webroots/sites/baarsglasengevelwerken.nl/
 
@@ -29,10 +30,13 @@ jobs:
 
       - name: Upload over FTPS
         env:
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         # Uploads everything except the excludes; never deletes files on the server.
         run: |
+          if [ -z "$LFTP_PASSWORD" ]; then echo "::error::Secret FTP_PASSWORD is empty or missing"; exit 1; fi
+          if [ "$LFTP_PASSWORD" != "$(printf '%s' "$LFTP_PASSWORD" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')" ]; then
+            echo "::error::Secret FTP_PASSWORD starts or ends with a space or line break; re-enter it without"; exit 1
+          fi
           lftp --env-password -u "$FTP_USERNAME" "ftps://$FTP_HOST:990" <<EOF
           set ssl:verify-certificate yes
           set ftp:ssl-protect-data yes
