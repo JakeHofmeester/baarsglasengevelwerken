@@ -15,8 +15,8 @@ concurrency:
 env:
   FTP_HOST: ftp.covfo2us1.service.one
   FTP_USERNAME: covfo2us1_u
-  # web root of the site (the FTP login lands one level above webroots/)
-  FTP_DIR: /webroots/sites/baarsglasengevelwerken.nl/
+  # web root of the site, relative to the FTP login folder (/customers/4/c/b/covfo2us1/)
+  FTP_DIR: webroots/sites/baarsglasengevelwerken.nl/
 
 jobs:
   deploy:
@@ -38,12 +38,16 @@ jobs:
             echo "::error::Secret FTP_PASSWORD starts or ends with a space or line break; re-enter it without"; exit 1
           fi
           lftp --env-password -u "$FTP_USERNAME" "ftps://$FTP_HOST:990" <<EOF
+          set cmd:fail-exit yes
           set ssl:verify-certificate yes
           set ftp:ssl-protect-data yes
           set ftp:passive-mode yes
           set net:timeout 30
           set net:max-retries 3
           set net:reconnect-interval-base 5
+          pwd
+          cls -1
+          cd "$FTP_DIR"
           mirror --reverse --verbose --parallel=4 \
             --exclude-glob .git/ \
             --exclude-glob .github/ \
@@ -60,6 +64,6 @@ jobs:
             --exclude-glob "*.ps1" \
             --exclude-glob "README*" \
             --exclude-glob "assets/images/dak-impregneren-*.png" \
-            ./ "$FTP_DIR"
+            ./ .
           quit
           EOF
