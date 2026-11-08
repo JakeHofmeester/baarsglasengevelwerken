@@ -101,6 +101,12 @@
             }
         }
 
+        .nav-link:hover,
+        .nav-link:focus-visible,
+        .nav-link:active {
+            color: var(--#{$prefix}primary) !important;
+        }
+
         .active {
             color: var(--#{$prefix}primary) !important;
         }

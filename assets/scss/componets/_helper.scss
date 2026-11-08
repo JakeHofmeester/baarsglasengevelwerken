@@ -329,3 +329,7 @@ ul.pattern {
         display: inline-block;
     }
 }
+
+.accordion-button:not(.collapsed) .text-muted {
+    color: var(--#{$prefix}primary) !important;
+}

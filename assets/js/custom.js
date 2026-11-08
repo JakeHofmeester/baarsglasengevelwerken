@@ -1,17 +1,22 @@
+(function fixLinksForLocal() {
+    if (window.location.protocol !== "file:") return;
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('a[href^="/"]').forEach(function (a) {
+            var href = a.getAttribute("href");
+            if (!href || href.indexOf("//") === 0) return;
+            var path = href.split("?")[0].split("#")[0];
+            var qs = href.indexOf("?") >= 0 ? href.substring(href.indexOf("?")) : "";
+            var hash = href.indexOf("#") >= 0 ? href.substring(href.indexOf("#")) : "";
+            var newPath = (path === "/" || path === "") ? "index.html" : path.slice(1) + (path.slice(1).indexOf(".") === -1 ? ".html" : "");
+            a.setAttribute("href", newPath + qs + hash);
+        });
+    });
+})();
 
 ! function ($) {
     "use strict";
 
     var App = function () { };
-
-    //PreLoader
-    App.prototype.initPreLoader = function () {
-        $('#status').fadeOut();
-        $('#preloader').delay(350).fadeOut('slow');
-        $('body').delay(350).css({
-            'overflow': 'visible'
-        });
-    },
 
         //scroll
         App.prototype.initStickyMenu = function () {
@@ -37,7 +42,8 @@
                 if (!link) return;
 
                 var href = link.getAttribute('href') || '';
-                var isHomePage = window.location.pathname === "/" || window.location.pathname === "/index.html";
+                var pathname = window.location.pathname;
+                var isHomePage = pathname === "/" || pathname === "/index.html" || (window.location.protocol === "file:" && (pathname.endsWith("index.html") || pathname.endsWith("/")));
                 
                 if (href === '#') {
                     e.preventDefault();
@@ -313,7 +319,6 @@
         }
 
     App.prototype.init = function () {
-        this.initPreLoader();
         this.initStickyMenu();
         this.initScrollspy();
         this.initWork();
@@ -420,20 +425,28 @@
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
-    // handle on-page clicks: prevent page reload and scroll smoothly
+    var pathname = window.location.pathname;
+    var isHomePage = pathname === "/" || pathname === "/index.html" || (window.location.protocol === "file:" && (pathname.endsWith("index.html") || pathname.endsWith("/")));
+
+    document.querySelectorAll('.js-year').forEach(el => { el.textContent = String(new Date().getFullYear()); });
+
+    // "Offerte aanvragen"/"Contact" links scroll to the form when this page has one (home, /contact);
+    // tel: and WhatsApp links that also carry js-contact-link are left alone.
     document.querySelectorAll('.js-contact-link').forEach(link => {
         link.addEventListener('click', (e) => {
-            if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
-                e.preventDefault();
-                const section = document.getElementById("contact");
-                if (section) {
-                    section.scrollIntoView({ behavior: "smooth" });
-                }
-            }
+            const href = link.getAttribute('href') || '';
+            const isContactHref = href === '/contact' || href === '#contact' || href === 'contact.html' || href.indexOf('?go=contact') !== -1;
+            if (!isContactHref) return;
+            const section = document.getElementById("contact");
+            if (!section || !section.querySelector('#working_form')) return;
+            e.preventDefault();
+            section.scrollIntoView({ behavior: "smooth" });
+            const collapse = document.querySelector("#navbarNav.show");
+            const toggler = document.querySelector(".navbar-toggler");
+            if (collapse && toggler && link.closest("#navbarNav")) toggler.click();
         });
     });
 
-    // handle cross-page redirects using ?go=contact
     const params = new URLSearchParams(window.location.search);
     const goParam = params.get("go");
     
@@ -441,14 +454,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const section = document.getElementById("contact");
         if (section) {
             section.scrollIntoView({ behavior: "smooth" });
-            history.replaceState(null, "", "/");
+            history.replaceState(null, "", window.location.protocol === "file:" ? "index.html" : "/");
         }
     } else if (goParam) {
-        // handle other sections (home, over-ons, diensten, etc.)
         const el = document.getElementById(goParam);
         if (el) {
             el.scrollIntoView({ behavior: "smooth" });
-            history.replaceState(null, "", "/");
+            history.replaceState(null, "", window.location.protocol === "file:" ? "index.html" : "/");
         }
     }
 });

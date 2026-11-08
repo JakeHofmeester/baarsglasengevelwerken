@@ -84,13 +84,15 @@
         if (!window.__gaInitialized) {
           window.__gaInitialized = true;
           gtag("js", new Date());
-          gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true, cookie_update: false, send_page_view: false });
-          gtag("event", "page_view", {
-            page_location: window.location.href,
-            page_path: window.location.pathname + window.location.search,
-            page_title: document.title
+          gtag("config", GA_MEASUREMENT_ID, {
+            anonymize_ip: false,
+            cookie_update: true,
+            send_page_view: true,
+            allow_google_signals: true,
+            allow_ad_personalization_signals: true
           });
         }
+        gtag("event", "cookie_consent", { consent: "accept" });
       } catch (e) { }
     } else {
       gtag("consent", "update", {
@@ -99,6 +101,7 @@
         ad_user_data: "denied",
         ad_personalization: "denied"
       });
+      gtag("event", "cookie_consent", { consent: "reject" });
     }
     safeSet(STORAGE_KEY, value);
   }
@@ -133,11 +136,11 @@
       '<div class="cookie-banner__inner">' +
         '<div class="cookie-banner__text">' +
           '<strong>Cookies</strong> — Wij gebruiken cookies voor statistieken (Google Analytics) om de website te verbeteren. ' +
-          '<a class="cookie-banner__link" href="cookies.html">Meer info</a>.' +
+          '<a class="cookie-banner__link" href="/cookies">Meer info</a>.' +
         '</div>' +
         '<div class="cookie-banner__actions">' +
-          '<button type="button" class="btn btn-primary cookie-banner__btn" data-cookie-action="accept">Accepteren</button>' +
-          '<button type="button" class="btn cookie-banner__btn cookie-banner__btn--reject" data-cookie-action="reject">Weigeren</button>' +
+          '<button type="button" class="btn btn-primary cookie-banner__btn cookie-banner__btn--reject" data-cookie-action="reject">Weigeren</button>' +
+          '<button type="button" class="btn btn-primary cookie-banner__btn cookie-banner__btn--accept" data-cookie-action="accept">Accepteren</button>' +
         '</div>' +
       "</div>";
 
@@ -155,6 +158,36 @@
 
     return banner;
   }
+
+  function clearChoice() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* ignore */ }
+    try { document.cookie = STORAGE_KEY + "=; path=/; max-age=0; samesite=lax"; } catch (e) { /* ignore */ }
+    try {
+      if (window.name && window.name.charAt(0) === "{") {
+        var obj = JSON.parse(window.name) || {};
+        delete obj[STORAGE_KEY];
+        window.name = JSON.stringify(obj);
+      }
+    } catch (e) { /* ignore */ }
+    getGtag()("consent", "update", {
+      ad_storage: "denied",
+      analytics_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied"
+    });
+    window.__gaConsentGranted = false;
+  }
+
+  // "Cookiekeuze resetten" on /cookies: forget the stored choice and show the banner again.
+  document.addEventListener("click", function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest("#reset_cookie_choice") : null;
+    if (!btn) return;
+    // defer so analytics-events.js can still send cookie_preference_reset with the old consent
+    window.setTimeout(function () {
+      clearChoice();
+      if (!document.querySelector(".cookie-banner")) document.body.appendChild(createBanner());
+    }, 0);
+  });
 
   function init() {
     var stored = safeGet(STORAGE_KEY);

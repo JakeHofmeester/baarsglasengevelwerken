@@ -3,107 +3,293 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gevelreiniging & Glasbewassing | Baars Glas en Gevelwerken</title>
-    <meta name="description" content="Specialist in gevelreiniging, glasbewassing, impregneren en buitenreiniging. Baars Glas en Gevelwerken (Capelle aan den IJssel, regio Rotterdam, Zuid-Holland/Noord-Holland)." />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="Jake Hofmeester" />
-
+    <title>Glazenwasser &amp; Gevelreiniging Capelle aan den IJssel | Baars</title>
+    <meta name="description" content="Glazenwasser, kozijnen conserveren en gevelreiniging in Capelle aan den IJssel en Rotterdam. Vakwerk van Jaco Baars, advies na inspectie. Bel 06 57614022.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://baarsglasengevelwerken.nl/">
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap"></noscript>
-
-    <script>
-      (function () {
-        try {
-          var href = "assets/images/hero-desktop.webp";
-          if (window.matchMedia && window.matchMedia("(max-width: 767px)").matches) {
-            href = "assets/images/hero-mobile.webp";
-          } else if (window.matchMedia && window.matchMedia("(min-width: 768px) and (max-width: 1023px)").matches) {
-            href = "assets/images/hero-tablet.webp";
-          }
-          var link = document.createElement("link");
-          link.rel = "preload";
-          link.as = "image";
-          link.href = href;
-          link.type = "image/webp";
-          document.head.appendChild(link);
-        } catch (e) { }
-      })();
-    </script>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;600;700&display=optional"></noscript>
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="assets/images/hero-mobile.webp 800w, assets/images/hero-tablet.webp 1200w, assets/images/hero-desktop.webp 1920w" imagesizes="100vw">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="nl_NL">
     <meta property="og:site_name" content="Baars Glas en Gevelwerken">
-    <meta property="og:title" content="Gevelreiniging &amp; Glasbewassing | Baars Glas en Gevelwerken">
-    <meta property="og:description" content="Specialist in gevelreiniging, glasbewassing, impregneren en buitenreiniging. Baars Glas en Gevelwerken (Capelle aan den IJssel, regio Rotterdam, Zuid-Holland/Noord-Holland).">
+    <meta property="og:title" content="Glazenwasser &amp; Gevelreiniging Capelle aan den IJssel | Baars">
+    <meta property="og:description" content="Glazenwasser, kozijnen conserveren en gevelreiniging in Capelle aan den IJssel en Rotterdam. Vakwerk van Jaco Baars, advies na inspectie. Bel 06 57614022.">
     <meta property="og:url" content="https://baarsglasengevelwerken.nl/">
-    <meta property="og:image" content="https://baarsglasengevelwerken.nl/assets/images/header-bg.webp">
-
+    <meta property="og:image" content="https://baarsglasengevelwerken.nl/assets/images/og/og-default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Gevelreiniging &amp; Glasbewassing | Baars Glas en Gevelwerken">
-    <meta name="twitter:description" content="Specialist in gevelreiniging, glasbewassing, impregneren en buitenreiniging. Baars Glas en Gevelwerken (Capelle aan den IJssel, regio Rotterdam, Zuid-Holland/Noord-Holland).">
-    <meta name="twitter:image" content="https://baarsglasengevelwerken.nl/assets/images/header-bg.webp">
+    <meta name="twitter:title" content="Glazenwasser &amp; Gevelreiniging Capelle aan den IJssel | Baars">
+    <meta name="twitter:description" content="Glazenwasser, kozijnen conserveren en gevelreiniging in Capelle aan den IJssel en Rotterdam. Vakwerk van Jaco Baars, advies na inspectie. Bel 06 57614022.">
+    <meta name="twitter:image" content="https://baarsglasengevelwerken.nl/assets/images/og/og-default.jpg">
 
     <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
         {
-            "@context": "https://schema.org",
-            "@graph": [
-                {
-                    "@type": "LocalBusiness",
-                    "@id": "https://baarsglasengevelwerken.nl/#localbusiness",
-                    "name": "Baars Glas en Gevelwerken",
-                    "url": "https://baarsglasengevelwerken.nl/",
-                    "logo": "https://baarsglasengevelwerken.nl/assets/images/logo-dark.webp",
-                    "telephone": "+31657614022",
-                    "email": "info@baarsglasengevelwerken.nl",
-                    "address": {
-                        "@type": "PostalAddress",
-                        "streetAddress": "Narcisstraat 33",
-                        "postalCode": "2906 EA",
-                        "addressLocality": "Capelle aan den IJssel",
-                        "addressCountry": "NL"
-                    },
-                    "sameAs": [
-                        "https://www.werkspot.nl/profiel/baars-glas-en-gevelwerken"
-                    ]
-                },
-                {
-                    "@type": "WebSite",
-                    "@id": "https://baarsglasengevelwerken.nl/#website",
-                    "name": "Baars Glas en Gevelwerken",
-                    "url": "https://baarsglasengevelwerken.nl/",
-                    "publisher": { "@id": "https://baarsglasengevelwerken.nl/#localbusiness" }
+          "@type": [
+            "LocalBusiness",
+            "HomeAndConstructionBusiness"
+          ],
+          "@id": "https://baarsglasengevelwerken.nl/#localbusiness",
+          "name": "Baars Glas en Gevelwerken",
+          "description": "Glazenwasser, kozijnen conserveren en gevelreiniging in Capelle aan den IJssel en regio Rotterdam, sinds 2019. Advies op basis van inspectie, plan op maat, voor bedrijven, VvE's en particulieren.",
+          "url": "https://baarsglasengevelwerken.nl/",
+          "telephone": "+31657614022",
+          "email": "info@baarsglasengevelwerken.nl",
+          "image": [
+            "https://baarsglasengevelwerken.nl/assets/images/about.webp",
+            "https://baarsglasengevelwerken.nl/assets/images/works/3.webp",
+            "https://baarsglasengevelwerken.nl/assets/images/diensten/reinigen-na.webp"
+          ],
+          "logo": "https://baarsglasengevelwerken.nl/assets/images/logo-dark.webp",
+          "priceRange": "€€",
+          "foundingDate": "2019",
+          "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "KvK",
+            "value": "74201654"
+          },
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "name": "VCA",
+            "credentialCategory": "certificaat"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Narcisstraat 33",
+            "postalCode": "2906 EA",
+            "addressLocality": "Capelle aan den IJssel",
+            "addressRegion": "Zuid-Holland",
+            "addressCountry": "NL"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.93707,
+            "longitude": 4.5737
+          },
+          "areaServed": [
+            {
+              "@type": "City",
+              "name": "Capelle aan den IJssel"
+            },
+            {
+              "@type": "City",
+              "name": "Rotterdam"
+            },
+            {
+              "@type": "City",
+              "name": "Krimpen aan den IJssel"
+            },
+            {
+              "@type": "City",
+              "name": "Nieuwerkerk aan den IJssel"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Zuidplas"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Lansingerland"
+            }
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "07:00",
+              "closes": "21:00"
+            }
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+31657614022",
+            "contactType": "customer service",
+            "availableLanguage": "nl"
+          },
+          "founder": {
+            "@type": "Person",
+            "@id": "https://baarsglasengevelwerken.nl/over-ons#jaco-baars",
+            "name": "Jaco Baars"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/baars-glas-en-gevelwerken/"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Diensten",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Glasbewassing",
+                  "url": "https://baarsglasengevelwerken.nl/glasbewassing"
                 }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Kozijnen conserveren",
+                  "url": "https://baarsglasengevelwerken.nl/kozijnen-conserveren"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Gevelreiniging",
+                  "url": "https://baarsglasengevelwerken.nl/gevelreiniging"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Gevel impregneren",
+                  "url": "https://baarsglasengevelwerken.nl/impregneren"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Dak reinigen",
+                  "url": "https://baarsglasengevelwerken.nl/dak-reinigen"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Dak impregneren",
+                  "url": "https://baarsglasengevelwerken.nl/dak-reinigen#impregneren"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Graffiti verwijderen",
+                  "url": "https://baarsglasengevelwerken.nl/graffiti-verwijderen"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Voegherstel",
+                  "url": "https://baarsglasengevelwerken.nl/voegherstel"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Spinnen weren",
+                  "url": "https://baarsglasengevelwerken.nl/spinnenweren"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Buitenreiniging",
+                  "url": "https://baarsglasengevelwerken.nl/reinigingsdiensten"
+                }
+              }
             ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://baarsglasengevelwerken.nl/#website",
+          "name": "Baars Glas en Gevelwerken",
+          "url": "https://baarsglasengevelwerken.nl/",
+          "inLanguage": "nl-NL",
+          "publisher": {
+            "@id": "https://baarsglasengevelwerken.nl/#localbusiness"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://baarsglasengevelwerken.nl/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Voor wie werkt Baars Glas en Gevelwerken?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vooral voor bedrijven, VvE's en woningcorporaties in Capelle aan den IJssel, Rotterdam en omgeving, en daarnaast voor particuliere woningen. Van een compleet appartementencomplex of kantoorpand tot één woning."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Wat kost glasbewassing, kozijnen conserveren of gevelreiniging?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ter indicatie: glasbewassing €1 tot €4 per m² glas, kozijnen conserveren €16 tot €22 per m² en gevelreiniging €8 tot €15 per m². Dit zijn richtprijzen; de exacte prijs hangt af van de ondergrond, de benodigde materialen en de bereikbaarheid. U ontvangt altijd vooraf een vaste prijs. Bekijk alle prijzen en tarieven."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Komt Jaco zelf?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ja. Ik voer het werk zelf uit en ben uw vaste aanspreekpunt, van de eerste afspraak tot de oplevering."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Kan ik ook eerst een foto sturen?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ja, graag. Stuur via WhatsApp een paar foto's van uw ramen, kozijnen of gevel, dan krijgt u snel een eerste inschatting. Voor een vaste prijs kom ik meestal nog even kijken."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Werkt u ook buiten Capelle aan den IJssel?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ja, in heel Rotterdam en de omliggende gemeenten, zoals Krimpen aan den IJssel, Nieuwerkerk aan den IJssel, de rest van Zuidplas en Lansingerland. Bekijk het werkgebied."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Werkt u veilig op hoogte?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ja. Ik ben VCA-gecertificeerd en werk volgens de Arbo-regels: op hoogte met een telescoopsysteem in plaats van ladders, of in overleg met een hoogwerker."
+              }
+            }
+          ]
         }
+      ]
+    }
     </script>
 
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-    <!-- Bootstrap Css -->
     <link id="bootstrap" rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-
-    <!-- Materialdesign icons Css -->
-
-    <!-- Owl Carousel -->
-    <link rel="preload" href="assets/css/owl.carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/owl.carousel.min.css"></noscript>
-
-    <!-- Animate Css -->
-    <link rel="preload" href="assets/css/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/animate.min.css"></noscript>
-
-    <!-- Magnific-popup -->
     <link rel="preload" href="assets/css/magnific-popup.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="assets/css/magnific-popup.css"></noscript>
-
-    <!-- Custom Style -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=20261108">
 
     <!-- Google Analytics (GA4) + Consent Mode -->
     <script>
@@ -160,516 +346,369 @@
           if (window.__gaInitialized) return;
           window.__gaInitialized = true;
           gtag('js', new Date());
-          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: true, cookie_update: false, send_page_view: false });
-          gtag('event', 'page_view', {
-            page_location: window.location.href,
-            page_path: window.location.pathname + window.location.search,
-            page_title: document.title
-          });
+          gtag('config', 'G-2JCXZNTE32', { anonymize_ip: false, cookie_update: true, send_page_view: true, allow_google_signals: true, allow_ad_personalization_signals: true });
         } catch (e) { }
       })();
     </script>
 </head>
 
 <body class="home-page">
-    <!-- SVG sprite (inline to work on file://) -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-      <!-- Mobirise icons (24px) -->
-      <symbol id="mbri-menu" viewBox="0 0 24 24">
-        <path d="m 0.5,19 23,0 c 0.277,0 0.5,0.223 0.5,0.5 0,0.277 -0.223,0.5 -0.5,0.5 l -23,0 C 0.223,20 0,19.777 0,19.5 0,19.223 0.223,19 0.5,19 Z m 0,-8 23,0 c 0.277,0 0.5,0.223 0.5,0.5 0,0.277 -0.223,0.5 -0.5,0.5 l -23,0 C 0.223,12 0,11.777 0,11.5 0,11.223 0.223,11 0.5,11 Z m 0,-8 23,0 C 23.777,3 24,3.223 24,3.5 24,3.777 23.777,4 23.5,4 L 0.5,4 C 0.223,4 0,3.777 0,3.5 0,3.223 0.223,3 0.5,3 Z"/>
-      </symbol>
-      <symbol id="mbri-arrow-up" viewBox="0 0 448 512">
-        <path d="M233.4 105.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L211 173.3 348.7 310.7c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
-      </symbol>
-      <symbol id="mbri-quote-left" viewBox="0 0 24 24">
-        <path d="M6 21c1.668 0 2.794-.573 3.62-1.385.826-.812 1.38-1.947 1.38-3.115 0-.952-.226-1.825-.61-2.63-.382-.804-.882-1.515-1.37-2.198-.488-.682-.97-1.34-1.34-2.035C7.306 8.945 7 8.24 7 7.5c0-.947.274-1.953.886-2.677.32-.376-.078-.937-.553-.803-2.064.58-3.89 1.827-5.205 3.52C.812 9.233 0 11.356 0 13.5c0 1.84.44 3.708 1.595 5.184C2.8 20.09 4.332 21 6 21zm0-1c-1.5 0-2.623-.907-3.618-1.933C1.402 16.814 1 15.147 1 13.5c0-1.925.735-3.825 1.917-5.345.886-1.14 2.104-1.96 3.416-2.568C6.1 6.207 6 6.832 6 7.5c0 .948.38 1.83.798 2.61.417.777.926 1.47 1.41 2.144.483.676.945 1.34 1.28 2.045.335.7.512 1.472.512 2.2 0 .91-.437 1.77-1.082 2.402C8.272 19.538 7.498 20 6 20zm13.003 1c1.668 0 2.792-.573 3.618-1.385.827-.812 1.38-1.942 1.38-3.115 0-.952-.225-1.825-.608-2.63-.383-.804-.883-1.515-1.37-2.198-.49-.682-.97-1.34-1.342-2.035-.372-.692-.677-1.4-.677-2.137 0-.947.273-1.953.884-2.677.32-.376-.078-.937-.553-.803-2.064.58-3.89 1.827-5.205 3.52-1.317 1.693-2.127 3.816-2.127 5.96 0 1.84.438 3.708 1.593 5.184C15.802 20.09 17.336 21 19.003 21zm0-1c-1.5 0-2.625-.907-3.62-1.933-.98-1.253-1.38-2.92-1.38-4.566 0-1.924.733-3.825 1.915-5.345.887-1.14 2.104-1.96 3.417-2.568-.234.62-.332 1.245-.332 1.913 0 .93.38 1.83.796 2.61.416.777.926 1.47 1.41 2.144.482.676.944 1.34 1.28 2.045.334.7.51 1.472.51 2.2 0 .906-.436 1.77-1.08 2.402-.646.636-1.418 1.098-2.917 1.098z"/>
-      </symbol>
-      <symbol id="mbri-mobile2" viewBox="0 0 24 24">
-        <path d="M7.5 5h9c.277 0 .5-.223.5-.5s-.223-.5-.5-.5h-9c-.277 0-.5.223-.5.5s.223.5.5.5zm3-2h3c.277 0 .5-.223.5-.5s-.223-.5-.5-.5h-3c-.277 0-.5.223-.5.5s.223.5.5.5zm-3 16h9c.277 0 .5.223.5.5s-.223.5-.5.5h-9c-.277 0-.5-.223-.5-.5s.223-.5.5-.5zm3 2h3c.277 0 .5.223.5.5s-.223.5-.5.5h-3c-.277 0-.5-.223-.5-.5s.223-.5.5-.5zm-4-21C5.678 0 5 .678 5 1.5v21c0 .822.678 1.5 1.5 1.5h11c.822 0 1.5-.678 1.5-1.5v-21c0-.822-.678-1.5-1.5-1.5h-11zm0 1h11c.286 0 .5.214.5.5v21c0 .286-.214.5-.5.5h-11c-.286 0-.5-.214-.5-.5v-21c0-.286.214-.5.5-.5z"/>
-      </symbol>
-      <symbol id="mbri-letter" viewBox="0 0 24 24">
-        <path d="M2.5 6c-.5 0-.683.646-.278.916l7.998 5.496c.49.337 1.08.588 1.78.588s1.295-.25 1.785-.588l7.997-5.496c.552-.374-.06-1.176-.566-.824L13.22 11.59c-.38.26-.75.41-1.22.41s-.836-.15-1.214-.41L2.788 6.09C2.706 6.034 2.6 6.002 2.5 6zm-1-2C.678 4 0 4.678 0 5.5v13c0 .822.678 1.5 1.5 1.5h21c.822 0 1.5-.678 1.5-1.5v-13c0-.822-.678-1.5-1.5-1.5zm0 1h21c.286 0 .5.214.5.5v13c0 .286-.214.5-.5.5h-21c-.286 0-.5-.214-.5-.5v-13c0-.286.214-.5.5-.5z"/>
-      </symbol>
-      <symbol id="mbri-map-pin" viewBox="0 0 24 24">
-        <path d="M12 4c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3zm0 1c1.11 0 2 .89 2 2 0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2zm0-5C8.14 0 5 3.14 5 7c0 2.453 1.432 5.122 2.963 7.23.765 1.055 1.563 1.963 2.246 2.622.34.33.653.595.933.79.28.196.484.358.857.358s.578-.162.857-.357c.28-.196.592-.462.934-.79.684-.66 1.482-1.568 2.247-2.623C17.567 12.122 19 9.453 19 7c0-3.86-3.14-7-7-7zm0 1c3.32 0 6 2.68 6 6 0 2.047-1.31 4.628-2.773 6.645-.733 1.008-1.5 1.88-2.13 2.488-.315.304-.61.526-.812.69-.198.162-.38.16-.57 0-.2-.167-.497-.386-.813-.69-.63-.608-1.396-1.48-2.13-2.488C7.31 11.628 6 9.047 6 7c0-3.32 2.68-6 6-6zM3.5 9c-.238 0-.46.188-.494.424l-2 13c-.07.45.123.872.41 1.144.287.273.67.432 1.084.432h19c.413 0 .797-.16 1.084-.432.287-.272.48-.694.41-1.144L21 9.5c-.05-.36-.26-.5-.5-.5-.444 0-.52.404-.488.592l1.994 12.984c.064.336-.072.424-.506.424h-19c-.4 0-.552-.087-.506-.424l2-13C4.022 9.41 3.938 9 3.5 9z"/>
-      </symbol>
-
-      <!-- Brand icons (Font Awesome Free) -->
-      <symbol id="brand-linkedin" viewBox="0 0 448 512">
-        <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/>
-      </symbol>
+      <symbol id="mbri-menu" viewBox="0 0 24 24"><path d="m 0.5,19 23,0 c 0.277,0 0.5,0.223 0.5,0.5 0,0.277 -0.223,0.5 -0.5,0.5 l -23,0 C 0.223,20 0,19.777 0,19.5 0,19.223 0.223,19 0.5,19 Z m 0,-8 23,0 c 0.277,0 0.5,0.223 0.5,0.5 0,0.277 -0.223,0.5 -0.5,0.5 l -23,0 C 0.223,12 0,11.777 0,11.5 0,11.223 0.223,11 0.5,11 Z m 0,-8 23,0 C 23.777,3 24,3.223 24,3.5 24,3.777 23.777,4 23.5,4 L 0.5,4 C 0.223,4 0,3.777 0,3.5 0,3.223 0.223,3 0.5,3 Z"/></symbol>
+      <symbol id="mbri-arrow-up" viewBox="0 0 448 512"><path d="M233.4 105.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L211 173.3 348.7 310.7c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></symbol>
+      <symbol id="mbri-quote-left" viewBox="0 0 24 24"><path d="M6 21c1.668 0 2.794-.573 3.62-1.385.826-.812 1.38-1.947 1.38-3.115 0-.952-.226-1.825-.61-2.630-.382-.804-.882-1.515-1.37-2.198-.488-.682-.970-1.340-1.340-2.035C7.306 8.945 7 8.240 7 7.500c0-.947.274-1.953.886-2.677.320-.376-.078-.937-.553-.803-2.064.580-3.890 1.827-5.205 3.520C.812 9.233 0 11.356 0 13.500c0 1.840.440 3.708 1.595 5.184C2.800 20.090 4.332 21 6 21zm13.003 0c1.668 0 2.792-.573 3.618-1.385.827-.812 1.380-1.942 1.380-3.115 0-.952-.225-1.825-.608-2.630-.383-.804-.883-1.515-1.370-2.198-.490-.682-.970-1.340-1.342-2.035-.372-.692-.677-1.400-.677-2.137 0-.947.273-1.953.884-2.677.320-.376-.078-.937-.553-.803-2.064.580-3.890 1.827-5.205 3.520-1.317 1.693-2.127 3.816-2.127 5.960 0 1.840.438 3.708 1.593 5.184C15.802 20.090 17.336 21 19.003 21z"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><path d="M2.5 6c-.5 0-.683.646-.278.916l7.998 5.496c.49.337 1.08.588 1.78.588s1.295-.25 1.785-.588l7.997-5.496c.552-.374-.06-1.176-.566-.824L13.22 11.59c-.38.26-.75.41-1.22.41s-.836-.15-1.214-.41L2.788 6.09C2.706 6.034 2.6 6.002 2.5 6zm-1-2C.678 4 0 4.678 0 5.5v13c0 .822.678 1.5 1.5 1.5h21c.822 0 1.5-.678 1.5-1.5v-13c0-.822-.678-1.5-1.5-1.5zm0 1h21c.286 0 .5.214.5.5v13c0 .286-.214.5-.5.5h-21c-.286 0-.5-.214-.5-.5v-13c0-.286.214-.5.5-.5z"/></symbol>
+      <symbol id="i-question" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/></symbol>
+      <symbol id="brand-linkedin" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></symbol>
+      <symbol id="brand-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM224.1 338.2c-45.4 0-82.4-37-82.4-82.4s37-82.4 82.4-82.4 82.4 37 82.4 82.4-37 82.4-82.4 82.4z"/></symbol>
+      <symbol id="brand-facebook" viewBox="0 0 448 512"><path d="M448 80v352c0 26.5-21.5 48-48 48h-85.3V302.8h60.6l8.7-67.6h-69.3V192c0-19.6 5.4-32.9 33.2-32.9H384V98.2c-6.2-.8-27.6-2.7-52.2-2.7-51.6 0-87 31.5-87 89.4v49.9H184v67.6h60.9V480H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48z"/></symbol>
     </svg>
-
-    <!-- Loader -->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner">Loading...</div>
-        </div>
-    </div>
-
-    <!-- Start Navbar -->
-    <nav class="navbar navbar-expand-lg custom-nav navbar-light fixed-top sticky">
+    <nav class="navbar navbar-expand-lg custom-nav navbar-light fixed-top sticky" aria-label="Hoofdmenu">
         <div class="container">
             <a class="navbar-brand pt-0 logo" href="/">
                 <img src="assets/images/logo.webp" alt="Baars Glas en Gevelwerken logo" class="img-fluid logo-light" width="269" height="62">
                 <img src="assets/images/logo-dark.webp" alt="Baars Glas en Gevelwerken logo" class="img-fluid logo-dark" width="269" height="62">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                    <use href="#mbri-menu"></use>
-                </svg>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menu openen">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-menu"></use></svg>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto" id="main_nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/?go=home">Home</a>
+                <ul class="navbar-nav ms-auto align-items-lg-center" id="main_nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/diensten" id="navDiensten" role="button" data-bs-toggle="dropdown" aria-expanded="false">Diensten</a>
+                        <div class="dropdown-menu nav-mega" aria-labelledby="navDiensten">
+                            <div class="nav-mega__grid"><div class="nav-mega__col"><p class="nav-mega__head">Glas</p><a class="dropdown-item" href="/glasbewassing">Glazenwasser Capelle a/d IJssel</a><a class="dropdown-item" href="/glazenwasser-rotterdam">Glazenwasser Rotterdam</a></div><div class="nav-mega__col"><p class="nav-mega__head">Kozijnen</p><a class="dropdown-item" href="/kozijnen-conserveren">Kozijnen conserveren</a></div><div class="nav-mega__col"><p class="nav-mega__head">Gevel</p><a class="dropdown-item" href="/gevelreiniging">Gevelreiniging</a><a class="dropdown-item" href="/impregneren">Gevel impregneren</a><a class="dropdown-item" href="/voegherstel">Voegherstel</a><a class="dropdown-item" href="/graffiti-verwijderen">Graffiti verwijderen</a></div><div class="nav-mega__col"><p class="nav-mega__head">Dak en buiten</p><a class="dropdown-item" href="/dak-reinigen">Dak reinigen</a><a class="dropdown-item" href="/reinigingsdiensten">Buitenreiniging</a><a class="dropdown-item" href="/spinnenweren">Spinnen weren</a></div></div>
+                            <div class="nav-mega__foot"><a class="dropdown-item" href="/diensten">Alle diensten</a><a class="dropdown-item" href="/werkgebied">Werkgebied</a><a class="dropdown-item" href="/kennisbank">Kennisbank</a></div>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/?go=over-ons">Over Ons</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/?go=diensten">Diensten</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/?go=portfolio">Ons werk</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/?go=client">Reviews</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-contact-link" href="/?go=contact">Contact</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/zakelijk">Zakelijk</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prijzen">Prijzen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/over-ons">Over ons</a></li>
+                    <li class="nav-item d-none d-xl-block"><a class="nav-link nav-phone" href="tel:+31657614022"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg> 06 57 61 40 22</a></li>
+                    <li class="nav-item"><a class="btn btn-primary nav-cta js-contact-link" href="/contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- End Navbar -->
-
-    <!-- Start All Cards -->
-    <!-- START HOME -->
-    <section class="section header-bg-img h-100vh align-items-center d-flex" id="home">
-        <picture class="hero-picture">
-            <source media="(max-width: 767px)" srcset="assets/images/hero-mobile.webp">
-            <source media="(min-width: 768px) and (max-width: 1023px)" srcset="assets/images/hero-tablet.webp">
-            <source media="(min-width: 1024px)" srcset="assets/images/hero-desktop.webp">
-            <img src="assets/images/hero-desktop.webp" alt="" fetchpriority="high" width="2000" height="1333">
-        </picture>
-        <div class="bg-overlay"></div>
-        <div class="container z-2">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="text-center header-content mx-auto">
-                        <h1 class="text-white first-title mb-4">Gevelreiniging & Glasbewassing</h1>
-                        <h2 class="header-name text-white mb-0">
-                            <span class="header-name__inner">Wij helpen met <span class="element fw-bold"></span></span>
-                        </h2>
-                        <p class="text-white mx-auto header-desc mt-4">Van glas tot gevel: professionele buitenreiniging en onderhoud met blijvend resultaat.</p>
-                        <div class="mt-4 pt-2">
-                            <a href="/?go=diensten" class="btn btn-outline-white rounded-pill">Bekijk Diensten</a>
+    <main id="main">
+<section class="section header-bg-img h-100vh align-items-center d-flex" id="home">
+            <picture class="hero-picture">
+                <img src="assets/images/hero-desktop.webp" srcset="assets/images/hero-mobile.webp 800w, assets/images/hero-tablet.webp 1200w, assets/images/hero-desktop.webp 1920w" sizes="100vw" alt="Glasbewassing op hoogte met een hoogwerker bij een appartementencomplex" fetchpriority="high" width="1920" height="1280">
+            </picture>
+            <div class="bg-overlay"></div>
+            <div class="container z-2">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="text-center header-content mx-auto">
+                            <h1 class="text-white hero-title mb-3">Glazenwasser en gevelspecialist in Capelle aan den IJssel en Rotterdam</h1>
+                            <p class="text-white mx-auto hero-sub mb-0">Streeploos schone ramen, kozijnen die weer glanzen en een gevel zonder aanslag, voor bedrijfspanden, VvE's en woningen. Jaco Baars komt zelf langs, bekijkt uw situatie en maakt een plan op maat.</p>
+                            <div class="hero-ctas mt-4"><div class="cta-buttons"><a class="btn btn-primary js-contact-link" href="/contact">Offerte aanvragen</a><a class="btn btn-ghost-light js-contact-link" href="https://wa.me/31657614022" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg> Stuur een foto via WhatsApp</a><a class="btn btn-ghost-light js-contact-link" href="tel:+31657614022"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg> Bel 06 57 61 40 22</a></div></div>
+                            <ul class="trust-strip trust-strip--light" aria-label="Waarom Baars Glas en Gevelwerken"><li>Inspectie ter plaatse</li><li>Vaste prijs vooraf</li><li>VCA-gecertificeerd</li><li>Sinds 2019</li><li>Jaco voert het werk zelf uit</li><li class="trust-strip__review"><a class="u-plain" href="https://www.google.com/maps/search/?api=1&query=Baars+Glas+en+Gevelwerken+Capelle+aan+den+IJssel" target="_blank" rel="noopener">&#9733; Beoordeel ons op Google</a></li></ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>  
-        <div class="scroll_down">
-            <a href="/?go=over-ons" class="scroll" aria-label="Scroll naar Over ons">
-                <i class="text-white"></i>
-            </a>
-        </div>
-    </section>
-    <!-- END HOME -->
+        </section>
 
-    <!-- START ABOUT -->
-    <section class="section" id="over-ons">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="mt-3">
-                        <img src="assets/images/about.webp" alt="Baars Glas en Gevelwerken aan het werk" class="img-fluid mx-auto d-block img-thumbnail" loading="lazy" width="1110" height="878">
+        <section class="section bg-light" id="diensten">
+            <div class="container">
+                <div class="text-center mx-auto mw-text">
+                    <div>
+                        <h2>Waar kan ik u mee helpen?</h2>
+                        <p class="text-muted mt-3 mb-0">Baars Glas en Gevelwerken is het bedrijf van Jaco Baars uit Capelle aan den IJssel, sinds 2019. Ik verzorg glasbewassing, het conserveren van kunststof en aluminium kozijnen en gevelreiniging voor bedrijfspanden, VvE's en woningen in Capelle aan den IJssel, Rotterdam en de omliggende gemeenten. Geen standaardpakket, maar een aanpak die past bij uw pand: ik kom eerst kijken, adviseer wat echt nodig is en u ontvangt vooraf een duidelijke prijs.</p>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="mt-3">
-                        <h2><span class="fw-bold">Over</span> ons</h2>
-                        <h3 class="mt-4 h4">Hallo! <span class="text-primary fw-bold">Ik ben Jaco.</span></h3>
-                        <p class="text-muted mt-4">Baars Glas en Gevelwerken is een gespecialiseerd reinigingsbedrijf met een breed aanbod aan professionele reinigingsdiensten. Wij verzorgen specialistische reiniging voor woningen, bedrijfspanden, vastgoedprojecten en appartementencomplexen. Dankzij onze kennis, ervaring en professioneel materieel leveren wij altijd een veilig en grondig resultaat.</p>
-                        <p class="text-muted mt-2">Onze klanten bestaan uit particulieren, VvE-beheerders, woningcorporaties en zakelijke opdrachtgevers. Wij denken praktisch mee en werken efficiënt, met oog voor kwaliteit en duurzaamheid.</p>
-                        <p class="text-muted mt-2">Baars Glas en Gevelwerken is VCA-gecertificeerd en staat voor betrouwbaarheid, veiligheid en vakmanschap.</p>
-                        <div>
-                            <ul class="mb-0 about-social list-inline mt-4">
-                                <li class="list-inline-item"><a class="icon-link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/jaco-baars-1b23a1115" aria-label="LinkedIn profiel"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-linkedin"></use></svg></a></li>
-                            </ul>
+                <div class="row mt-4">
+                    <div class="col-lg-4">
+                        <a class="service-card-link text-center services-boxes rounded p-4 mt-4" href="/glasbewassing">
+                            <div class="services-boxes-icon"><img src="assets/images/icons/glasbewassing.webp" alt="" class="service-icon" loading="lazy" width="100" height="100"></div>
+                            <div class="mt-4">
+                                <h3 class="h5 mb-0">Glasbewassing</h3>
+                                <div class="services-title-border"></div>
+                                <p class="text-muted mt-3">Glazenwasser voor bedrijfspanden, VvE's en woningen. Periodiek onderhoud of eenmalig, streeploos met osmosewater, ook op hoogte.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a class="service-card-link text-center services-boxes rounded p-4 mt-4" href="/kozijnen-conserveren">
+                            <div class="services-boxes-icon"><img src="assets/images/icons/kozijnenconserveren.webp" alt="" class="service-icon" loading="lazy" width="100" height="100"></div>
+                            <div class="mt-4">
+                                <h3 class="h5 mb-0">Kozijnen conserveren</h3>
+                                <div class="services-title-border"></div>
+                                <p class="text-muted mt-3">Doffe of verkleurde kunststof en aluminium kozijnen krijgen hun kleur en glans terug en zijn beter beschermd.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a class="service-card-link text-center services-boxes rounded p-4 mt-4" href="/gevelreiniging">
+                            <div class="services-boxes-icon"><img src="assets/images/icons/gevelreiniging.webp" alt="" class="service-icon" loading="lazy" width="100" height="100"></div>
+                            <div class="mt-4">
+                                <h3 class="h5 mb-0">Gevelreiniging</h3>
+                                <div class="services-title-border"></div>
+                                <p class="text-muted mt-3">Groene aanslag, roet en uitslag verwijderd met de techniek die bij uw gevel past, zonder schade aan het metselwerk.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center mx-auto mw-text mt-4">
+                    <div>
+                        <p class="text-muted mb-2">Lees meer over de <a href="/glasbewassing">glazenwasser in Capelle aan den IJssel en Rotterdam</a>, <a href="/kozijnen-conserveren">kunststof en aluminium kozijnen conserveren</a> en <a href="/gevelreiniging">gevelreiniging zonder schade aan het metselwerk</a>.</p>
+                        <p class="text-muted mb-0"><strong>Ook voor:</strong> <a href="/impregneren">gevel impregneren</a>, <a href="/dak-reinigen">dak reinigen</a>, <a href="/graffiti-verwijderen">graffiti verwijderen</a>, <a href="/voegherstel">voegherstel</a>, <a href="/spinnenweren">spinnen weren</a> en <a href="/reinigingsdiensten">terras, dakgoot en zonnepanelen reinigen</a>. <a href="/diensten">Bekijk alle diensten</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section class="content-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="callout">
+                            <h2 class="h3">Voor bedrijven en VvE's: periodiek onderhoud met één aanspreekpunt</h2>
+                            <p class="text-muted mt-2">Het grootste deel van mijn werk doe ik voor bedrijfspanden, VvE's en woningcorporaties. Periodieke glasbewassing, kozijnen en gevel in één plan: een vaste planning, één aanspreekpunt en een offerte op maat na een inspectie ter plaatse. Ook buiten openingstijden.</p>
+                            <a class="btn btn-primary mt-2" href="/zakelijk">Glasbewassing en gevelonderhoud voor VvE's en bedrijven</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- END ABOUT -->
+        </section>
 
-    <!-- START SERVICES -->
-    <section class="section bg-light" id="diensten">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <h2>Onze <span class="fw-bold">Diensten</span></h2>
-                        <p class="text-muted mx-auto section-subtitle mt-3">Wilt u meer informatie over de diensten die wij leveren? Bekijk dan <a class="inline-link" href="/diensten" aria-label="Bekijk het volledige dienstenoverzicht">hier</a> het volledige overzicht of klik op onderstaande tegels voor meer informatie.</p>
+<section class="content-section bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h2 class="text-center">Waarom Baars Glas en Gevelwerken?</h2>
+                        <div class="row g-4 mt-2">
+                            <div class="col-md-6"><div class="info-card info-card--accent h-100"><h3>Advies na inspectie</h3><p class="text-muted">Ik beoordeel eerst ter plaatse het materiaal, de vervuiling en de bereikbaarheid. Zo weet u zeker dat de methode bij uw gevel, kozijnen of ramen past.</p></div></div>
+                            <div class="col-md-6"><div class="info-card info-card--accent h-100"><h3>Plan en prijs op maat</h3><p class="text-muted">U betaalt alleen voor wat nodig is. Eenmalig of periodiek, voor één woning of een heel complex: u krijgt vooraf een heldere offerte.</p></div></div>
+                            <div class="col-md-6"><div class="info-card info-card--accent h-100"><h3>Kwaliteit die u ziet</h3><p class="text-muted">Streeploos glas dankzij osmosewater, kozijnen die hun kleur en glans terugkrijgen, gevels die schoon zijn zonder schade aan het metselwerk.</p></div></div>
+                            <div class="col-md-6"><div class="info-card info-card--accent h-100"><h3>Eén vast aanspreekpunt</h3><p class="text-muted">U heeft rechtstreeks contact met degene die het werk uitvoert. Korte lijnen, duidelijke afspraken en een nette oplevering.</p></div></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-lg-4">
-                    <a class="service-card-link text-center services-boxes rounded p-4 mt-4" href="/gevelreiniging">
-                        <div class="services-boxes-icon">
-                            <img src="assets/images/icons/gevelreiniging.webp" alt="Gevelreiniging" class="service-icon" loading="lazy" width="100" height="100">
+        </section>
+
+        <section class="content-section" id="over-ons">
+            <div class="container">
+                <div class="row justify-content-center"><div class="col-lg-10"><div class="row align-items-center g-4">
+                    <div class="col-lg-6">
+                        <img src="assets/images/about.webp" alt="Gevelreiniging vanaf een steiger door Baars Glas en Gevelwerken" class="img-fluid rounded" loading="lazy" width="1110" height="878">
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>Over Jaco Baars</h2>
+                        <h3 class="h5 mt-3 text-primary">Eén aanspreekpunt, van inspectie tot oplevering</h3>
+                        <p class="text-muted mt-3">Hallo, ik ben Jaco Baars. Sinds 2019 werk ik aan ramen, kozijnen en gevels in Capelle aan den IJssel en de regio Rotterdam. Ik werk vanuit Capelle met een volledig uitgeruste bedrijfsbus en kom bij u langs: bij bedrijfspanden, VvE's en woningcorporaties, en ook bij particuliere woningen.</p>
+                        <p class="text-muted">Ik werk veilig volgens de Arbo-regels en ben VCA-gecertificeerd. Wat u van mij mag verwachten: eerlijk advies, zorgvuldig werk en een resultaat waar u lang plezier van heeft.</p>
+                        <a href="/over-ons">Lees meer over Jaco</a>
+                    </div>
+                </div></div></div>
+            </div>
+        </section>
+
+<section class="content-section bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h2>Zo werk ik</h2>
+                        <ol class="steps mt-4">
+                            <li><h3>Inspectie ter plaatse</h3><p>Ik kom kijken (of beoordeel eerst uw foto's) en bekijk materiaal, vervuiling en bereikbaarheid.</p></li>
+                            <li><h3>Plan en prijs op maat</h3><p>U ontvangt een duidelijk advies en een vaste prijs vooraf, eenmalig of periodiek.</p></li>
+                            <li><h3>Uitvoering en controle</h3><p>Ik voer het werk zelf uit en loop het resultaat met u na voordat ik vertrek.</p></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section class="content-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h2>Werkgebied: Capelle aan den IJssel, Rotterdam en omgeving</h2>
+                        <p class="text-muted mt-3">Ik werk vanuit Capelle aan den IJssel, in alle wijken van Schollevaar, Middelwatering en Oostgaarde tot 's-Gravenland, Fascinatio en Capelle-West, en in heel Rotterdam, waaronder Prins Alexander, Ommoord, Kralingen en Nesselande. Ook Krimpen aan den IJssel, Nieuwerkerk aan den IJssel en de rest van Zuidplas, en Lansingerland vallen binnen mijn werkgebied. Twijfelt u of uw adres erbij hoort? Bel of app gerust.</p>
+                        <p class="mb-0"><a href="/werkgebied">Bekijk het werkgebied</a> &middot; <a href="/glazenwasser-rotterdam">Glazenwasser in Rotterdam</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h2>Recent werk</h2>
+                        <p class="text-muted mt-3">Een greep uit uitgevoerde klussen voor woningen en bedrijfspanden. Klik op een foto om hem groter te bekijken.</p>
+                        <div class="row g-3 mt-2">
+                            <div class="col-sm-6 col-lg-4"><figure class="photo-figure"><a href="assets/images/works/3.webp" class="img-zoom"><img src="assets/images/works/3.webp" alt="Glasbewassing op hoogte bij een kantoorpand met een hoogwerker" width="800" height="533" loading="lazy"></a><figcaption>Glasbewassing &middot; kantoorpand, op hoogte</figcaption></figure></div>
+                            <div class="col-sm-6 col-lg-4"><figure class="photo-figure"><a href="assets/images/works/2.webp" class="img-zoom"><img src="assets/images/works/2.webp" alt="Aluminium kozijnen en pui bij de entree van een bedrijfspand na het coaten" width="800" height="533" loading="lazy"></a><figcaption>Kozijnen conserveren &middot; entree bedrijfspand</figcaption></figure></div>
+                            <div class="col-sm-6 col-lg-4"><figure class="photo-figure"><a href="assets/images/works/5.webp" class="img-zoom"><img src="assets/images/works/5.webp" alt="Gevelbekleding van een kantoorpand na gevelreiniging" width="800" height="533" loading="lazy"></a><figcaption>Gevelreiniging &middot; kantoorpand</figcaption></figure></div>
+                            <div class="col-sm-6 col-lg-4"><figure class="photo-figure"><a href="assets/images/works/6.webp" class="img-zoom"><img src="assets/images/works/6.webp" alt="Grote glazen pui aan het water na glasbewassing" width="800" height="533" loading="lazy"></a><figcaption>Glasbewassing &middot; glazen pui aan het water</figcaption></figure></div>
+                            <div class="col-sm-6 col-lg-4"><figure class="photo-figure"><a href="assets/images/works/4.webp" class="img-zoom"><img src="assets/images/works/4.webp" alt="Aluminium kozijn en schuifpui van een woning na het conserveren" width="800" height="533" loading="lazy"></a><figcaption>Kozijnen conserveren &middot; woning</figcaption></figure></div>
+                            <div class="col-sm-6 col-lg-4"><figure class="photo-figure"><a href="assets/images/works/1.webp" class="img-zoom"><img src="assets/images/works/1.webp" alt="Vrijstaande woning met lichte baksteengevel na gevelreiniging" width="800" height="533" loading="lazy"></a><figcaption>Gevelreiniging &middot; vrijstaande woning</figcaption></figure></div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="client">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h2>Wat klanten zeggen</h2>
+                        <div class="row g-4 mt-1">
+                            <div class="col-md-6"><blockquote class="info-card h-100 mb-0"><p class="fst-italic text-muted">"Zeer tevreden over het coaten van onze kozijnen. Jaco werkt netjes, denkt mee en weet duidelijk waar hij mee bezig is."</p><footer class="small">Zakelijke klant, kozijnen</footer></blockquote></div>
+                            <div class="col-md-6"><blockquote class="info-card h-100 mb-0"><p class="fst-italic text-muted">"Al langere tijd komt Jaco periodiek onze ramen schoonmaken. Jaco werkt zorgvuldig, is vriendelijk en levert altijd een strak resultaat."</p><footer class="small">Particuliere klant, periodieke glasbewassing</footer></blockquote></div>
+                        </div>
+                        <p class="mt-4 mb-0"><a href="https://www.google.com/maps/search/?api=1&query=Baars+Glas+en+Gevelwerken+Capelle+aan+den+IJssel" target="_blank" rel="noopener">Bekijk de reviews op Google of beoordeel mijn werk</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section class="content-section bg-light" id="faq">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h2>Veelgestelde vragen</h2>
                         <div class="mt-4">
-                            <h3 class="h5 mb-0">Gevelreiniging </h3>
-                            <div class="services-title-border"></div>
-                            <p class="text-muted mt-3">Gevels krijgen dagelijks te maken met weersinvloeden en vervuiling uit de lucht. Hierdoor kunnen ze vervuild raken en hun oorspronkelijke uitstraling verliezen. Gevelreiniging helpt om aanslag en vervuiling te verwijderen en het gevelmateriaal in goede staat te houden.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="service-card-link text-center services-boxes rounded p-4 mt-4" href="/impregneren">
-                        <div class="services-boxes-icon">
-                            <img src="assets/images/icons/impregneren.webp" alt="Impregneren" class="service-icon" loading="lazy" width="100" height="100">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="h5 mb-0">Impregneren</h3>
-                            <div class="services-title-border"></div>
-                            <p class="text-muted mt-3">Wanneer gevels, daken of andere oppervlakken onvoldoende beschermd zijn, kan vocht het materiaal binnendringen. Door te impregneren ontstaat een waterafstotende laag die beschermt tegen regen, vorst en vervuiling en bijdraagt aan een langere levensduur.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="service-card-link text-center services-boxes rounded p-4 mt-4" href="/glasbewassing">
-                        <div class="services-boxes-icon">
-                            <img src="assets/images/icons/glasbewassing.webp" alt="Glasbewassing" class="service-icon" loading="lazy" width="100" height="100">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="h5 mb-0">Glasbewassing</h3>
-                            <div class="services-title-border"></div>
-                            <p class="text-muted mt-3">Regelmatige glasbewassing zorgt voor schone ramen en een verzorgde uitstraling van een woning of pand. Met professionele technieken kunnen ramen ook op moeilijk bereikbare plaatsen veilig en efficiënt worden gereinigd.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <a class="service-card-link text-center services-boxes rounded p-4 mt-4" href="/spinnenweren">
-                        <div class="services-boxes-icon">
-                            <img src="assets/images/icons/spinnenweren.webp" alt="Weren van spinnen" class="service-icon" loading="lazy" width="100" height="100">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="h5 mb-0">Weren van spinnen</h3>
-                            <div class="services-title-border"></div>
-                            <p class="text-muted mt-3">Spinnen zijn in Nederland een beschermde diersoort en mogen niet worden gedood. Overlast kan worden verminderd door maatregelen te nemen die spinnen weren en het ontstaan van nestplaatsen beperken.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="service-card-link text-center services-boxes rounded p-4 mt-4" href="/kozijnen-conserveren">
-                        <div class="services-boxes-icon">
-                            <img src="assets/images/icons/kozijnenconserveren.webp" alt="Kozijnen conserveren" class="service-icon" loading="lazy" width="100" height="100">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="h5 mb-0">Kozijnen conserveren</h3>
-                            <div class="services-title-border"></div>
-                            <p class="text-muted mt-3">Kunststof en aluminium kozijnen kunnen door weersinvloeden na verloop van tijd dof worden en verkleuren. Door kozijnen te conserveren blijft het oppervlak beschermd en behoudt het langer zijn oorspronkelijke uitstraling.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="service-card-link text-center services-boxes rounded p-4 mt-4" href="/reinigingsdiensten">
-                        <div class="services-boxes-icon">
-                            <img src="assets/images/icons/reinigingsdiensten.webp" alt="Reinigingsdiensten" class="service-icon" loading="lazy" width="100" height="100">
-                        </div>
-                        <div class="mt-4">
-                            <h3 class="h5 mb-0">Reinigingsdiensten</h3>
-                            <div class="services-title-border"></div>
-                            <p class="text-muted mt-3">Onder reinigingsdiensten vallen verschillende vormen van buitenreiniging, zoals het reinigen van terrassen en andere oppervlakken. Regelmatige reiniging draagt bij aan het onderhoud en de uitstraling van een woning of pand.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END SERVICES -->
-
-    <!-- START CTA -->
-    <section class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <h2 class="fw-bold">Heeft u een vraag of wilt u advies? We denken graag met u mee.</h2>
-                    </div>
-                    <div class="text-center mt-4">
-                        <a href="/?go=contact" class="btn btn-primary js-contact-link">Neem contact op</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END CTA -->
-
-    <!-- START WORK -->
-    <section class="section bg-light text-center" id="portfolio">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <h2>Ons <span class="fw-bold">werk</span></h2>
-                        <p class="text-muted mx-auto section-subtitle mt-3">Een overzicht van uitgevoerde reinigingswerkzaamheden, zoals gevelreiniging, impregneren en glasbewassing, voor woningen en bedrijfspanden.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-5 ">
-                <ul class="col list-unstyled list-inline mb-0 text-uppercase work_menu" id="menu-filter">
-                    <li class="list-inline-item"><button type="button" class="active" data-filter="*" aria-pressed="true">Alles</button></li>
-                    <li class="list-inline-item"><button type="button" class="" data-filter=".gevelreiniging" aria-pressed="false">Gevelreiniging</button></li>
-                    <li class="list-inline-item"><button type="button" class="" data-filter=".impregneren" aria-pressed="false">Impregneren</button></li>
-                    <li class="list-inline-item"><button type="button" class="" data-filter=".glasbewassing" aria-pressed="false">Glasbewassing</button></li>
-                    <li class="list-inline-item"><button type="button" class="" data-filter=".kozijnenconserveren" aria-pressed="false">Kozijnen conserveren</button></li>
-                </ul>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row mt-4 work-filter">
-                <div class="col-lg-4 work_item gevelreiniging">
-                    <a href="assets/images/works/1.webp" class="img-zoom">
-                        <div class="work_box">
-                            <div class="work_img">
-                                <img src="assets/images/works/1.webp" class="img-fluid mx-auto d-block rounded" alt="Gevelreiniging - Huis" loading="lazy" width="800" height="533">
-                            </div>
-                            <div class="work_detail">
-                                <p class="mb-2">Gevelreiniging</p>
-                                <h3 class="h4 mb-0">Huis</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-4 work_item impregneren">
-                    <a href="assets/images/works/2.webp" class="img-zoom">
-                        <div class="work_box">
-                            <div class="work_img">
-                                <img src="assets/images/works/2.webp" class="img-fluid mx-auto d-block rounded" alt="Impregneren - Kozijnen" loading="lazy" width="800" height="533">
-                            </div>
-                            <div class="work_detail">
-                                <p class="mb-2">Impregneren</p>
-                                <h3 class="h4 mb-0">Kozijnen</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-4 work_item glasbewassing">
-                    <a href="assets/images/works/3.webp" class="img-zoom">
-                        <div class="work_box">
-                            <div class="work_img">
-                                <img src="assets/images/works/3.webp" class="img-fluid mx-auto d-block rounded" alt="Glasbewassing - Kantoorpand" loading="lazy" width="800" height="533">
-                            </div>
-                            <div class="work_detail">
-                                <p class="mb-2">Glasbewassing</p>
-                                <h3 class="h4 mb-0">Kantoorpand</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-4 work_item kozijnenconserveren">
-                    <a href="assets/images/works/4.webp" class="img-zoom">
-                        <div class="work_box">
-                            <div class="work_img">
-                                <img src="assets/images/works/4.webp" class="img-fluid mx-auto d-block rounded" alt="Kozijnen conserveren - Kozijnen" loading="lazy" width="800" height="533">
-                            </div>
-                            <div class="work_detail">
-                                <p class="mb-2">Kozijnen conserveren</p>
-                                <h3 class="h4 mb-0">Kozijnen</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-4 work_item gevelreiniging">
-                    <a href="assets/images/works/5.webp" class="img-zoom">
-                        <div class="work_box">
-                            <div class="work_img">
-                                <img src="assets/images/works/5.webp" class="img-fluid mx-auto d-block rounded" alt="Gevelreiniging - Kantoorpand" loading="lazy" width="800" height="533">
-                            </div>
-                            <div class="work_detail">
-                                <p class="mb-2">Gevelreiniging</p>
-                                <h3 class="h4 mb-0">Kantoorpand</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-4 work_item glasbewassing">
-                    <a href="assets/images/works/6.webp" class="img-zoom">
-                        <div class="work_box">
-                            <div class="work_img">
-                                <img src="assets/images/works/6.webp" class="img-fluid mx-auto d-block rounded" alt="Glasbewassing - Panorama" loading="lazy" width="800" height="533">
-                            </div>
-                            <div class="work_detail">
-                                <p class="mb-2">Glasbewassing</p>
-                                <h3 class="h4 mb-0">Panorama</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END WORK -->
-
-    <!-- START CLIENT -->
-    <section class="section" id="client">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <h2>Wat onze <span class="fw-bold">klanten zeggen</span></h2>
-                        <p class="text-muted mx-auto section-subtitle mt-3">Wij hechten veel waarde aan tevreden klanten en vinden het belangrijk dat zij met een goed gevoel terugkijken op ons werk.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 pt-4">
-                <div class="col-lg-12">
-                    <div id="owl-demo" class="owl-carousel" dir="ltr">
-                        <div class="text-center testi_boxes mx-auto">
-                            <div class="tam_testi_icon text-primary">
-                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-quote-left"></use></svg>
-                            </div>
-                            <div class="mt-2">
-                                <div class="img_testi">
-                                    <img src="assets/images/testi/testi-1.webp" alt="Review van een particuliere klant" class="mx-auto img-thumbnail img-fluid rounded-circle" loading="lazy" width="100" height="100">
+                            <div class="accordion" id="home-accordion">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="home-heading1">
+                                        <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#home-collapse1" aria-expanded="false" aria-controls="home-collapse1">
+                                            <span class="text-muted me-3"><svg class="icon faq-icon" aria-hidden="true" focusable="false"><use href="#i-question"></use></svg></span>
+                                            Voor wie werkt Baars Glas en Gevelwerken?
+                                        </button>
+                                    </h3>
+                                    <div id="home-collapse1" class="accordion-collapse collapse" aria-labelledby="home-heading1" data-bs-parent="#home-accordion">
+                                        <div class="accordion-body">Vooral voor bedrijven, VvE's en woningcorporaties in Capelle aan den IJssel, Rotterdam en omgeving, en daarnaast voor particuliere woningen. Van een compleet appartementencomplex of kantoorpand tot één woning.</div>
+                                    </div>
                                 </div>
-                                <p class="client_review fst-italic mt-4 text-center text-muted">"Ons huis ziet er weer als nieuw uit na het zandstralen en impregneren. Wij zijn erg tevreden over de vakkundigheid en het eindresultaat."</p>
-                                <p class="client_name text-center mb-0 mt-4">- Klant, <span class="fw-bold">Particulier</span></p>
-                            </div>
-                        </div>
-                        <div class="text-center testi_boxes mx-auto">
-                            <div class="tam_testi_icon text-primary">
-                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-quote-left"></use></svg>
-                            </div>
-                            <div class="mt-2">
-                                <div class="img_testi">
-                                    <img src="assets/images/testi/testi-2.webp" alt="Review van een zakelijke klant" class="mx-auto img-thumbnail img-fluid d-block rounded-circle" loading="lazy" width="100" height="100">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="home-heading2">
+                                        <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#home-collapse2" aria-expanded="false" aria-controls="home-collapse2">
+                                            <span class="text-muted me-3"><svg class="icon faq-icon" aria-hidden="true" focusable="false"><use href="#i-question"></use></svg></span>
+                                            Wat kost glasbewassing, kozijnen conserveren of gevelreiniging?
+                                        </button>
+                                    </h3>
+                                    <div id="home-collapse2" class="accordion-collapse collapse" aria-labelledby="home-heading2" data-bs-parent="#home-accordion">
+                                        <div class="accordion-body">Ter indicatie: glasbewassing €1 tot €4 per m² glas, kozijnen conserveren €16 tot €22 per m² en gevelreiniging €8 tot €15 per m². Dit zijn richtprijzen; de exacte prijs hangt af van de ondergrond, de benodigde materialen en de bereikbaarheid. U ontvangt altijd vooraf een vaste prijs. Bekijk alle <a href='/prijzen'>prijzen en tarieven</a>.</div>
+                                    </div>
                                 </div>
-                                <p class="client_review fst-italic mt-4 text-center text-muted">"Zeer tevreden over het impregneren van onze kozijnen. Jaco werkt netjes, denkt mee en weet duidelijk waar hij mee bezig is."</p>
-                                <p class="client_name text-center mb-0 mt-4">- Klant, <span class="fw-bold">Zakelijk</span></p>
-                            </div>
-                        </div>
-                        <div class="text-center testi_boxes mx-auto">
-                            <div class="tam_testi_icon text-primary">
-                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-quote-left"></use></svg>
-                            </div>
-                            <div class="mt-2">
-                                <div class="img_testi">
-                                    <img src="assets/images/testi/testi-3.webp" alt="Review van een particuliere klant" class="mx-auto img-thumbnail img-fluid d-block rounded-circle" loading="lazy" width="100" height="100">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="home-heading3">
+                                        <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#home-collapse3" aria-expanded="false" aria-controls="home-collapse3">
+                                            <span class="text-muted me-3"><svg class="icon faq-icon" aria-hidden="true" focusable="false"><use href="#i-question"></use></svg></span>
+                                            Komt Jaco zelf?
+                                        </button>
+                                    </h3>
+                                    <div id="home-collapse3" class="accordion-collapse collapse" aria-labelledby="home-heading3" data-bs-parent="#home-accordion">
+                                        <div class="accordion-body">Ja. Ik voer het werk zelf uit en ben uw vaste aanspreekpunt, van de eerste afspraak tot de oplevering.</div>
+                                    </div>
                                 </div>
-                                <p class="client_review fst-italic mt-4 text-center text-muted">"Al langere tijd komt Jaco periodiek onze ramen schoonmaken. Jaco werkt zorgvuldig, is vriendelijk en levert altijd een strak resultaat."</p>
-                                <p class="client_name text-center mb-0 mt-4">- Klant, <span class="fw-bold">Particulier</span></p>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="home-heading4">
+                                        <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#home-collapse4" aria-expanded="false" aria-controls="home-collapse4">
+                                            <span class="text-muted me-3"><svg class="icon faq-icon" aria-hidden="true" focusable="false"><use href="#i-question"></use></svg></span>
+                                            Kan ik ook eerst een foto sturen?
+                                        </button>
+                                    </h3>
+                                    <div id="home-collapse4" class="accordion-collapse collapse" aria-labelledby="home-heading4" data-bs-parent="#home-accordion">
+                                        <div class="accordion-body">Ja, graag. Stuur via WhatsApp een paar foto's van uw ramen, kozijnen of gevel, dan krijgt u snel een eerste inschatting. Voor een vaste prijs kom ik meestal nog even kijken.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="home-heading5">
+                                        <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#home-collapse5" aria-expanded="false" aria-controls="home-collapse5">
+                                            <span class="text-muted me-3"><svg class="icon faq-icon" aria-hidden="true" focusable="false"><use href="#i-question"></use></svg></span>
+                                            Werkt u ook buiten Capelle aan den IJssel?
+                                        </button>
+                                    </h3>
+                                    <div id="home-collapse5" class="accordion-collapse collapse" aria-labelledby="home-heading5" data-bs-parent="#home-accordion">
+                                        <div class="accordion-body">Ja, in heel Rotterdam en de omliggende gemeenten, zoals Krimpen aan den IJssel, Nieuwerkerk aan den IJssel, de rest van Zuidplas en Lansingerland. Bekijk het <a href='/werkgebied'>werkgebied</a>.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="home-heading6">
+                                        <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#home-collapse6" aria-expanded="false" aria-controls="home-collapse6">
+                                            <span class="text-muted me-3"><svg class="icon faq-icon" aria-hidden="true" focusable="false"><use href="#i-question"></use></svg></span>
+                                            Werkt u veilig op hoogte?
+                                        </button>
+                                    </h3>
+                                    <div id="home-collapse6" class="accordion-collapse collapse" aria-labelledby="home-heading6" data-bs-parent="#home-accordion">
+                                        <div class="accordion-body">Ja. Ik ben VCA-gecertificeerd en werk volgens de Arbo-regels: op hoogte met een telescoopsysteem in plaats van ladders, of in overleg met een hoogwerker.</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- END CLIENT -->
+        </section>
 
-    <!-- START CONTACT -->
-    <section class="section bg-light" id="contact">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <h2><span class="fw-bold">Contact</span></h2>
-                        <p class="text-muted mx-auto section-subtitle mt-3">Heeft u vragen of wilt u meer informatie? Neem contact met ons op en vraag vrijblijvend een offerte aan voor onze reinigingsdiensten.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-lg-4">
-                    <div class="text-center">
-                        <div>
-                            <svg class="icon text-primary h1" aria-hidden="true" focusable="false"><use href="#mbri-mobile2"></use></svg>
-                        </div>
-                        <div class="mt-3">
-                            <h3 class="h5 mb-0 contact_detail-title fw-bold">Telefoon</h3>
-                            <p class="text-muted"><a class="text-muted" href="tel:+31657614022">0657614022</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="text-center">
-                        <div>
-                            <svg class="icon text-primary h1" aria-hidden="true" focusable="false"><use href="#mbri-letter"></use></svg>
-                        </div>
-                        <div class="mt-3">
-                            <h3 class="h5 mb-0 contact_detail-title fw-bold">Email</h3>
-                            <p class="text-muted"><a class="text-muted" href="mailto:info@baarsglasengevelwerken.nl">info@baarsglasengevelwerken.nl</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="text-center">
-                        <div>
-                            <svg class="icon text-primary h1" aria-hidden="true" focusable="false"><use href="#mbri-map-pin"></use></svg>
-                        </div>
-                        <div class="mt-3">
-                            <h3 class="h5 mb-0 contact_detail-title fw-bold">Locatie</h3>
-                            <p class="text-muted">2906 EA, Capelle aan den IJssel</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-lg-12">
-                    <div class="form contact_form">
-                        <div id="message"></div>
-                        <form method="post" action="assets/php/contact.php" name="contact-form" id="working_form" enctype="multipart/form-data">
+        <section class="content-section" id="contact">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <h2>Offerte aanvragen of direct bellen</h2>
+                        <p class="text-muted mt-3">Vul het formulier in, bel <a class="js-contact-link" href="tel:+31657614022">06 57 61 40 22</a> of <a class="js-contact-link" href="https://wa.me/31657614022" target="_blank" rel="noopener">stuur een foto via WhatsApp</a>. Liever alles op één pagina? Ga naar <a href="/contact">contact en offerte</a>.</p>
+                        <div class="info-card mt-4">
+                            <div class="form contact_form">
+                        <div id="message" role="status" aria-live="polite"></div>
+                        <form method="post" action="assets/php/contact.php" name="contact-form" id="working_form" enctype="multipart/form-data" novalidate>
+                            <fieldset class="form-group mt-2 mb-0">
+                                <legend class="form-label small text-muted mb-1">U vraagt aan als (optioneel)</legend>
+                                <div class="d-flex flex-wrap gap-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="customer_type" id="customer_type_zakelijk" value="Zakelijk">
+                                        <label class="form-check-label text-muted" for="customer_type_zakelijk">Bedrijf of VvE</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="customer_type" id="customer_type_particulier" value="Particulier">
+                                        <label class="form-check-label text-muted" for="customer_type_particulier">Particulier</label>
+                                    </div>
+                                </div>
+                            </fieldset>
                             <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group mt-2">
-                                        <div class="d-flex flex-wrap gap-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="customer_type" id="customer_type_zakelijk" value="Zakelijk" checked>
-                                                <label class="form-check-label text-muted" for="customer_type_zakelijk">Zakelijk</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="customer_type" id="customer_type_particulier" value="Particulier">
-                                                <label class="form-check-label text-muted" for="customer_type_particulier">Particulier</label>
-                                            </div>
-                                        </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="name">Naam *</label>
+                                        <input name="name" id="name" type="text" class="form-control" autocomplete="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="service">Dienst</label>
+                                        <select name="service" id="service" class="form-control form-select"><option value="">Kies een dienst</option><option value="Glasbewassing">Glasbewassing</option><option value="Kozijnen conserveren">Kozijnen conserveren</option><option value="Gevelreiniging">Gevelreiniging</option><option value="Gevel impregneren">Gevel impregneren</option><option value="Dak reinigen">Dak reinigen</option><option value="Graffiti verwijderen">Graffiti verwijderen</option><option value="Voegherstel">Voegherstel</option><option value="Spinnen weren">Spinnen weren</option><option value="Buitenreiniging (terras, dakgoot, zonnepanelen)">Buitenreiniging (terras, dakgoot, zonnepanelen)</option><option value="Periodiek onderhoud VvE of bedrijf">Periodiek onderhoud VvE of bedrijf</option><option value="Weet ik nog niet / advies">Weet ik nog niet / advies</option></select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="form-group mt-2">
-                                        <input name="name" id="name" type="text" class="form-control" placeholder="Naam *" autocomplete="name" required>
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="phone">Telefoon</label>
+                                        <input name="phone" id="phone" type="tel" class="form-control" autocomplete="tel">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="form-group mt-2">
-                                        <input name="email" id="email" type="email" class="form-control" placeholder="Email *" autocomplete="email" required>
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="email">E-mail</label>
+                                        <input name="email" id="email" type="email" class="form-control" autocomplete="email">
                                     </div>
                                 </div>
+                                <div class="col-12"><p class="small text-muted mt-1 mb-0">Vul uw telefoonnummer of e-mailadres in (of allebei).</p></div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="form-label small text-muted mb-1" for="comments">Bericht *</label>
+                                <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Bijvoorbeeld: adres of wijk, soort pand en wat u wilt laten doen" autocomplete="off" required></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="form-group mt-2">
-                                        <input name="phone" id="phone" type="tel" class="form-control" placeholder="Telefoonnummer *" autocomplete="tel" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group mt-2">
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="attachment_btn">Foto's (optioneel, max. 5)</label>
                                         <input name="attachment[]" id="attachment" type="file" class="d-none" accept=".jpg,.jpeg,.png,.webp,.pdf" multiple>
                                         <div class="file-upload form-control" id="attachment_ui">
                                             <button type="button" class="file-upload-btn" id="attachment_btn">Bladeren...</button>
@@ -678,85 +717,76 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group mt-2">
-                                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Onderwerp *" autocomplete="off" required />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group mt-2">
-                                        <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Bericht *" autocomplete="off" required></textarea>
+                                <div class="col-lg-6">
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="found_via">Hoe heeft u ons gevonden? (optioneel)</label>
+                                        <select name="found_via" id="found_via" class="form-control form-select"><option value="">Maak een keuze</option><option value="Google zoeken">Google zoeken</option><option value="Google Maps">Google Maps</option><option value="Via een bekende">Via een bekende</option><option value="Bedrijfsbus gezien">Bedrijfsbus gezien</option><option value="LinkedIn of social media">LinkedIn of social media</option><option value="Anders">Anders</option></select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-12 text-end mt-2">
-                                    <button type="submit" id="submit" class="submitBnt btn btn-primary">Versturen</button>
-                                    <div id="simple-msg"></div>
-                                </div>
+                            <div class="hp-field" aria-hidden="true">
+                                <label for="website">Laat dit veld leeg</label>
+                                <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-3">
+                                <p class="small text-muted mb-0">Ik neem zo snel mogelijk contact met u op. Met het versturen gaat u akkoord met de <a href="/privacy">privacyverklaring</a>.</p>
+                                <button type="submit" id="submit" class="submitBnt btn btn-primary">Versturen</button>
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END CONTACT -->
-
-    <!--START FOOTER-->
-    <footer class="footer bg-light">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-md-12">
-                    <div class="text-center text-white footer-alt">
-                        <ul class="list-unstyled list-inline mb-0">
-                            <li class="list-inline-item"><a class="icon-link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/jaco-baars-1b23a1115" aria-label="LinkedIn profiel"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-linkedin"></use></svg></a></li>
-                        </ul>
-                        <p class="copyright_content mb-0 mt-3">
-                            <script>document.write(new Date().getFullYear())</script>
-                            &copy; <strong>Baars Glas en Gevelwerken</strong> &nbsp;|&nbsp; 2906 EA, Capelle aan den IJssel &nbsp;|&nbsp;
-                            <a class="copyright_content" href="tel:+31657614022">0657614022</a> &nbsp;|&nbsp;
-                            <a class="copyright_content" href="mailto:info@baarsglasengevelwerken.nl">info@baarsglasengevelwerken.nl</a> &nbsp;|&nbsp;
-                            <a class="copyright_content" href="/privacy">Privacy</a> &nbsp;|&nbsp;
-                            <a class="copyright_content" href="/cookies">Cookies</a>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
+    <footer class="footer site-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <img src="assets/images/logo.webp" alt="Baars Glas en Gevelwerken logo" class="footer-logo" width="269" height="62" loading="lazy">
+                    <p class="footer-nap mt-3 mb-2"><strong>Baars Glas en Gevelwerken</strong><br>Narcisstraat 33<br>2906 EA Capelle aan den IJssel<br><a class="copyright_content" href="tel:+31657614022">06 57 61 40 22</a><br><a class="copyright_content" href="mailto:info@baarsglasengevelwerken.nl">info@baarsglasengevelwerken.nl</a></p>
+                    <p class="footer-meta mb-2">KvK 74201654<br>VCA-gecertificeerd &middot; sinds 2019</p>
+                    <a class="footer-review copyright_content" href="https://www.google.com/maps/search/?api=1&query=Baars+Glas+en+Gevelwerken+Capelle+aan+den+IJssel" target="_blank" rel="noopener">&#9733; Beoordeel ons op Google</a>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <h2 class="footer-title">Diensten en informatie</h2>
+                    <ul class="footer-links list-unstyled mb-0"><li><a class="copyright_content" href="/glasbewassing">Glazenwasser Capelle a/d IJssel</a></li><li><a class="copyright_content" href="/glazenwasser-rotterdam">Glazenwasser Rotterdam</a></li><li><a class="copyright_content" href="/kozijnen-conserveren">Kozijnen conserveren</a></li><li><a class="copyright_content" href="/gevelreiniging">Gevelreiniging</a></li><li><a class="copyright_content" href="/zakelijk">Zakelijk</a></li><li><a class="copyright_content" href="/prijzen">Prijzen</a></li><li><a class="copyright_content" href="/over-ons">Over ons</a></li><li><a class="copyright_content" href="/contact">Contact</a></li></ul>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <h2 class="footer-title">Direct contact</h2>
+                    <ul class="footer-links list-unstyled">
+                        <li><a class="copyright_content js-contact-link" href="tel:+31657614022"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg> Bel 06 57 61 40 22</a></li>
+                        <li><a class="copyright_content js-contact-link" href="https://wa.me/31657614022" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg> WhatsApp: stuur een foto</a></li>
+                        <li><a class="copyright_content" href="mailto:info@baarsglasengevelwerken.nl"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg> info@baarsglasengevelwerken.nl</a></li>
+                    </ul>
+                    <p class="footer-meta mb-2">Werkgebied: Capelle aan den IJssel, Rotterdam en omgeving. <a class="copyright_content footer-inline" href="/werkgebied">Bekijk het werkgebied</a></p>
+                    <ul class="list-unstyled list-inline mb-0 footer-social">
+                        <li class="list-inline-item"><a class="icon-link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/baars-glas-en-gevelwerken/" aria-label="LinkedIn bedrijfspagina"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-linkedin"></use></svg></a></li>
+                        <li class="list-inline-item"><a class="icon-link" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/baarsglasengevelwerken/" aria-label="Instagram"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-instagram"></use></svg></a></li>
+                        <li class="list-inline-item"><a class="icon-link" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/baarsglasengevelwerken/" aria-label="Facebook"><svg class="icon" aria-hidden="true" focusable="false"><use href="#brand-facebook"></use></svg></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; <span class="js-year">2026</span> Baars Glas en Gevelwerken</span>
+                <span><a class="copyright_content" href="/privacy">Privacy</a> &middot; <a class="copyright_content" href="/cookies">Cookies</a></span>
+            </div>
         </div>
     </footer>
-    <!--END FOOTER-->
-    <!-- End all Cards -->
-
-    <!-- Back To Top -->
-    <a href="#" class="back_top" aria-label="Terug naar boven">
-        <svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-arrow-up"></use></svg>
-    </a>
-
-    <!--All Javascript -->
+    <div class="mobile-cta-bar" aria-label="Snel contact">
+        <a class="mobile-cta-bar__item u-plain js-contact-link" href="tel:+31657614022" aria-label="Bellen naar 06 57 61 40 22"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg><span>Bellen</span></a>
+        <a class="mobile-cta-bar__item u-plain js-contact-link" href="https://wa.me/31657614022" target="_blank" rel="noopener" aria-label="WhatsApp: stuur een foto"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg><span>WhatsApp</span></a>
+        <a class="mobile-cta-bar__item mobile-cta-bar__item--primary u-plain js-contact-link" href="/contact" aria-label="Offerte aanvragen"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg><span>Offerte</span></a>
+    </div>
+    <a href="#" class="back_top" aria-label="Terug naar boven"><svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-arrow-up"></use></svg></a>
     <script defer src="assets/js/bootstrap.bundle.min.js"></script>
     <script defer src="assets/js/jquery.min.js"></script>
-
-    <!-- Text Type -->
-    <script defer src="assets/js/typed.umd.js"></script>
-
-    <!-- Owl Carousel -->
-    <script defer src="assets/js/owl.carousel.min.js"></script>
-
-    <!-- Contact Js -->
-    <script defer src="assets/js/contact.js"></script>
-
-    <!-- Work Filter -->
-    <script defer src="assets/js/isotope.js"></script>
-
-    <!-- Magnific Popup Js -->
     <script defer src="assets/js/jquery.magnific-popup.min.js"></script>
-
-    <!-- Custom Js -->
-    <script defer src="assets/js/custom.js"></script>
-    <script defer src="assets/js/consent.js"></script>
+    <script defer src="assets/js/contact.js?v=20261108"></script>
+    <script defer src="assets/js/custom.js?v=20261108"></script>
+    <script defer src="assets/js/consent.js?v=20261108"></script>
+    <script defer src="assets/js/analytics-events.js?v=20261108"></script>
 </body>
 
 </html>

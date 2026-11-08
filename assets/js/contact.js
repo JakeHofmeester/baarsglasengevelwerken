@@ -1,5 +1,8 @@
 //Contact
-$('#working_form').submit(function() {
+$('#working_form').on('submit', function() {
+    if (typeof window.gtag === 'function') {
+        window.gtag('event', 'form_submit_attempt', { form_id: 'contact_form' });
+    }
 
     var action = $(this).attr('action');
 
@@ -7,10 +10,17 @@ $('#working_form').submit(function() {
         $('#message').hide();
 
         $('#submit')
-            .before('<img src="" class="gif_loader" />')
+            .before('<span class="gif_loader" aria-hidden="true"></span>')
             .attr('disabled', 'disabled');
 
         var formData = new FormData(document.getElementById('working_form'));
+
+        function done() {
+            $('#working_form .gif_loader').fadeOut('slow', function() {
+                $(this).remove();
+            });
+            $('#submit').removeAttr('disabled');
+        }
 
         $.ajax({
             type: 'POST',
@@ -18,14 +28,22 @@ $('#working_form').submit(function() {
             data: formData,
             processData: false,
             contentType: false,
+            timeout: 60000,
             success: function(data) {
                 document.getElementById('message').innerHTML = data;
                 $('#message').slideDown('slow');
-                $('#working_form img.gif_loader').fadeOut('slow', function() {
-                    $(this).remove()
-                });
-                $('#submit').removeAttr('disabled');
-                if (data.match('success') != null) $('#working_form').slideUp('slow');
+                done();
+                if (data.match('success') != null) {
+                    $('#working_form').slideUp('slow');
+                    if (typeof window.gtag === 'function') {
+                        window.gtag('event', 'generate_lead', { method: 'contact_form' });
+                    }
+                }
+            },
+            error: function() {
+                document.getElementById('message').innerHTML = '<div class="error_msg">Er is iets misgegaan. Bel of app 06 57 61 40 22 of mail naar <a href="mailto:info@baarsglasengevelwerken.nl">info@baarsglasengevelwerken.nl</a>.</div>';
+                $('#message').slideDown('slow');
+                done();
             }
         });
 
