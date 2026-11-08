@@ -1,77 +1,104 @@
 <?php
+// Contact / offerte form handler (used by /contact and the homepage form via assets/js/contact.js).
+// Returns an HTML fragment. contact.js treats a response containing "success" (the #success_msg div)
+// as a sent message and fires the GA4 generate_lead event, so keep that marker.
 
-if(!$_POST) exit;
+if (!$_POST) exit;
 
-// Email address verification
-function isEmail($email) {
-	return(preg_match("/^[-_.[:alnum:]]+@((([[:alnum:]]|[[:alnum:]][[:alnum:]-]*[[:alnum:]])\.)+(ad|ae|aero|af|ag|ai|al|am|an|ao|aq|ar|arpa|as|at|au|aw|az|ba|bb|bd|be|bf|bg|bh|bi|biz|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|com|coop|cr|cs|cu|cv|cx|cy|cz|de|dj|dk|dm|do|dz|ec|edu|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gh|gi|gl|gm|gn|gov|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|in|info|int|io|iq|ir|is|it|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|mg|mh|mil|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|museum|mv|mw|mx|my|mz|na|name|nc|ne|net|nf|ng|ni|nl|no|np|nr|nt|nu|nz|om|org|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|pro|ps|pt|pw|py|qa|re|ro|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|st|su|sv|sy|sz|tc|td|tf|tg|th|tj|tk|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)$|(([0-9][0-9]?|[0-1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5])\.){3}([0-9][0-9]?|[0-1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5]))$/i",$email));
+if (!defined("EOL")) define("EOL", "\r\n");
+
+function field($key) {
+	return isset($_POST[$key]) && is_string($_POST[$key]) ? trim($_POST[$key]) : '';
 }
 
-if (!defined("PHP_EOL")) define("PHP_EOL", "\r\n");
+// Strip line breaks from anything that ends up in a mail header (header injection).
+function one_line($value) {
+	return trim(preg_replace('/[\r\n\t]+/', ' ', $value));
+}
 
-$name     = $_POST['name'];
-$email    = $_POST['email'];
-$subject  = isset($_POST['subject']) ? $_POST['subject'] : '';
-$customer_type = isset($_POST['customer_type']) ? $_POST['customer_type'] : '';
-$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
-$comments = $_POST['comments'];
-
-if(trim($name) == '') {
-	echo '<div class="error_msg">Vul uw naam in.</div>';
-	exit();
-} else if(trim($email) == '') {
-	echo '<div class="error_msg">Vul een geldig e-mailadres in.</div>';
-	exit();
-} else if(!isEmail($email)) {
-	echo '<div class="error_msg">U heeft een ongeldig e-mailadres ingevuld. Probeer het opnieuw.</div>';
+function fail($message) {
+	echo '<div class="error_msg">' . $message . '</div>';
 	exit();
 }
 
-if(trim($comments) == '') {
-	echo '<div class="error_msg">Vul uw bericht in.</div>';
+function success_html($name) {
+	echo "<fieldset>";
+	echo "<div id='success_msg'>";
+	echo "<h3>Bericht succesvol verzonden.</h3>";
+	echo "<p>Bedankt <strong>" . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . "</strong>, uw bericht is verstuurd. Ik neem zo snel mogelijk contact met u op.</p>";
+	echo "</div>";
+	echo "</fieldset>";
+}
+
+$name          = one_line(field('name'));
+$email         = one_line(field('email'));
+$phone         = one_line(field('phone'));
+$comments      = field('comments');
+$customer_type = field('customer_type');
+$service       = field('service');
+$found_via     = field('found_via');
+$subject       = one_line(field('subject')); // legacy field, optional
+
+// Honeypot: real visitors never see or fill this field.
+if (field('website') !== '') {
+	success_html($name);
 	exit();
 }
 
-if(trim($phone) == '') {
-	echo '<div class="error_msg">Vul uw telefoonnummer in.</div>';
-	exit();
+$allowed_types = array('Zakelijk', 'Particulier');
+$allowed_services = array(
+	'Glasbewassing', 'Kozijnen conserveren', 'Gevelreiniging', 'Gevel impregneren', 'Dak reinigen',
+	'Graffiti verwijderen', 'Voegherstel', 'Spinnen weren', 'Buitenreiniging (terras, dakgoot, zonnepanelen)',
+	'Periodiek onderhoud VvE of bedrijf', 'Weet ik nog niet / advies'
+);
+$allowed_found = array('Google zoeken', 'Google Maps', 'Via een bekende', 'Bedrijfsbus gezien', 'LinkedIn of social media', 'Anders');
+
+if ($customer_type !== '' && !in_array($customer_type, $allowed_types, true)) $customer_type = '';
+if ($service !== '' && !in_array($service, $allowed_services, true)) $service = '';
+if ($found_via !== '' && !in_array($found_via, $allowed_found, true)) $found_via = '';
+
+if ($name === '') {
+	fail('Vul uw naam in.');
 }
-
-if(trim($subject) == '') {
-	echo '<div class="error_msg">Vul een onderwerp in.</div>';
-	exit();
+if ($phone === '' && $email === '') {
+	fail('Vul uw telefoonnummer of e-mailadres in, zodat ik contact met u kan opnemen.');
 }
-
-if(trim($customer_type) == '') {
-	echo '<div class="error_msg">Kies Particulier of Zakelijk.</div>';
-	exit();
+if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	fail('U heeft een ongeldig e-mailadres ingevuld. Controleer het adres en probeer het opnieuw.');
 }
-
-if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc()) {
-	$comments = stripslashes($comments);
+if ($phone !== '' && !preg_match('/^[0-9+()\-\s.]{8,20}$/', $phone)) {
+	fail('Controleer uw telefoonnummer; gebruik alleen cijfers, spaties of een +.');
 }
-
-
+if (trim($comments) === '') {
+	fail('Vul uw bericht in.');
+}
 
 // Send to
 $address = "info@baarsglasengevelwerken.nl";
 
+$subject_parts = array();
+if ($service !== '') $subject_parts[] = $service;
+if ($customer_type !== '') $subject_parts[] = $customer_type;
+if ($subject !== '') $subject_parts[] = $subject;
+$e_subject = 'Offerteaanvraag website' . (count($subject_parts) ? ': ' . implode(' - ', $subject_parts) : '');
+$e_subject_encoded = '=?UTF-8?B?' . base64_encode($e_subject) . '?=';
 
-$e_subject = 'Contactformulier: ' . $subject;
+$e_body  = "Naam: $name" . EOL;
+$e_body .= "Telefoon: " . ($phone !== '' ? $phone : '-') . EOL;
+$e_body .= "E-mail: " . ($email !== '' ? $email : '-') . EOL;
+$e_body .= "Type: " . ($customer_type !== '' ? $customer_type : '-') . EOL;
+$e_body .= "Dienst: " . ($service !== '' ? $service : '-') . EOL;
+$e_body .= "Gevonden via: " . ($found_via !== '' ? $found_via : '-') . EOL;
+if ($subject !== '') $e_body .= "Onderwerp: $subject" . EOL;
+$e_body .= EOL . $comments . EOL;
 
-
-$e_body = "Type: $customer_type" . PHP_EOL;
-$e_body .= "Naam: $name" . PHP_EOL;
-$e_body .= "Email: $email" . PHP_EOL;
-$e_body .= "Telefoon: $phone" . PHP_EOL;
-$e_body .= "Onderwerp: $subject" . PHP_EOL . PHP_EOL;
-$e_content = $comments . PHP_EOL . PHP_EOL;
-
-$text_message = wordwrap( $e_body . $e_content, 70 );
+$text_message = quoted_printable_encode($e_body);
 
 $from_address = "noreply@baarsglasengevelwerken.nl";
-$headers = "From: $from_address" . PHP_EOL;
-$headers .= "Reply-To: $email" . PHP_EOL;
+$headers = "From: Baars Glas en Gevelwerken <$from_address>" . PHP_EOL;
+if ($email !== '') {
+	$headers .= "Reply-To: $email" . PHP_EOL;
+}
 $headers .= "MIME-Version: 1.0" . PHP_EOL;
 
 $files = isset($_FILES['attachment']) ? $_FILES['attachment'] : null;
@@ -105,15 +132,14 @@ foreach ($attachments as $a) {
 
 if (count($valid_attachments) > 0) {
 	if (count($valid_attachments) > 5) {
-		echo '<div class="error_msg">Te veel bestanden (max 5).</div>';
-		exit();
+		fail('Te veel bestanden (max 5).');
 	}
 
-	$allowed_ext = array('jpg','jpeg','png','webp','pdf');
+	$allowed_ext = array('jpg', 'jpeg', 'png', 'webp', 'pdf');
 	$boundary = md5(uniqid(time(), true));
 	$headers .= "Content-Type: multipart/mixed; boundary=\"" . $boundary . "\"" . PHP_EOL;
 
-	$msg = "--" . $boundary . PHP_EOL;
+	$msg  = "--" . $boundary . PHP_EOL;
 	$msg .= "Content-Type: text/plain; charset=utf-8" . PHP_EOL;
 	$msg .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL . PHP_EOL;
 	$msg .= $text_message . PHP_EOL . PHP_EOL;
@@ -121,8 +147,7 @@ if (count($valid_attachments) > 0) {
 	foreach ($valid_attachments as $a) {
 		$file_size = (int) $a['size'];
 		if ($file_size > 5 * 1024 * 1024) {
-			echo '<div class="error_msg">Bestand is te groot (max 5 MB).</div>';
-			exit();
+			fail('Bestand is te groot (max 5 MB).');
 		}
 
 		$orig_name = $a['name'];
@@ -130,8 +155,7 @@ if (count($valid_attachments) > 0) {
 
 		$ext = strtolower(pathinfo($orig_name, PATHINFO_EXTENSION));
 		if (!in_array($ext, $allowed_ext)) {
-			echo '<div class="error_msg">Ongeldig bestandstype. Toegestaan: jpg, jpeg, png, webp, pdf.</div>';
-			exit();
+			fail('Ongeldig bestandstype. Toegestaan: jpg, jpeg, png, webp, pdf.');
 		}
 
 		if (function_exists('finfo_open')) {
@@ -145,8 +169,7 @@ if (count($valid_attachments) > 0) {
 		$clean_name = preg_replace('/[^A-Za-z0-9._-]/', '_', $orig_name);
 		$file_content = file_get_contents($tmp_name);
 		if ($file_content === false) {
-			echo '<div class="error_msg">Kan het geüploade bestand niet lezen.</div>';
-			exit();
+			fail('Kan het geüploade bestand niet lezen.');
 		}
 
 		$msg .= "--" . $boundary . PHP_EOL;
@@ -158,24 +181,13 @@ if (count($valid_attachments) > 0) {
 
 	$msg .= "--" . $boundary . "--";
 } else {
-	$headers .= "Content-type: text/plain; charset=utf-8" . PHP_EOL;
+	$headers .= "Content-Type: text/plain; charset=utf-8" . PHP_EOL;
 	$headers .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL;
 	$msg = $text_message;
 }
 
-if(mail($address, $e_subject, $msg, $headers)) {
-
-	// Email has sent successfully, echo a success page.
-
-	echo "<fieldset>";
-	echo "<div id='success_msg'>";
-	echo "<h3>Bericht succesvol verzonden.</h3>";
-	echo "<p>Bedankt <strong>$name</strong>, uw bericht is verstuurd.</p>";
-	echo "</div>";
-	echo "</fieldset>";
-
+if (mail($address, $e_subject_encoded, $msg, $headers)) {
+	success_html($name);
 } else {
-
-	echo '<div class="error_msg">Er is iets misgegaan. Probeer het later opnieuw.</div>';
-
+	fail('Er is iets misgegaan bij het versturen. Bel of app 06 57 61 40 22 of mail naar <a href="mailto:info@baarsglasengevelwerken.nl">info@baarsglasengevelwerken.nl</a>.');
 }

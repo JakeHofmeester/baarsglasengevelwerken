@@ -2559,7 +2559,6 @@ section[id],
   border: 1px solid var(--bs-gray-300);
   border-radius: 10px;
   padding: 22px 24px;
-  height: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 .info-card h3 {
@@ -2742,6 +2741,6 @@ section[id],
     transform: rotate(360deg);
   }
 }
-.form .form-select {
-  appearance: auto;
+main a[href^="tel:"]:not(.btn):not(.u-plain) {
+  color: var(--bs-primary);
 }

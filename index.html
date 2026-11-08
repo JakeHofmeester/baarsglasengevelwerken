@@ -711,44 +711,58 @@
             <div class="row mt-5">
                 <div class="col-lg-12">
                     <div class="form contact_form">
-                        <div id="message"></div>
-                        <form method="post" action="assets/php/contact.php" name="contact-form" id="working_form" enctype="multipart/form-data">
+                        <div id="message" role="status" aria-live="polite"></div>
+                        <form method="post" action="assets/php/contact.php" name="contact-form" id="working_form" enctype="multipart/form-data" novalidate>
+                            <fieldset class="form-group mt-2 mb-0">
+                                <legend class="form-label small text-muted mb-1">U vraagt aan als (optioneel)</legend>
+                                <div class="d-flex flex-wrap gap-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="customer_type" id="customer_type_zakelijk" value="Zakelijk">
+                                        <label class="form-check-label text-muted" for="customer_type_zakelijk">Bedrijf of VvE</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="customer_type" id="customer_type_particulier" value="Particulier">
+                                        <label class="form-check-label text-muted" for="customer_type_particulier">Particulier</label>
+                                    </div>
+                                </div>
+                            </fieldset>
                             <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group mt-2">
-                                        <div class="d-flex flex-wrap gap-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="customer_type" id="customer_type_zakelijk" value="Zakelijk" checked>
-                                                <label class="form-check-label text-muted" for="customer_type_zakelijk">Zakelijk</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="customer_type" id="customer_type_particulier" value="Particulier">
-                                                <label class="form-check-label text-muted" for="customer_type_particulier">Particulier</label>
-                                            </div>
-                                        </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="name">Naam *</label>
+                                        <input name="name" id="name" type="text" class="form-control" autocomplete="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="service">Dienst</label>
+                                        <select name="service" id="service" class="form-control form-select"><option value="">Kies een dienst</option><option value="Glasbewassing">Glasbewassing</option><option value="Kozijnen conserveren">Kozijnen conserveren</option><option value="Gevelreiniging">Gevelreiniging</option><option value="Gevel impregneren">Gevel impregneren</option><option value="Dak reinigen">Dak reinigen</option><option value="Graffiti verwijderen">Graffiti verwijderen</option><option value="Voegherstel">Voegherstel</option><option value="Spinnen weren">Spinnen weren</option><option value="Buitenreiniging (terras, dakgoot, zonnepanelen)">Buitenreiniging (terras, dakgoot, zonnepanelen)</option><option value="Periodiek onderhoud VvE of bedrijf">Periodiek onderhoud VvE of bedrijf</option><option value="Weet ik nog niet / advies">Weet ik nog niet / advies</option></select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="form-group mt-2">
-                                        <input name="name" id="name" type="text" class="form-control" placeholder="Naam *" autocomplete="name" required>
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="phone">Telefoon</label>
+                                        <input name="phone" id="phone" type="tel" class="form-control" autocomplete="tel">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="form-group mt-2">
-                                        <input name="email" id="email" type="email" class="form-control" placeholder="Email *" autocomplete="email" required>
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="email">E-mail</label>
+                                        <input name="email" id="email" type="email" class="form-control" autocomplete="email">
                                     </div>
                                 </div>
+                                <div class="col-12"><p class="small text-muted mt-1 mb-0">Vul uw telefoonnummer of e-mailadres in (of allebei).</p></div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="form-label small text-muted mb-1" for="comments">Bericht *</label>
+                                <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Bijvoorbeeld: adres of wijk, soort pand en wat u wilt laten doen" autocomplete="off" required></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="form-group mt-2">
-                                        <input name="phone" id="phone" type="tel" class="form-control" placeholder="Telefoonnummer *" autocomplete="tel" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group mt-2">
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="attachment_btn">Foto's (optioneel, max. 5)</label>
                                         <input name="attachment[]" id="attachment" type="file" class="d-none" accept=".jpg,.jpeg,.png,.webp,.pdf" multiple>
                                         <div class="file-upload form-control" id="attachment_ui">
                                             <button type="button" class="file-upload-btn" id="attachment_btn">Bladeren...</button>
@@ -757,24 +771,20 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group mt-2">
-                                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Onderwerp *" autocomplete="off" required />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group mt-2">
-                                        <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Bericht *" autocomplete="off" required></textarea>
+                                <div class="col-lg-6">
+                                    <div class="form-group mt-3">
+                                        <label class="form-label small text-muted mb-1" for="found_via">Hoe heeft u ons gevonden? (optioneel)</label>
+                                        <select name="found_via" id="found_via" class="form-control form-select"><option value="">Maak een keuze</option><option value="Google zoeken">Google zoeken</option><option value="Google Maps">Google Maps</option><option value="Via een bekende">Via een bekende</option><option value="Bedrijfsbus gezien">Bedrijfsbus gezien</option><option value="LinkedIn of social media">LinkedIn of social media</option><option value="Anders">Anders</option></select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-12 text-end mt-2">
-                                    <button type="submit" id="submit" class="submitBnt btn btn-primary">Versturen</button>
-                                    <div id="simple-msg"></div>
-                                </div>
+                            <div class="hp-field" aria-hidden="true">
+                                <label for="website">Laat dit veld leeg</label>
+                                <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-3">
+                                <p class="small text-muted mb-0">Ik neem zo snel mogelijk contact met u op. Met het versturen gaat u akkoord met de <a href="/privacy">privacyverklaring</a>.</p>
+                                <button type="submit" id="submit" class="submitBnt btn btn-primary">Versturen</button>
                             </div>
                         </form>
                     </div>
