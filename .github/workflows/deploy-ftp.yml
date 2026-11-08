@@ -22,7 +22,9 @@ jobs:
           server: ftp.covfo2us1.service.one
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
+          # one.com only accepts implicit FTP over TLS (as in FileZilla): ftps-legacy on port 990
+          protocol: ftps-legacy
+          port: 990
           # web root of the site on one.com (the FTP login lands one level above webroots/)
           server-dir: /webroots/sites/baarsglasengevelwerken.nl/
           local-dir: ./
