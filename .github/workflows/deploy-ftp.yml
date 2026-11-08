@@ -21,12 +21,19 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR || '/' }}
+          protocol: ftps
+          # web root of the site on one.com (the FTP login lands one level above webroots/)
+          server-dir: /webroots/sites/baarsglasengevelwerken.nl/
           local-dir: ./
           dangerous-clean-slate: false
           exclude: |
             **/.git*/**
+            **/.gitignore
             **/.github/**
+            **/.claude/**
+            **/assets/scss/**
+            **/assets/fonts/**
+            **/assets/images/dak-impregneren-*.png
             **/.vscode/**
             **/tools/**
             **/*.ps1
