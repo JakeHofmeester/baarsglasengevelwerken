@@ -2777,3 +2777,16 @@ main a[href^="tel:"]:not(.btn):not(.u-plain) {
   color: var(--bs-primary);
   letter-spacing: 0.04em;
 }
+
+/* Contrast >= 4.5:1 on the light grey sections (Lighthouse a11y) */
+.photo-figure figcaption,
+.author-line,
+.price-note,
+.breadcrumb .breadcrumb-item a.breadcrumb-link,
+.breadcrumb .breadcrumb-item.active {
+  color: var(--bs-gray-700) !important;
+}
+main a[href^="tel:"]:not(.btn):not(.u-plain) {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
