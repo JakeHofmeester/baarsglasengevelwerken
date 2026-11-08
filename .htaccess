@@ -1,7 +1,8 @@
 # ---------------------------------------------
-# directory index
+# directory index + branded 404
 # ---------------------------------------------
 directoryindex index.html index.htm
+ErrorDocument 404 /404.html
 
 # ---------------------------------------------
 # canonical domain: force https + non-www + no trailing slash
@@ -23,17 +24,47 @@ directoryindex index.html index.htm
   rewriterule ^(.+)/$ /$1 [r=301,l]
 
   # ---------------------------------------------
-  # remove .html from urls (public)
+  # old homepage section links (?go=...) -> real pages / anchors
+  # ?go=contact (also with Google's rwg_token) -> /contact, other ?go=x -> /#x
   # ---------------------------------------------
-  rewritecond %{the_request} "\s/([^.]+)\.html[\s?]" [nc]
-  rewriterule ^ %1 [r=301,l]
+  rewritecond %{query_string} (^|&)go=contact(&|$) [nc]
+  rewriterule ^(index\.html)?$ /contact? [r=301,l]
+
+  rewritecond %{query_string} (^|&)go=([a-z0-9-]+)(&|$) [nc]
+  rewriterule ^(index\.html)?$ /#%2? [ne,r=301,l]
+
+  # ---------------------------------------------
+  # merged pages
+  # ---------------------------------------------
+  rewriterule ^dak-impregneren(\.html)?$ /dak-reinigen#impregneren [ne,r=301,l]
+
+  # ---------------------------------------------
+  # remove .html from urls (public); index.html -> /
+  # (the leading slash in the target is required: without it apache
+  # prefixes the document root and the redirect ends on a 404)
+  # ---------------------------------------------
+  rewritecond %{the_request} "\s/+index\.html[\s?]" [nc]
+  rewriterule ^ / [r=301,l]
+
+  rewritecond %{the_request} "\s/([^.\s?]+)\.html[\s?]" [nc]
+  rewriterule ^ /%1 [r=301,l]
 
   # ---------------------------------------------
   # map clean urls internally to .html files
+  # (a .html file wins over a folder with the same name, e.g. kennisbank.html vs kennisbank/)
   # ---------------------------------------------
-  rewritecond %{request_filename} !-d
   rewritecond %{request_filename}\.html -f
   rewriterule ^(.+)$ $1.html [l]
+</ifmodule>
+
+# ---------------------------------------------
+# security headers
+# ---------------------------------------------
+<ifmodule mod_headers.c>
+  header always set strict-transport-security "max-age=31536000; includeSubDomains"
+  header always set x-content-type-options "nosniff"
+  header always set referrer-policy "strict-origin-when-cross-origin"
+  header always set x-frame-options "SAMEORIGIN"
 </ifmodule>
 
 # ---------------------------------------------
@@ -61,6 +92,7 @@ directoryindex index.html index.htm
 
 # ---------------------------------------------
 # cache control headers
+# css/js are referenced with ?v=yyyymmdd, so a new version is fetched after every change
 # ---------------------------------------------
 <ifmodule mod_headers.c>
   <filesmatch "\.(css|js)$">
@@ -71,7 +103,7 @@ directoryindex index.html index.htm
     header set cache-control "public, max-age=31536000, immutable"
   </filesmatch>
 
-  <filesmatch "\.(html?)$">
+  <filesmatch "\.(html?|txt|xml)$">
     header set cache-control "no-cache"
   </filesmatch>
 </ifmodule>

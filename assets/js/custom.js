@@ -18,15 +18,6 @@
 
     var App = function () { };
 
-    //PreLoader
-    App.prototype.initPreLoader = function () {
-        $('#status').fadeOut();
-        $('#preloader').delay(350).fadeOut('slow');
-        $('body').delay(350).css({
-            'overflow': 'visible'
-        });
-    },
-
         //scroll
         App.prototype.initStickyMenu = function () {
             var navbar = document.querySelector('nav');
@@ -328,7 +319,6 @@
         }
 
     App.prototype.init = function () {
-        this.initPreLoader();
         this.initStickyMenu();
         this.initScrollspy();
         this.initWork();

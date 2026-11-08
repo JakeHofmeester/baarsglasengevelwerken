@@ -136,7 +136,7 @@
       '<div class="cookie-banner__inner">' +
         '<div class="cookie-banner__text">' +
           '<strong>Cookies</strong> — Wij gebruiken cookies voor statistieken (Google Analytics) om de website te verbeteren. ' +
-          '<a class="cookie-banner__link" href="cookies.html">Meer info</a>.' +
+          '<a class="cookie-banner__link" href="/cookies">Meer info</a>.' +
         '</div>' +
         '<div class="cookie-banner__actions">' +
           '<button type="button" class="btn btn-primary cookie-banner__btn cookie-banner__btn--reject" data-cookie-action="reject">Weigeren</button>' +

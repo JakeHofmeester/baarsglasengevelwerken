@@ -17,25 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap"></noscript>
-
-    <script>
-      (function () {
-        try {
-          var href = "assets/images/hero-desktop.webp";
-          if (window.matchMedia && window.matchMedia("(max-width: 767px)").matches) {
-            href = "assets/images/hero-mobile.webp";
-          } else if (window.matchMedia && window.matchMedia("(min-width: 768px) and (max-width: 1023px)").matches) {
-            href = "assets/images/hero-tablet.webp";
-          }
-          var link = document.createElement("link");
-          link.rel = "preload";
-          link.as = "image";
-          link.href = href;
-          link.type = "image/webp";
-          document.head.appendChild(link);
-        } catch (e) { }
-      })();
-    </script>
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="assets/images/hero-mobile.webp 800w, assets/images/hero-tablet.webp 1200w, assets/images/hero-desktop.webp 1920w" imagesizes="100vw">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="nl_NL">
@@ -43,12 +25,14 @@
     <meta property="og:title" content="Gevelreiniging &amp; Glasbewassing | Baars Glas en Gevelwerken">
     <meta property="og:description" content="Specialist in gevelreiniging, glasbewassing, impregneren en buitenreiniging. Baars Glas en Gevelwerken (Capelle aan den IJssel, regio Rotterdam, Zuid-Holland/Noord-Holland).">
     <meta property="og:url" content="https://baarsglasengevelwerken.nl/">
-    <meta property="og:image" content="https://baarsglasengevelwerken.nl/assets/images/hero-desktop.webp">
+    <meta property="og:image" content="https://baarsglasengevelwerken.nl/assets/images/og/og-default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gevelreiniging &amp; Glasbewassing | Baars Glas en Gevelwerken">
     <meta name="twitter:description" content="Specialist in gevelreiniging, glasbewassing, impregneren en buitenreiniging. Baars Glas en Gevelwerken (Capelle aan den IJssel, regio Rotterdam, Zuid-Holland/Noord-Holland).">
-    <meta name="twitter:image" content="https://baarsglasengevelwerken.nl/assets/images/hero-desktop.webp">
+    <meta name="twitter:image" content="https://baarsglasengevelwerken.nl/assets/images/og/og-default.jpg">
 
     <script type="application/ld+json">
         {
@@ -124,10 +108,6 @@
     <!-- Owl Carousel -->
     <link rel="preload" href="assets/css/owl.carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="assets/css/owl.carousel.min.css"></noscript>
-
-    <!-- Animate Css -->
-    <link rel="preload" href="assets/css/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/animate.min.css"></noscript>
 
     <!-- Magnific-popup -->
     <link rel="preload" href="assets/css/magnific-popup.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -232,13 +212,6 @@
       </symbol>
     </svg>
 
-    <!-- Loader -->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner">Loading...</div>
-        </div>
-    </div>
-
     <!-- Start Navbar -->
     <nav class="navbar navbar-expand-lg custom-nav navbar-light fixed-top sticky">
         <div class="container">
@@ -281,10 +254,7 @@
     <!-- START HOME -->
     <section class="section header-bg-img h-100vh align-items-center d-flex" id="home">
         <picture class="hero-picture">
-            <source media="(max-width: 767px)" srcset="assets/images/hero-mobile.webp">
-            <source media="(min-width: 768px) and (max-width: 1023px)" srcset="assets/images/hero-tablet.webp">
-            <source media="(min-width: 1024px)" srcset="assets/images/hero-desktop.webp">
-            <img src="assets/images/hero-desktop.webp" alt="Professionele gevelreiniging en glasbewassing - Baars Glas en Gevelwerken" fetchpriority="high" width="2000" height="1333">
+            <img src="assets/images/hero-desktop.webp" srcset="assets/images/hero-mobile.webp 800w, assets/images/hero-tablet.webp 1200w, assets/images/hero-desktop.webp 1920w" sizes="100vw" alt="Glasbewassing op hoogte met een hoogwerker bij een appartementencomplex" fetchpriority="high" width="1920" height="1280">
         </picture>
         <div class="bg-overlay"></div>
         <div class="container z-2">
