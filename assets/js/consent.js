@@ -159,6 +159,36 @@
     return banner;
   }
 
+  function clearChoice() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* ignore */ }
+    try { document.cookie = STORAGE_KEY + "=; path=/; max-age=0; samesite=lax"; } catch (e) { /* ignore */ }
+    try {
+      if (window.name && window.name.charAt(0) === "{") {
+        var obj = JSON.parse(window.name) || {};
+        delete obj[STORAGE_KEY];
+        window.name = JSON.stringify(obj);
+      }
+    } catch (e) { /* ignore */ }
+    getGtag()("consent", "update", {
+      ad_storage: "denied",
+      analytics_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied"
+    });
+    window.__gaConsentGranted = false;
+  }
+
+  // "Cookiekeuze resetten" on /cookies: forget the stored choice and show the banner again.
+  document.addEventListener("click", function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest("#reset_cookie_choice") : null;
+    if (!btn) return;
+    // defer so analytics-events.js can still send cookie_preference_reset with the old consent
+    window.setTimeout(function () {
+      clearChoice();
+      if (!document.querySelector(".cookie-banner")) document.body.appendChild(createBanner());
+    }, 0);
+  });
+
   function init() {
     var stored = safeGet(STORAGE_KEY);
     if (stored === CONSENT_ACCEPT || stored === CONSENT_REJECT) return;
