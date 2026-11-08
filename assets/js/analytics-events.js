@@ -33,6 +33,22 @@
     }
   }
 
+  function getFrom(el) {
+    if (!el || !el.closest) return "other";
+    if (el.closest(".mobile-cta-bar")) return "sticky_bar";
+    if (el.closest("nav.navbar")) return "nav";
+    if (el.closest(".cta-strip")) return "cta_strip";
+    if (el.closest(".site-footer")) return "footer";
+    if (el.closest("#contact")) return "contact_section";
+    if (el.closest("#home, .page-header")) return "hero";
+    if (el.closest(".section, .content-section")) return "content";
+    return "other";
+  }
+
+  function isWhatsAppUrl(href) {
+    return /^https?:\/\/(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)\//i.test(href || "");
+  }
+
   function isSocialUrl(href) {
     if (!href) return null;
     if (href.indexOf("linkedin.com") !== -1) return "linkedin";
@@ -54,11 +70,15 @@
 
       if (isLink && target.getAttribute("href")) {
         if (href.indexOf("tel:") === 0) {
-          sendEvent("phone_click", { link_url: href });
+          sendEvent("phone_click", { link_url: href, from: getFrom(target) });
           return;
         }
         if (href.indexOf("mailto:") === 0) {
-          sendEvent("email_click", { link_url: href });
+          sendEvent("email_click", { link_url: href, from: getFrom(target) });
+          return;
+        }
+        if (isWhatsAppUrl(href)) {
+          sendEvent("whatsapp_click", { link_url: href, from: getFrom(target) });
           return;
         }
 
@@ -77,8 +97,7 @@
         } catch (err) {}
 
         if (target.classList.contains("js-contact-link")) {
-          var from = target.closest("nav") ? "nav" : (target.closest("#contact") ? "contact_section" : (target.closest(".section") ? "cta" : "other"));
-          sendEvent("contact_click", { from: from, link_url: href });
+          sendEvent("contact_click", { from: getFrom(target), link_url: href });
           return;
         }
 

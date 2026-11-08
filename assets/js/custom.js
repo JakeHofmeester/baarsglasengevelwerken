@@ -428,15 +428,22 @@ document.addEventListener("DOMContentLoaded", () => {
     var pathname = window.location.pathname;
     var isHomePage = pathname === "/" || pathname === "/index.html" || (window.location.protocol === "file:" && (pathname.endsWith("index.html") || pathname.endsWith("/")));
 
+    document.querySelectorAll('.js-year').forEach(el => { el.textContent = String(new Date().getFullYear()); });
+
+    // "Offerte aanvragen"/"Contact" links scroll to the form when this page has one (home, /contact);
+    // tel: and WhatsApp links that also carry js-contact-link are left alone.
     document.querySelectorAll('.js-contact-link').forEach(link => {
         link.addEventListener('click', (e) => {
-            if (isHomePage) {
-                e.preventDefault();
-                const section = document.getElementById("contact");
-                if (section) {
-                    section.scrollIntoView({ behavior: "smooth" });
-                }
-            }
+            const href = link.getAttribute('href') || '';
+            const isContactHref = href === '/contact' || href === '#contact' || href === 'contact.html' || href.indexOf('?go=contact') !== -1;
+            if (!isContactHref) return;
+            const section = document.getElementById("contact");
+            if (!section || !section.querySelector('#working_form')) return;
+            e.preventDefault();
+            section.scrollIntoView({ behavior: "smooth" });
+            const collapse = document.querySelector("#navbarNav.show");
+            const toggler = document.querySelector(".navbar-toggler");
+            if (collapse && toggler && link.closest("#navbarNav")) toggler.click();
         });
     });
 
