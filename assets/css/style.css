@@ -2744,3 +2744,26 @@ section[id],
 main a[href^="tel:"]:not(.btn):not(.u-plain) {
   color: var(--bs-primary);
 }
+.price-table td.price--text {
+  white-space: normal;
+  font-weight: 600;
+}
+
+/* Homepage hero (static H1 + CTAs) */
+.header-content h1.hero-title {
+  font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+  line-height: 1.2;
+  font-weight: 600;
+}
+.hero-sub {
+  max-width: 680px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+.hero-ctas .cta-buttons {
+  justify-content: center;
+}
+.mw-text {
+  max-width: 900px;
+}
