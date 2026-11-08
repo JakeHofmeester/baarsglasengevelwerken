@@ -67,6 +67,12 @@ ErrorDocument 404 /404.html
   header always set x-content-type-options "nosniff"
   header always set referrer-policy "strict-origin-when-cross-origin"
   header always set x-frame-options "SAMEORIGIN"
+  header always set permissions-policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  header always set cross-origin-opener-policy "same-origin"
+  # Content-Security-Policy. Inline code is allowed by hash only: the two consent/GA <script>
+  # blocks in every <head> and the font-preload onload handler. If you change one of them,
+  # tools/verify-site.py fails and prints the new hash to put here.
+  header always set content-security-policy "default-src 'self'; script-src 'self' 'unsafe-hashes' 'sha256-hucHjrDj47XNK3fOymGssuTRIfMWzz7MW0DQ7+k6jMc=' 'sha256-gTMEP9SD7RGwmTp63Ggyck6SjDngfcH1smePMWK/N8A=' 'sha256-1jAmyYXcRq6zFldLe/GCgIDJBiOONdXjTLgEFMDnDSM=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com https://*.google.nl; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com https://*.google.nl; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
 </ifmodule>
 
 # ---------------------------------------------

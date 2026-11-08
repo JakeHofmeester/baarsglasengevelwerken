@@ -187,6 +187,22 @@ for url in sorted(sitemap_urls):
     elif parsed[f].robots.startswith("noindex"):
         fail("sitemap.xml", "%s is noindex" % url)
 
+# Content-Security-Policy in .htaccess must allow every inline <script> and on*="" handler by hash
+import base64, hashlib
+htaccess = open(os.path.join(ROOT, ".htaccess"), encoding="utf-8").read()
+csp = re.search(r'content-security-policy "([^"]+)"', htaccess, re.I)
+if not csp:
+    fail(".htaccess", "no content-security-policy header")
+else:
+    allowed = set(re.findall(r"'(sha256-[^']+)'", csp.group(1)))
+    for name, s in raw.items():
+        inline = [m.group(1) for m in re.finditer(r'<script(?![^>]*\bsrc=)(?![^>]*application/ld\+json)[^>]*>(.*?)</script>', s, re.S)]
+        inline += [m.group(1) for m in re.finditer(r'\son[a-z]+="([^"]*)"', s)]
+        for code in inline:
+            h = "sha256-" + base64.b64encode(hashlib.sha256(code.encode("utf-8")).digest()).decode()
+            if h not in allowed:
+                fail(name, "inline script/handler not allowed by the CSP in .htaccess; add '%s' (code starts: %r)" % (h, code.strip()[:50]))
+
 if len(set(lb_signatures.values())) != 1:
     fail("LocalBusiness", "not identical on all pages: %s" % {k: v[:80] for k, v in lb_signatures.items()})
 missing_lb = set(parsed) - set(lb_signatures)
