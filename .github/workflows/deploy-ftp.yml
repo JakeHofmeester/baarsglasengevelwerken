@@ -3,10 +3,19 @@ name: Deploy to FTP (main)
 on:
   push:
     branches: ["main"]
+  workflow_dispatch:
 
 concurrency:
   group: ftp-deploy-main
   cancel-in-progress: true
+
+# one.com only accepts implicit FTP over TLS on port 990 and needs the hostname sent via SNI
+# (without SNI the server answers with TLS alert 80). SamKirkland/FTP-Deploy-Action does not
+# send SNI, so the upload uses lftp, which does.
+env:
+  FTP_HOST: ftp.covfo2us1.service.one
+  # web root of the site (the FTP login lands one level above webroots/)
+  FTP_DIR: /webroots/sites/baarsglasengevelwerken.nl/
 
 jobs:
   deploy:
@@ -15,34 +24,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          # one.com host; FTPS needs this exact name (TLS/SNI), not an IP or the site domain
-          server: ftp.covfo2us1.service.one
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          # one.com only accepts implicit FTP over TLS (as in FileZilla): ftps-legacy on port 990
-          protocol: ftps-legacy
-          port: 990
-          # web root of the site on one.com (the FTP login lands one level above webroots/)
-          server-dir: /webroots/sites/baarsglasengevelwerken.nl/
-          local-dir: ./
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*/**
-            **/.gitignore
-            **/.github/**
-            **/.claude/**
-            **/assets/scss/**
-            **/assets/fonts/**
-            **/assets/images/dak-impregneren-*.png
-            **/.vscode/**
-            **/tools/**
-            **/*.ps1
-            **/*.md
-            **/README*
-            **/email/**
-            **/logs/**
-            **/research/**
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
+      - name: Upload over FTPS
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        # Uploads everything except the excludes; never deletes files on the server.
+        run: |
+          lftp --env-password -u "$FTP_USERNAME" "ftps://$FTP_HOST:990" <<EOF
+          set ssl:verify-certificate yes
+          set ftp:ssl-protect-data yes
+          set ftp:passive-mode yes
+          set net:timeout 30
+          set net:max-retries 3
+          set net:reconnect-interval-base 5
+          mirror --reverse --verbose --parallel=4 \
+            --exclude-glob .git/ \
+            --exclude-glob .github/ \
+            --exclude-glob .claude/ \
+            --exclude-glob .vscode/ \
+            --exclude-glob tools/ \
+            --exclude-glob email/ \
+            --exclude-glob logs/ \
+            --exclude-glob research/ \
+            --exclude-glob assets/scss/ \
+            --exclude-glob assets/fonts/ \
+            --exclude-glob .gitignore \
+            --exclude-glob "*.md" \
+            --exclude-glob "*.ps1" \
+            --exclude-glob "README*" \
+            --exclude-glob "assets/images/dak-impregneren-*.png" \
+            ./ "$FTP_DIR"
+          quit
+          EOF
