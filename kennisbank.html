@@ -268,8 +268,8 @@
     }
     </script>
 
-    <link id="bootstrap" rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=20261108">
+    <link id="bootstrap" rel="stylesheet" type="text/css" href="assets/css/bootstrap.purged.min.css?v=2026110802">
+    <link rel="stylesheet" href="assets/css/style.css?v=2026110802">
 
     <!-- Google Analytics (GA4) + Consent Mode -->
     <script>
@@ -316,9 +316,18 @@
 
         window.gtag('consent', 'default', consentState);
         window.__gaConsentGranted = (stored === 'all');
+
+        // Google Analytics is only downloaded after consent (Consent Mode basic);
+        // consent.js loads it when the visitor clicks "Accepteren".
+        if (stored === 'all') {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32';
+          document.head.appendChild(s);
+          window.__gaScriptLoaded = true;
+        }
       })();
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32"></script>
     <script>
       (function () {
         try {
@@ -469,9 +478,9 @@
     <a href="#" class="back_top" aria-label="Terug naar boven"><svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-arrow-up"></use></svg></a>
     <script defer src="assets/js/bootstrap.bundle.min.js"></script>
     <script defer src="assets/js/jquery.min.js"></script>
-    <script defer src="assets/js/custom.js?v=20261108"></script>
-    <script defer src="assets/js/consent.js?v=20261108"></script>
-    <script defer src="assets/js/analytics-events.js?v=20261108"></script>
+    <script defer src="assets/js/custom.js?v=2026110802"></script>
+    <script defer src="assets/js/consent.js?v=2026110802"></script>
+    <script defer src="assets/js/analytics-events.js?v=2026110802"></script>
 </body>
 
 </html>

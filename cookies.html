@@ -248,8 +248,8 @@
     }
     </script>
 
-    <link id="bootstrap" rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=20261108">
+    <link id="bootstrap" rel="stylesheet" type="text/css" href="assets/css/bootstrap.purged.min.css?v=2026110802">
+    <link rel="stylesheet" href="assets/css/style.css?v=2026110802">
 
     <!-- Google Analytics (GA4) + Consent Mode -->
     <script>
@@ -296,9 +296,18 @@
 
         window.gtag('consent', 'default', consentState);
         window.__gaConsentGranted = (stored === 'all');
+
+        // Google Analytics is only downloaded after consent (Consent Mode basic);
+        // consent.js loads it when the visitor clicks "Accepteren".
+        if (stored === 'all') {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32';
+          document.head.appendChild(s);
+          window.__gaScriptLoaded = true;
+        }
       })();
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32"></script>
     <script>
       (function () {
         try {
@@ -377,7 +386,7 @@
                             <li><strong>Noodzakelijk: uw cookiekeuze.</strong> Wij onthouden of u cookies heeft geaccepteerd of geweigerd onder de naam <code>cookie_consent_v1</code>. Deze keuze wordt opgeslagen in een cookie (12 maanden geldig), in de lokale opslag van uw browser en in het browservenster zolang dit open staat. Zo hoeft u de vraag niet op elke pagina opnieuw te beantwoorden.</li>
                             <li><strong>Statistieken: Google Analytics 4.</strong> Alleen als u op <em>Accepteren</em> klikt, plaatst Google Analytics eigen cookies (zoals <code>_ga</code> en <code>_ga_&lt;id&gt;</code>). Google bepaalt de looptijd van deze cookies; standaard is dat maximaal 2 jaar.</li>
                         </ul>
-                        <p class="text-muted">Weigert u cookies of maakt u (nog) geen keuze, dan plaatst Google Analytics geen cookies. Wij gebruiken wel Google Consent Mode: Google kan dan anonieme signalen zonder cookies ontvangen, bijvoorbeeld dat een pagina is bekeken, zonder dat u daarbij herkenbaar bent of wordt gevolgd.</p>
+                        <p class="text-muted">Weigert u cookies of maakt u (nog) geen keuze, dan wordt Google Analytics helemaal niet geladen: er worden geen analytics-cookies geplaatst en er gaan geen gegevens over uw bezoek naar Google.</p>
 
                         <h2 class="h4 mt-4">Cookiekeuze aanpassen</h2>
                         <p class="text-muted">U kunt uw keuze altijd wijzigen. Klik op de knop hieronder; uw opgeslagen keuze wordt dan gewist en de cookiemelding verschijnt opnieuw.</p>
@@ -434,9 +443,9 @@
     <a href="#" class="back_top" aria-label="Terug naar boven"><svg class="icon" aria-hidden="true" focusable="false"><use href="#mbri-arrow-up"></use></svg></a>
     <script defer src="assets/js/bootstrap.bundle.min.js"></script>
     <script defer src="assets/js/jquery.min.js"></script>
-    <script defer src="assets/js/custom.js?v=20261108"></script>
-    <script defer src="assets/js/consent.js?v=20261108"></script>
-    <script defer src="assets/js/analytics-events.js?v=20261108"></script>
+    <script defer src="assets/js/custom.js?v=2026110802"></script>
+    <script defer src="assets/js/consent.js?v=2026110802"></script>
+    <script defer src="assets/js/analytics-events.js?v=2026110802"></script>
 </body>
 
 </html>

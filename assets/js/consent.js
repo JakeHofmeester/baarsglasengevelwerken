@@ -71,6 +71,15 @@
     };
   }
 
+  function loadGtagScript() {
+    if (window.__gaScriptLoaded) return;
+    window.__gaScriptLoaded = true;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_MEASUREMENT_ID;
+    document.head.appendChild(s);
+  }
+
   function applyConsent(value) {
     var gtag = getGtag();
     if (value === CONSENT_ACCEPT) {
@@ -83,6 +92,7 @@
       try {
         if (!window.__gaInitialized) {
           window.__gaInitialized = true;
+          loadGtagScript();
           gtag("js", new Date());
           gtag("config", GA_MEASUREMENT_ID, {
             anonymize_ip: false,
