@@ -41,7 +41,8 @@
     if (el.closest(".site-footer")) return "footer";
     if (el.closest("#contact")) return "contact_section";
     if (el.closest("#home, .page-header")) return "hero";
-    if (el.closest(".section, .content-section")) return "content";
+    if (el.closest(".price-card")) return "price_card";
+    if (el.closest(".section, .content-section, .svc-body")) return "content";
     return "other";
   }
 

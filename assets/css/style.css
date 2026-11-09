@@ -3207,3 +3207,17 @@ a.home-card:hover { box-shadow: 0 14px 32px -18px rgba(31, 27, 43, 0.35); transf
 .custom-nav .navbar-nav li a.btn.nav-cta:hover { background-color: var(--plum-dark) !important; border-color: var(--plum-dark) !important; }
 .split > .image-comparison, .svc-hero__media .image-comparison { width: 100%; margin: 0; }
 a.link-arrow, a.link-arrow:hover { color: var(--plum) !important; }
+.price-card dd.price-card__textval { font-family: inherit; font-weight: 600; font-size: 15px; line-height: 1.45; }
+.svc-hero { padding-bottom: 64px; }
+.svc-hero .jump-links { margin: 20px 0 0; }
+.svc-main .svc-block > h2:first-child { margin-top: 0; }
+.svc-main .image-comparison { margin: 0; }
+.page-header { background: #fff; }
+main .row > .col-lg-10.mx-auto { width: 100%; }
+.svc-main .steps { grid-template-columns: 1fr; gap: 0; }
+.svc-main .steps li { display: grid; grid-template-columns: 44px 1fr; column-gap: 12px; padding: 16px 0; }
+.svc-main .steps li::before { grid-row: span 2; margin: 0; }
+.svc-main .steps h3 { margin: 4px 0 2px; }
+.svc-hero__grid--media h1 { font-size: clamp(1.9rem, 3.2vw, 2.5rem); }
+@media (min-width: 992px) { .svc-main .row > .col-lg-4 { width: 100%; } }
+@media (max-width: 767.98px) { .svc-aside { display: none; } }
