@@ -3221,3 +3221,6 @@ main .row > .col-lg-10.mx-auto { width: 100%; }
 .svc-hero__grid--media h1 { font-size: clamp(1.9rem, 3.2vw, 2.5rem); }
 @media (min-width: 992px) { .svc-main .row > .col-lg-4 { width: 100%; } }
 @media (max-width: 767.98px) { .svc-aside { display: none; } }
+.page-header:not(.svc-hero) .col-lg-10 { display: flex; flex-direction: column; align-items: flex-start; }
+.page-header:not(.svc-hero) .col-lg-10 > .trust-strip { order: 10; margin-top: 22px; }
+.page-header:not(.svc-hero) .col-lg-10 > .lead-intro { margin-top: 1rem !important; }
