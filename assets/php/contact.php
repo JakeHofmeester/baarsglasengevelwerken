@@ -36,7 +36,6 @@ $phone         = one_line(field('phone'));
 $comments      = field('comments');
 $customer_type = field('customer_type');
 $service       = field('service');
-$found_via     = field('found_via');
 $subject       = one_line(field('subject')); // legacy field, optional
 
 // Honeypot: real visitors never see or fill this field.
@@ -51,11 +50,9 @@ $allowed_services = array(
 	'Graffiti verwijderen', 'Voegherstel', 'Spinnen weren', 'Buitenreiniging (terras, dakgoot, zonnepanelen)',
 	'Periodiek onderhoud VvE of bedrijf', 'Weet ik nog niet / advies'
 );
-$allowed_found = array('Google zoeken', 'Google Maps', 'Via een bekende', 'Bedrijfsbus gezien', 'LinkedIn of social media', 'Anders');
 
 if ($customer_type !== '' && !in_array($customer_type, $allowed_types, true)) $customer_type = '';
 if ($service !== '' && !in_array($service, $allowed_services, true)) $service = '';
-if ($found_via !== '' && !in_array($found_via, $allowed_found, true)) $found_via = '';
 
 if ($name === '') {
 	fail('Vul uw naam in.');
@@ -88,7 +85,6 @@ $e_body .= "Telefoon: " . ($phone !== '' ? $phone : '-') . EOL;
 $e_body .= "E-mail: " . ($email !== '' ? $email : '-') . EOL;
 $e_body .= "Type: " . ($customer_type !== '' ? $customer_type : '-') . EOL;
 $e_body .= "Dienst: " . ($service !== '' ? $service : '-') . EOL;
-$e_body .= "Gevonden via: " . ($found_via !== '' ? $found_via : '-') . EOL;
 if ($subject !== '') $e_body .= "Onderwerp: $subject" . EOL;
 $e_body .= EOL . $comments . EOL;
 
