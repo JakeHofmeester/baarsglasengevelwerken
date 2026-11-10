@@ -3224,3 +3224,63 @@ main .row > .col-lg-10.mx-auto { width: 100%; }
 .page-header:not(.svc-hero) .col-lg-10 { display: flex; flex-direction: column; align-items: flex-start; }
 .page-header:not(.svc-hero) .col-lg-10 > .trust-strip { order: 10; margin-top: 22px; }
 .page-header:not(.svc-hero) .col-lg-10 > .lead-intro { margin-top: 1rem !important; }
+
+/* =====================================================================
+   Huisstijl (2026-11): logo colours plum #942071 + navy #002F63.
+   Navy for headings, nav and dark surfaces; a soft plum tint for light bands.
+   ===================================================================== */
+:root {
+  --ink: #002f63;
+  --navy: #002f63;
+  --navy-deep: #00244d;
+  --text: #46506a;
+  --mist: #f8f1f5;
+  --line: #eadfe6;
+  --plum-soft: #f3e3ed;
+}
+.footer.site-footer { background-color: var(--navy-deep) !important; color: #c9d3e3; }
+.site-footer a.copyright_content { color: #c9d3e3; }
+.site-footer .icon { color: #e9a3d2; }
+.footer-bottom { border-top-color: rgba(255, 255, 255, 0.14); }
+.cta-strip { background: var(--navy); }
+.cta-strip p { color: #c9d3e3; }
+.band { background: var(--navy); color: #c9d3e3; }
+.band li::before { color: #e9a3d2; }
+.band a.u-plain:hover { color: #e9a3d2; }
+
+/* Light surfaces in the brand tint */
+.home-also a.u-plain:hover, a.service-card-link:hover .services-boxes { border-color: var(--plum) !important; }
+.contact-ways__icon { background: var(--plum-soft); }
+.steps li::before, .home-steps li::before { background: var(--plum-soft); border-color: var(--plum); }
+.home-hero__eyebrow, .price-card__label { color: var(--plum); }
+
+/* Secondary button: navy outline like the logo wordmark */
+.btn-outline-primary { border-color: rgba(0, 47, 99, 0.25); color: var(--navy); }
+.btn-outline-primary .icon { color: var(--plum); }
+
+/* Price card: navy panel with the plum CTA */
+.price-card { background: var(--navy); border: 0; color: #d6deeb; }
+.price-card dt, .price-card__note, .price-card__text { color: #c9d3e3; }
+.price-card dd, .price-card__title { color: #fff; }
+.price-card__label { color: #e9a3d2; }
+.price-card__alt, .price-card__alt a { color: #fff !important; }
+.price-card__alt a:hover { color: #e9a3d2 !important; }
+
+/* Section headings get a short plum rule, echoing the logo block */
+main h2:not(.price-card__title):not(.h3):not(.h4)::after,
+.home-hero h1::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--plum);
+  margin-top: 14px;
+}
+.home-hero h1::after { margin-top: 22px; }
+.band h2::after, .cta-strip h2::after, .accordion h2::after { display: none !important; }
+.section-head h2::after { margin-top: 12px; }
+
+/* Nav text in brand navy */
+.custom-nav.stickyadd .navbar-nav li a:not(.btn) { color: var(--navy) !important; }
+.custom-nav.stickyadd .navbar-nav li a:not(.btn):hover { color: var(--plum) !important; }
