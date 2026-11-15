@@ -36,7 +36,7 @@ ErrorDocument 404 /404.html
   # ---------------------------------------------
   # merged pages
   # ---------------------------------------------
-  rewriterule ^dak-impregneren(\.html)?$ /dak-reinigen#impregneren [ne,r=301,l]
+  rewriterule ^dak-impregneren(\.html)?$ /dak-reinigen [r=301,l]
 
   # ---------------------------------------------
   # remove .html from urls (public); index.html -> /
