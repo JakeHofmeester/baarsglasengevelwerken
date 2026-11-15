@@ -745,7 +745,6 @@ ul.pattern .color6 {
   border-color: var(--bs-primary) !important;
   border-width: 1px;
   color: var(--bs-primary) !important;
-  border-radius: 50rem;
 }
 
 .btn-primary.focus {
