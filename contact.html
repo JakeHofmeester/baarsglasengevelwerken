@@ -318,21 +318,19 @@
         window.gtag('consent', 'default', consentState);
         window.__gaConsentGranted = (stored === 'all');
 
-        // Google Analytics is only downloaded after consent (Consent Mode basic);
-        // consent.js loads it when the visitor clicks "Accepteren".
-        if (stored === 'all') {
-          var s = document.createElement('script');
-          s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32';
-          document.head.appendChild(s);
-          window.__gaScriptLoaded = true;
-        }
+        // Consent Mode advanced: Google Analytics always loads. Without consent it sends
+        // cookieless pings only (no cookies, ad identifiers redacted); consent.js updates consent.
+        window.gtag('set', 'ads_data_redaction', true);
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32';
+        document.head.appendChild(s);
+        window.__gaScriptLoaded = true;
       })();
     </script>
     <script>
       (function () {
         try {
-          if (!window.__gaConsentGranted) return;
           if (window.__gaInitialized) return;
           window.__gaInitialized = true;
           gtag('js', new Date());
