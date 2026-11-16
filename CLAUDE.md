@@ -28,7 +28,7 @@ Service pages (e.g. `gevelreiniging.html`, `dak-reinigen.html`) share a structur
 
 ### Analytics & cookie consent (GA4 `G-2JCXZNTE32`, Consent Mode v2)
 Three pieces cooperate via the storage key `cookie_consent_v1` (value `"all"` or `"reject"`, stored in localStorage, a cookie and `window.name` as fallbacks):
-1. Inline `<head>` script on every page: sets `gtag('consent','default', …)` denied unless stored `"all"`, sets `window.__gaConsentGranted`, and only when `"all"` is stored injects `gtag.js` and calls `gtag('config', …)` (Consent Mode basic: without consent Google Analytics is not loaded at all and nothing is sent to Google).
+1. Inline `<head>` script on every page: sets `gtag('consent','default', …)` denied unless stored `"all"`, sets `window.__gaConsentGranted`, sets `ads_data_redaction`, and always injects `gtag.js` and calls `gtag('config', …)` (Consent Mode advanced since 2026-11-16: without consent GA sends cookieless pageview pings only; the click events in `analytics-events.js` stay consent-only). Privacy/cookies pages describe this in one short sentence as anonymous counting without cookies.
 2. `assets/js/consent.js`: shows the Dutch cookie banner when no choice is stored; on accept loads `gtag.js` (guarded by `window.__gaScriptLoaded`), updates consent and initializes GA (guarded by `window.__gaInitialized`).
 3. `assets/js/analytics-events.js`: delegated click tracking (`phone_click`, `whatsapp_click` for `wa.me` links, `email_click`, social/outbound, `.js-contact-link`, `.service-card-link`, `.back_top`, `.img-zoom`), each with a `from` location (nav, sticky_bar, cta_strip, footer, hero, content...), contact form start, scroll depth — all gated on consent. Give new CTAs the class `js-contact-link`.
 

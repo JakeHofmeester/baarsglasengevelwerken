@@ -300,21 +300,19 @@
         window.gtag('consent', 'default', consentState);
         window.__gaConsentGranted = (stored === 'all');
 
-        // Google Analytics is only downloaded after consent (Consent Mode basic);
-        // consent.js loads it when the visitor clicks "Accepteren".
-        if (stored === 'all') {
-          var s = document.createElement('script');
-          s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32';
-          document.head.appendChild(s);
-          window.__gaScriptLoaded = true;
-        }
+        // Consent Mode advanced: Google Analytics always loads. Without consent it sends
+        // cookieless pings only (no cookies, ad identifiers redacted); consent.js updates consent.
+        window.gtag('set', 'ads_data_redaction', true);
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2JCXZNTE32';
+        document.head.appendChild(s);
+        window.__gaScriptLoaded = true;
       })();
     </script>
     <script>
       (function () {
         try {
-          if (!window.__gaConsentGranted) return;
           if (window.__gaInitialized) return;
           window.__gaInitialized = true;
           gtag('js', new Date());
@@ -389,7 +387,7 @@
                         <ul class="text-muted">
                             <li><strong>Contactformulier:</strong> de gegevens die u zelf invult: naam, telefoonnummer en/of e-mailadres, uw bericht en, als u die invult, de gekozen dienst en of u zakelijk of particulier aanvraagt. Meegestuurde foto's of pdf-bestanden ontvangen wij als bijlage per e-mail op <a href="mailto:info@baarsglasengevelwerken.nl">info@baarsglasengevelwerken.nl</a>.</li>
                             <li><strong>WhatsApp, telefoon en e-mail:</strong> als u ons zo benadert, verwerken wij uw nummer of adres en wat u ons stuurt, zoals foto's van uw pand. Berichten via WhatsApp lopen via WhatsApp (Meta), dat de gegevens volgens zijn eigen privacybeleid verwerkt.</li>
-                            <li><strong>Websitegebruik via Google Analytics 4 (alleen na uw toestemming):</strong> onder andere bezochte pagina's, klikken en scrollgedrag, gebruik van het contactformulier, apparaat- en browsergegevens en een globale locatie. Met toestemming kunnen ook demografische en interessegegevens van Google worden meegenomen.</li>
+                            <li><strong>Websitegebruik via Google Analytics 4 (na uw toestemming; zonder toestemming alleen anonieme paginatellingen):</strong> onder andere bezochte pagina's, klikken en scrollgedrag, gebruik van het contactformulier, apparaat- en browsergegevens en een globale locatie. Met toestemming kunnen ook demografische en interessegegevens van Google worden meegenomen.</li>
                         </ul>
 
                         <h2 class="h4 mt-4">Waarom verwerken wij deze gegevens?</h2>
@@ -399,7 +397,7 @@
                         </ul>
 
                         <h2 class="h4 mt-4">Cookies en analytics</h2>
-                        <p class="text-muted">Wij gebruiken Google Analytics 4 voor statistieken. Google Analytics wordt alleen geladen na uw toestemming via de cookiemelding; zonder toestemming worden er geen analytics-cookies geplaatst en gaan er geen gegevens naar Google. Google Analytics 4 slaat geen IP-adressen op; Google leidt uit het IP-adres alleen een globale locatie (land, regio of stad) af en verwijdert het adres daarna. Met uw toestemming kunnen ook Google-signalen worden gebruikt (demografie en interesses). Welke cookies wij gebruiken en hoe u uw keuze wijzigt, staat in de <a href="/cookies">cookieverklaring</a>.</p>
+                        <p class="text-muted">Wij gebruiken Google Analytics 4 voor statistieken. Analytics-cookies plaatsen wij alleen na uw toestemming via de cookiemelding. Zonder toestemming telt Google Analytics alleen anoniem dat een pagina is bezocht, zonder cookies en zonder dat u herkenbaar bent. Google Analytics 4 slaat geen IP-adressen op; Google leidt uit het IP-adres alleen een globale locatie (land, regio of stad) af en verwijdert het adres daarna. Met uw toestemming kunnen ook Google-signalen worden gebruikt (demografie en interesses). Welke cookies wij gebruiken en hoe u uw keuze wijzigt, staat in de <a href="/cookies">cookieverklaring</a>.</p>
 
                         <h2 class="h4 mt-4">Delen met derden</h2>
                         <p class="text-muted">Voor statistieken maken wij gebruik van Google (Google Ireland Ltd. en Google LLC). Google ontvangt de hierboven beschreven gebruiksgegevens om statistieken en rapportages te leveren en verwerkt deze volgens zijn eigen <a href="https://policies.google.com/privacy?hl=nl" target="_blank" rel="noopener">privacybeleid</a>. Wij verkopen uw gegevens niet en delen ze niet met andere partijen, tenzij dat wettelijk verplicht is.</p>
